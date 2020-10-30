@@ -1,0 +1,27 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+}
+
+.card {
+  width: 280px;
+}
+.image {
+  width: 100%;
+  height: auto;
+  transition: all 0.5s ease;
+}
+
+.inner {
+  overflow: hidden;
+}
+
+.card:hover .image {
+  transform: scale(1.2);
+}
