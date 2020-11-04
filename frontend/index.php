@@ -1,9 +1,11 @@
 <?php
     if(!isset($_GET['page'])){
-        include 'php/login.php'; 
+        include 'pages/login/index.php'; 
     }
     else{
         $page = $_GET['page'];
         include "pages/$page/index.php"; 
     }
 ?>
+
+
