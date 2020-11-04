@@ -4,6 +4,6 @@
     }
     else{
         $page = $_GET['page'];
-        include "php/$page.php"; 
+        include "pages/$page/index.php"; 
     }
 ?>
