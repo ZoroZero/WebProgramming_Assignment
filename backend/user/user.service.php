@@ -10,31 +10,32 @@
             $this->con = $db->connect();
         }
 
-        function createUser($fname, $lname, $username, $email, $password){
-            if(accountExist($username)){
-                return false;
+        function createUser($params){
+            $fname = $params['fName'];
+            $lname = $params['lName'];
+            $username = $params['username']; 
+            $email = $params['email']; 
+            $password = $params['password'];
+            $roleId = 1;
+            if($this->userExist($username)){
+                return 0;
             }
             else{
-                $stmt =$this->con->prepare("SELECT user_ID from user WHERE username = ? AND password = ?");
-                $stmt->bind_param("ss", $username, $pass);
+                $hashedPass = md5($password);
+                $stmt =$this->con->prepare("INSERT INTO user(`UserName`,`HashedPassword`,`Email`,`FirstName`,`LastName`,`RoleId`) VALUES (?, ?, ?, ?, ?, ?);");
+                $stmt->bind_param("sssssi", $username, $hashedPass, $email, $fname, $lname, $roleId);
+
+                if($stmt->execute()){
+                    return 1;
+                }
+                else
+                    return 2;
             }
-        }
-
-        function getUserById($userId){
-
-        }
-
-        function createAccount($$username, $password, $userId){
-            $stmt =$this->con->prepare("SELECT user_ID from user WHERE username = ? ");
-            $stmt->bind_param("s", $username);
-            $stmt->execute();
-            $stmt->store_result();
-            return $stmt->num_rows > 0;
         }
 
         // Check if user already exist in DB
-        private function accountExist($username){
-            $stmt =$this->con->prepare("SELECT user_ID from account WHERE username = ? ");
+        private function userExist($username){
+            $stmt =$this->con->prepare("SELECT Id from user WHERE UserName = ? ");
             $stmt->bind_param("s", $username);
             $stmt->execute();
             $stmt->store_result();

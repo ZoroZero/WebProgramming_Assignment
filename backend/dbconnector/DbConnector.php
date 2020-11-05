@@ -6,7 +6,7 @@
         }
 
         function connect(){
-            include_once dirname(__FILE__).'../environments/Constants.php';
+            include_once('../environments/DbConstants.php');
             $this->con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
             
             if(mysqli_connect_errno()){
