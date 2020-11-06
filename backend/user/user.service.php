@@ -39,5 +39,15 @@
             $stmt->store_result();
             return $stmt->num_rows > 0;
         }
+
+
+        // Login user 
+        function loginUser($params){
+            $hashedPass = md5($params["password"]);
+            $stmt =$this->con->prepare("CALL LoginUser(?, ?)");
+            $stmt->bind_param("ss", $params['username'], $hashedPass);
+            $stmt->execute();
+            return $stmt->get_result()->fetch_assoc();
+        }
     }
 ?>
