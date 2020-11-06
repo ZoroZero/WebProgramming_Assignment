@@ -17,25 +17,23 @@
             $email = $params['email']; 
             $password = $params['password'];
             $roleId = 1;
-            if($this->userExist($username)){
-                return 0;
-            }
-            else{
-                $hashedPass = md5($password);
-                $stmt =$this->con->prepare("INSERT INTO user(`UserName`,`HashedPassword`,`Email`,`FirstName`,`LastName`,`RoleId`) VALUES (?, ?, ?, ?, ?, ?);");
-                $stmt->bind_param("sssssi", $username, $hashedPass, $email, $fname, $lname, $roleId);
 
-                if($stmt->execute()){
-                    return 1;
-                }
-                else
-                    return 2;
+            $hashedPass = md5($password);
+            // $stmt =$this->con->prepare("INSERT INTO user(`UserName`,`HashedPassword`,`Email`,`FirstName`,`LastName`,`RoleId`) VALUES (?, ?, ?, ?, ?, ?);");
+            //$stmt->bind_param("sssssi", $username, $hashedPass, $email, $fname, $lname, $roleId);
+            $stmt =$this->con->prepare("CALL CreateUser(?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssssi", $username, $hashedPass, $email, $fname, $lname, $roleId);
+
+            if($stmt->execute()){
+                return $stmt->get_result()->fetch_assoc();
             }
+            else
+                return -1;
         }
 
         // Check if user already exist in DB
-        private function userExist($username){
-            $stmt =$this->con->prepare("SELECT Id from user WHERE UserName = ? ");
+        function userExist($username){
+            $stmt =$this->con->prepare("SELECT Id from account WHERE UserName = ? ");
             $stmt->bind_param("s", $username);
             $stmt->execute();
             $stmt->store_result();
