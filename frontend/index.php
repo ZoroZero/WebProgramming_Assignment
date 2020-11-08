@@ -1,9 +1,13 @@
 <?php
+    include_once("../backend/environments/Constants.php");
     if(!isset($_GET['page'])){
-        include 'php/login.php'; 
+        include 'pages/login/index.php'; 
     }
     else{
         $page = $_GET['page'];
-        include "php/$page.php"; 
+        include "pages/$page/index.php"; 
     }
+
 ?>
+
+
