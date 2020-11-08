@@ -1,0 +1,28 @@
+body {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: 100vh;
+  margin: 0px;
+}
+
+.form-control {
+  outline: none;
+  border: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.btn-default:hover {
+  background-color: white !important;
+  border: none;
+}
+
+#navbar {
+  min-width: 1000px;
+}
+#map {
+  height: 300px;
+  width: auto;
+}
