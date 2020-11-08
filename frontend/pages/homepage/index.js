@@ -23,6 +23,8 @@ Http.onreadystatechange = (e) => {
                         </div>`;
         });
         let container = document.getElementById('content');
-        container.innerHTML = content;
+        if(container){
+            container.innerHTML = content;
+        }
     }
 }
