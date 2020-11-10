@@ -10,15 +10,20 @@ Http.onreadystatechange = (e) => {
         let content = '';
         res.forEach(product => {
             content += `<div class="card">
-                            <div class="card-image">
-                                <img class = "image" src="${product['Path']}" alt="pc img">
+                            <div class="inner">
+                                <img class = "card-image image" src="${product["Path"]}" alt="pc img">
                             </div>
-                            <div class="card-text">
-                                <h2>${product['Description']}</h2>
-                                <p>i3-9100F/8GB/250GB SSD/GeForce GTX 1660 Super/Free DOS</p>
-                            </div>
-                            <div class="card-stats">
-                                <p>14.000.000 vnd</p>
+                            
+                            <div class="card-body card_body">
+                                <h2 class="card-title text-center">${product['Name']}</h2>
+                                <p class="card-text card_info">i3-9100F/8GB/250GB SSD/GeForce GTX 1660 Super/Free DOS</p>
+                                
+                                <div class="card_footer">
+                                    <div class="card-stats">
+                                        <p class="card_money">${formatNumber(product['Price'])} vnd</p>
+                                    </div>
+                                    <a href="#" class="btn btn-primary card_button btn-sm">More Detail</a>
+                                </div>
                             </div>
                         </div>`;
         });
@@ -28,3 +33,8 @@ Http.onreadystatechange = (e) => {
         }
     }
 }
+
+
+function formatNumber(num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
+  }
