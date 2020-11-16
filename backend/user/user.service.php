@@ -49,5 +49,14 @@
             $stmt->execute();
             return $stmt->get_result()->fetch_assoc();
         }
+
+
+        // Get user information
+        function getUserInformation($userId){
+            $stmt =$this->con->prepare("SELECT * from user WHERE UserId = ? ");
+            $stmt->bind_param("i", $userId);
+            $stmt->execute();
+            return $stmt->get_result()->fetch_assoc();
+        }
     }
 ?>

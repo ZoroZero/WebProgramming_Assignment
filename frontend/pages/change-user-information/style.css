@@ -1,0 +1,113 @@
+
+.user_profile_form  {
+    display: table; 
+}
+
+.profile_edit {
+    display: table-row;  
+}
+
+.user_profile_label { 
+    display: table-cell; 
+    padding-left:10px;
+}
+.user_profile_sidepanel{
+    background-color:pink;
+    text-align:center;
+    padding-left:0;
+    padding-right:0;
+}
+.tab_title{
+    font-size:50px;
+    margin:0;
+    margin-bottom:50px;
+    margin-left:10px;
+    padding-top:10px;
+}
+.nav-tabs.centered > .user_profile_sidepanel_tab > .user_profile_sidepanel_link, 
+.nav-pills.centered > .user_profile_sidepanel_tab > .user_profile_sidepanel_link {
+    background-color: transparent;
+    color:black;
+    font-size:18px;
+    border:0;
+    display:inline-block;
+}
+
+
+@media (min-width:1200px){
+    .profile_tab {
+        background-color:grey;
+        width:200%;
+        display:inline-block;
+    }
+    input{ 
+        display: table-cell;
+        margin-left:200px;
+        width:200px;
+    }	
+    .user_profile_sidepanel{
+        position: sticky;
+        top: 0;
+        border-bottom: 1px solid black;
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+    }	
+    .nav-tabs.centered > .user_profile_sidepanel_tab, 
+    .nav-pills.centered > .user_profile_sidepanel_tab {
+        float:none;
+        display:flex;
+        border-top:1px solid black;
+        justify-content: center;
+    }			
+}
+@media (max-width:1199px){
+    .profile_tab {
+        background-color:grey;
+        width:100%;
+        display:inline-block;
+    }
+    input{ 
+        display: table-cell;
+        margin-left:100px;
+        width:200px;
+    }
+    .user_profile_sidepanel{
+        background-clip: content-box;
+    }
+    .user_profile_main{
+        background-clip: border-box;
+        background-color: grey;
+    }	
+    .nav-tabs.centered > .user_profile_sidepanel_tab, 
+    .nav-pills.centered > .user_profile_sidepanel_tab {
+        float:none;
+        display:inline-block;
+        background-color:pink ;
+    }			
+}
+
+.user_profile_check_result{
+    padding-left:10px;
+    font-size:100px;
+    color:red;
+}
+.user_profile_button{
+    background-color:pink;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 20px 10px;
+    border-radius: 4px;
+    /* float: left; */
+}
+.profile_avatar{
+    width:200px;
+    height:200px;
+    border-radius:50%;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
