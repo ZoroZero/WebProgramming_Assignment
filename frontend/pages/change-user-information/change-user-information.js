@@ -26,15 +26,27 @@ function getUserInformation(){
             if(!Http.response['error']){
                 console.log(JSON.parse(Http.response)['data']);
                 let information = JSON.parse(Http.response)['data'];
+                document.getElementById("profile_id").value = userId;
                 document.getElementById("profile_username").value = information['FirstName'];
                 document.getElementById("profile_firstName").value = information['FirstName'];
                 document.getElementById("profile_lastName").value = information['LastName'];
                 document.getElementById("profile_email").value = information['Email'];
-                document.getElementById("profile_address").value = information['Email'];
+                document.getElementById("profile_address").value = information['Address'];
 
             }
         }
     }
+}
+
+function ValidateEmail() 
+{
+  var email = document.getElementById("profile_email").value;
+  if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))
+  {
+    return true;
+  }
+  alert("You have entered an invalid email address!")
+  return false;
 }
 
 getUserInformation();

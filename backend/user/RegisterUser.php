@@ -7,24 +7,30 @@
         isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])){
             $service = new UserService();
             $service->__contruct();
-            
-            $exist = $service->userExist($_POST['username']);
-            if($exist){
+            $email = $_POST["email"];
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $response['error'] = true;
-                $response['message'] = 'Username already exist on system';
+                $response['message'] = 'Email in wrong format';
             }
             else{
-                $result = $service->createUser($_POST);
-                if($result == -1){
+                $exist = $service->userExist($_POST['username']);
+                if($exist){
                     $response['error'] = true;
-                    $response['message'] = 'Some error occur';
+                    $response['message'] = 'Username already exist on system';
                 }
                 else{
-                    // setcookie(USER_ID, $result['Id'], time() + (86400 * 30), "/"); // 86400 = 1 day
-                    session_start();
-                    $_SESSION[USER_ID] = $result['Id'];
-                    if(isset($_SESSION[USER_ID])) {
-                        header("Location: ../../frontend?page=homepage");
+                    $result = $service->createUser($_POST);
+                    if($result == -1){
+                        $response['error'] = true;
+                        $response['message'] = 'Some error occur';
+                    }
+                    else{
+                        setcookie(USER_ID, $result['Id'], time() + (86400 * 30), "/"); // 86400 = 1 day
+                        session_start();
+                        $_SESSION[USER_ID] = $result['Id'];
+                        if(isset($_SESSION[USER_ID])) {
+                            header("Location: ../../frontend?page=homepage");
+                        }
                     }
                 }
             }

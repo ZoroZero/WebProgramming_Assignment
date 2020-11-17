@@ -22,7 +22,7 @@
             // $stmt =$this->con->prepare("INSERT INTO user(`UserName`,`HashedPassword`,`Email`,`FirstName`,`LastName`,`RoleId`) VALUES (?, ?, ?, ?, ?, ?);");
             //$stmt->bind_param("sssssi", $username, $hashedPass, $email, $fname, $lname, $roleId);
             $stmt =$this->con->prepare("CALL CreateUser(?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssssi", $username, $hashedPass, $email, $fname, $lname, $roleId);
+            $stmt->bind_param("sssssi", $username, $hashedPass, $fname, $lname, $email, $roleId);
 
             if($stmt->execute()){
                 return $stmt->get_result()->fetch_assoc();
@@ -58,6 +58,23 @@
             $stmt->bind_param("i", $convert_userId);
             $stmt->execute();
             return $stmt->get_result()->fetch_assoc();
+        }
+
+        // Get user information
+        function updateUserInformation($params){
+            $convert_userId = (int)$params["Id"];
+            $fname = $params["FirstName"];
+            $lname = $params["LastName"];
+            $email = $params["Email"];
+            $address = $params["Address"];
+            $isActive = isset($params["IsActive"])? int($params["IsActive"]): 1;
+            $stmt = $this->con->prepare("CALL UpdateUserInformation(?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("issssi", $convert_userId, $fname, $lname, $email, $address, $isActive);
+            if($stmt->execute()){
+                return true;
+            }
+            else
+                return false;
         }
     }
 ?>
