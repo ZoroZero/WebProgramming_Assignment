@@ -12,8 +12,9 @@
                 $response['message'] = 'Incorrect username or password';
             }
             else{
-                // setcookie(USER_ID, $result['Id'], time() + (86400 * 30), "/"); // 86400 = 1 day
+                
                 session_start();
+                setcookie(USER_ID, $result['Id'], time() + (86400 * 30), "/"); // 86400 = 1 day
                 $_SESSION[USER_ID] = $result['Id'];
                 $_SESSION[ROLE_ID] = $result["roleId"];
                 if(isset($_SESSION[USER_ID])) {

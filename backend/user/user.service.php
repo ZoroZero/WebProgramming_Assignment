@@ -53,8 +53,9 @@
 
         // Get user information
         function getUserInformation($userId){
-            $stmt =$this->con->prepare("SELECT * from user WHERE UserId = ? ");
-            $stmt->bind_param("i", $userId);
+            $convert_userId = (int)$userId;
+            $stmt = $this->con->prepare("SELECT * from user WHERE Id = ? ");
+            $stmt->bind_param("i", $convert_userId);
             $stmt->execute();
             return $stmt->get_result()->fetch_assoc();
         }
