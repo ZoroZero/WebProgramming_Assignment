@@ -25,7 +25,4 @@
 				
 			}
 			mysqli_close($mysqli);
-
-			//JS TO CHECK EMAIL ADDRESS PATTERN
-			//ADD PROFILE PICTURE
 ?>

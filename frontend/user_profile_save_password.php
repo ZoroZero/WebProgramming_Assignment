@@ -1,7 +1,6 @@
 <?php
 	// SET EVERYTHING ACCORDINGLY
-	if (empty($_POST["profile_firstName"]) || empty($_POST["profile_lastName"]) 
-			|| empty($_POST["profile_email"]) || empty($_POST["profile_address"])){
+	if (empty($_POST["profile_password"]) || empty($_POST["profile_password_re"])){
 		echo "<script type='text/javascript'>alert('error querying!');</script>";
 		header ('Refresh: 0; user_profile.php');	
 		// USE SESSION TO CREATE A WARNING MESSAGE
@@ -19,15 +18,11 @@
 			// USE SESSION TO CREATE A WARNING MESSAGE
 		}
 		$profile_username = "dat"; //USE $_SESSION TO CHECK THIS INSTEAD
-		$profile_firstName = $_POST["profile_firstName"];
-		$profile_lastName = $_POST["profile_lastName"];
-		$profile_email = $_POST["profile_email"];
-		$profile_address = $_POST["profile_address"];
+		$profile_password = $_POST["profile_password"];
+		$profile_password_re = $_POST["profile_password_re"];
+		if ($profile_password == $profile_password_re){ //BAD CONDITION
 		$sql = "UPDATE `user` SET 
-					`first_name` = '$profile_firstName',
-					`last_name` = '$profile_lastName',
-					`address` = '$profile_address',
-					`email` =  '$profile_email'
+					`password` = '$profile_password'
 				WHERE `username` = '$profile_username';";
 				if (!mysqli_query($mysqli, $sql, MYSQLI_STORE_RESULT)){
 					header ('Refresh: 0; user_profile.php');
@@ -36,6 +31,7 @@
 					header ('Refresh: 0; user_profile.php');
 					// USE SESSION TO CREATE A SUCCESS MESSAGE
 				}
+		}
 		mysqli_close($mysqli);
 	}
 ?>
