@@ -49,7 +49,6 @@
 		if(isset($_POST["FirstName"]) && isset($_POST["LastName"]) && isset($_POST['Email']) && isset($_POST['Address'])){
 			$service = new UserService();
 			$service->__contruct();
-			echo json_encode($_POST);
 			$result = $service->updateUserInformation($_POST);
 			if($result){
 				$response['error'] = false;

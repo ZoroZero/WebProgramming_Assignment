@@ -1,5 +1,5 @@
 const Http = new XMLHttpRequest();
-
+const userId = getCookie("userId");
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
@@ -16,7 +16,6 @@ function getCookie(cname) {
 }
 
 function getUserInformation(){
-    var userId = getCookie("userId");
     const url='http://localhost/webassignment/backend/user/GetUserInformation.php?userId=' + userId;
     Http.open("GET", url);
     Http.send();
@@ -37,6 +36,39 @@ function getUserInformation(){
         }
     }
 }
+
+var request;
+$(document).ready(function(){
+  $("#form_user_profile_general").submit(function(event){
+    event.preventDefault();
+
+    if (request) {
+      request.abort();
+    }
+    var values = $(this).serialize();
+
+    request = $.post("http://localhost/webassignment/backend/user/UpdateUserInformation.php",
+                      values,
+                      function(response) {
+                        if(response){
+                          console.log("Response: "+response);
+                          getUserInformation();
+                        }
+                        
+                    }
+    );
+
+    // Callback handler that will be called on failure
+    request.fail(function (jqXHR, textStatus, errorThrown){
+        // Log the error to the console
+        console.error(
+            "The following error occurred: "+
+            textStatus, errorThrown
+        );
+    });
+  });
+});
+
 
 function ValidateEmail() 
 {

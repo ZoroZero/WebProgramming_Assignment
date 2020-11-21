@@ -42,7 +42,7 @@
             <div class="tab-content profile_tab">
             <div class="tab-pane active" id="tab_general">
                 <h1 class="tab_title">Genenal</h1>
-                <form id="form_user_profile_general" class="user_profile_form" action="http://localhost/webassignment/backend/user/UpdateUserInformation.php" method="post">
+                <form id="form_user_profile_general" class="user_profile_form">
                     <p class="profile_edit d-none invisible">
                         <label for="profile_id" class="user_profile_label">Username</label>
                         <input  type="text" id="profile_id" name="Id" search="false" image-upload="false" 
@@ -84,6 +84,7 @@
                     </p>
                     <br>
                 <button type="submit" form="form_user_profile_general" value="save" class="user_profile_button">Save</button>
+                
                 <div class="user_profile_check_result">
                     <p class="user_profile_check_result" id="inputcheck">  </p>
                 </div>
