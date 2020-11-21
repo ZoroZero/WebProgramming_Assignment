@@ -1,0 +1,20 @@
+{
+  "name": "assignment",
+  "version": "1.0.0",
+  "description": "web_program_ass",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "sass ./sass/style.scss style.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZoroZero/WebProgramming_Assignment.git"
+  },
+  "author": "Donald Trump",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZoroZero/WebProgramming_Assignment/issues"
+  },
+  "homepage": "https://github.com/ZoroZero/WebProgramming_Assignment#readme"
+}
