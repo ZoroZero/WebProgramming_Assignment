@@ -27,10 +27,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
 
     <!-- Custom CSS file -->
-    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../frontend/style.css">
 
     <!-- Custom Javascript-->
-    <script src="../../index.js"></script>
+    <script src="../frontend/index.js"></script>
 
     <!--  isotope plugin cdn  -->
     <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>

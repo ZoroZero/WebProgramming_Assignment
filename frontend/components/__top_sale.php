@@ -9,7 +9,7 @@
             <div class="item py-2 px-2">
                 <div class="product font-rale">
                     <a href="#">
-                        <img src="../../assets/imgs/homepage/windows/product2.png" alt="product2" class="img-fluid">
+                        <img src="../frontend/assets/imgs/homepage/windows/product2.png" alt="product2" class="img-fluid">
                     </a>
                     <div class="text-center">
                         <h6>
@@ -35,7 +35,7 @@
             <div class="item py-2 px-2">
                 <div class="product font-rale">
                     <a href="#">
-                        <img src="../../assets/imgs/homepage/windows/product1.png" alt="product1" class="img-fluid">
+                        <img src="../frontend/assets/imgs/homepage/windows/product1.png" alt="product1" class="img-fluid">
                     </a>
                     <div class="text-center">
                         <h6>
@@ -61,7 +61,7 @@
             <div class="item py-2 px-2">
                 <div class="product font-rale">
                     <a href="#">
-                        <img src="../../assets/imgs/homepage/windows/product3.png" alt="product3" class="img-fluid">
+                        <img src="../frontend/assets/imgs/homepage/windows/product3.png" alt="product3" class="img-fluid">
                     </a>
                     <div class="text-center">
                         <h6>
@@ -87,7 +87,7 @@
             <div class="item py-2 px-2">
                 <div class="product font-rale">
                     <a href="#">
-                        <img src="../../assets/imgs/homepage/windows/product4.png" alt="product4" class="img-fluid">
+                        <img src="../frontend/assets/imgs/homepage/windows/product4.png" alt="product4" class="img-fluid">
                     </a>
                     <div class="text-center">
                         <h6>
@@ -113,7 +113,7 @@
             <div class="item py-2 px-2">
                 <div class="product font-rale">
                     <a href="#">
-                        <img src="../../assets/imgs/homepage/windows/product5.png" alt="product5" class="img-fluid">
+                        <img src="../frontend/assets/imgs/homepage/windows/product5.png" alt="product5" class="img-fluid">
                     </a>
                     <div class="text-center">
                         <h6>
@@ -139,7 +139,7 @@
             <div class="item py-2 px-2">
                 <div class="product font-rale">
                     <a href="#">
-                        <img src="../../assets/imgs/homepage/windows/product6.png" alt="product6" class="img-fluid">
+                        <img src="../frontend/assets/imgs/homepage/windows/product6.png" alt="product6" class="img-fluid">
                     </a>
                     <div class="text-center">
                         <h6>
