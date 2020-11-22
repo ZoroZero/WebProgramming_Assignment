@@ -90,5 +90,18 @@
             else
                 return false;
         }
+
+        // Update user avatar
+        function updateUserAvatar($params, $newFileType, $newFilePath){
+            $convert_userId = (int)$params["id"];
+            $fileName = $params["id"];
+            $stmt = $this->con->prepare("CALL UpdateAvatar(?, ?, ?, ?)");
+            $stmt->bind_param("isss", $convert_userId, $fileName, $newFileType, $newFilePath);
+            if($stmt->execute()){
+                return true;
+            }
+            else
+                return false;
+        }
     }
 ?>

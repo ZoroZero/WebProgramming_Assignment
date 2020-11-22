@@ -32,7 +32,7 @@ function getUserInformation(){
           document.getElementById("profile_lastName").value = information['LastName'];
           document.getElementById("profile_email").value = information['Email'];
           document.getElementById("profile_address").value = information['Address'];
-          document.getElementById('user_profile_avatar').src = '../frontend/' + information['Path']
+          document.getElementById('user_profile_avatar').src = '../frontend/' + information['Path'];
         }
     }
   );
@@ -187,4 +187,31 @@ function updatePassword(){
     });		
     document.getElementById("form_user_profile_password").reset();
   }
+}
+
+var loadFile = function(event) {
+  var output = document.getElementById('output');
+  output.src = URL.createObjectURL(event.target.files[0]);
+  output.onload = function() {
+    URL.revokeObjectURL(output.src) // free memory
+  }
+};
+
+function uploadAvatar(){
+  var formData = new FormData();
+  formData.append('section', 'general');
+  formData.append('action', 'previewImg');
+  // Attach file
+  formData.append('fileToUpload', $('#fileToUpload')[0].files[0]);
+  formData.append('id', userId); 
+  $.ajax({
+    url: '../backend/user/UploadAvatar.php',
+    data: formData,
+    type: 'POST',
+    contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+    processData: false, // NEEDED, DON'T OMIT THIS
+    success: function(res){
+      console.log(res);
+    }
+  });
 }

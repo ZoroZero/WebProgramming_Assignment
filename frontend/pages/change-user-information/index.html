@@ -113,9 +113,13 @@
 						<h4 class="modal-title">Select an image</h4>
 					  </div>
 					  <div class="modal-body">
+						<img id='output' class='user_profile_avatar'>
                         <form id="form_user_profile_avatar" name="form_user_profile_avatar" class="user_profile_form" 
-                        action="user_profile_save_avatar" method="post">
-							<div class="row">
+							action="../backend/user/UploadAvatar.php" method="post" enctype="multipart/form-data"> 
+							Select image to upload:
+							<input type="file" name="fileToUpload" id="fileToUpload" onchange="loadFile(event)">
+							<!-- <input type="submit" value="Upload Image" name="submit"> -->
+							<!-- <div class="row">
 								<div class="column">
 									<label class="user_profile_avatar_label">
 									<input class="user_profile_avatar_radio" type="radio" name="profile_avatar">
@@ -123,12 +127,12 @@
                                     style="width:100px;height:100px;margin-bottom:5px;margin-left:10px;"/>
 									</label>
 								</div>
-							</div>
+							</div> -->
 						</form>
 									
 					  </div>
 					  <div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal" onclick="avatarcheck()">Apply</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal" onclick="uploadAvatar()">Apply</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
 					  </div>
