@@ -32,6 +32,7 @@ function getUserInformation(){
           document.getElementById("profile_lastName").value = information['LastName'];
           document.getElementById("profile_email").value = information['Email'];
           document.getElementById("profile_address").value = information['Address'];
+          document.getElementById('user_profile_avatar').src = '../frontend/' + information['Path']
         }
     }
   );
