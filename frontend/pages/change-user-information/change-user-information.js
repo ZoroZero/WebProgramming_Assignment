@@ -2,6 +2,8 @@ const Http = new XMLHttpRequest();
 const userId = getCookie("userId");
 const email_regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 var isFormValid = true;
+var isFirstNameValid = isLastNameValid = isEmailValid = isAddressValid = false;
+var isNewPasswordValid = isConfirmPasswordValid = false;
 
 function getCookie(cname) {
     var name = cname + "=";
@@ -52,10 +54,11 @@ function checkFirstName(){
   if (document.getElementById("profile_firstName").value === ""){
     document.getElementById("profile_firstName_check").style.display = 'block';
     document.getElementById("profile_firstName").classList.add('warning');
-    isFormValid = false;
+    isFirstNameValid = false;
   } 
   else{
     document.getElementById("profile_firstName_check").style.display = 'none';
+    isFirstNameValid = true;
   }
 }
 
@@ -63,10 +66,11 @@ function checkLastName(){
   if (document.getElementById("profile_lastName").value === ""){
     document.getElementById("profile_lastName_check").style.display = 'block';
     document.getElementById("profile_lastName").classList.add('warning');
-    isFormValid = false;
+    isLastNameValid = false;
   } 
   else{
     document.getElementById("profile_lastName_check").style.display = 'none';
+    isLastNameValid = true;
   }
 }
 
@@ -75,16 +79,17 @@ function checkEmail(){
     document.getElementById("profile_email_check").style.display = 'block';
     document.getElementById("profile_email_check").innerHTML = "Please fill this out!";
     document.getElementById("profile_email").classList.add('warning');
-    isFormValid = false;
+    isEmailValid = false;
   }
   else if(!email_regex.test(String(profile_email.value).toLowerCase())){
     document.getElementById("profile_email_check").style.display = 'block';
     document.getElementById("profile_email_check").innerHTML = "Please provide a correct email address!";
     document.getElementById("profile_email").classList.add('warning');
-    isFormValid = false;
+    isEmailValid = false;
   } 
   else{
     document.getElementById("profile_email_check").style.display = 'none';
+    isEmailValid = true;
   }
 }
 
@@ -92,20 +97,21 @@ function checkAddress(){
   if( document.getElementById("profile_address").value == ""){
     document.getElementById("profile_address_check").style.display = 'block';
     document.getElementById("profile_address").classList.add('warning');
-    isFormValid = false;
+    isAddressValid = false;
   }
   else{
     document.getElementById("profile_address_check").style.display = 'none';
+    isAddressValid = true;
   }  
 }
 
-function inputcheck(){
+function updateUserInformation(){
   checkFirstName();
   checkLastName();
   checkEmail();
 	checkAddress();
 	
-	if (isFormValid){
+	if (isFirstNameValid && isLastNameValid && isEmailValid && isAddressValid){
       var sent_data = $('#form_user_profile_general').serializeArray();
       sent_data.push({name: "id", value: userId});   
       $.ajax({
@@ -122,4 +128,62 @@ function inputcheck(){
 			});
 	
 	}
+}
+
+function checkPassword(){
+  if (document.getElementById("profile_password").value == ""){
+    document.getElementById("profile_password_check").innerHTML = "Please fill this out!";
+    document.getElementById("profile_password_check").style.display = 'block';
+    document.getElementById("profile_password").classList.add('warning');
+    isNewPasswordValid = false;
+  } else if(document.getElementById("profile_password").value.length < 8){
+    document.getElementById("profile_password_check").innerHTML = "Must be at least 8 character"; //ADD MORE  PASSWORD CONSTRAINT HERE
+    document.getElementById("profile_password_check").style.display = 'block';
+    document.getElementById("profile_password").classList.add('warning');
+    isNewPasswordValid = false;
+  } else {
+    document.getElementById("profile_password_check").style.display = 'none';
+    document.getElementById("profile_password").classList.remove('warning');	
+    isNewPasswordValid = true;
+  }
+}
+
+function checkConfirmPassword(){
+  if (document.getElementById("profile_password").value == "" && document.getElementById("profile_password_re").value == ""){
+    document.getElementById("profile_password_re_check").innerHTML = "Please fill this out!";
+    document.getElementById("profile_password_re_check").style.display = 'block';
+    document.getElementById("profile_password_re").classList.add('warning')	
+    isConfirmPasswordValid = false		
+  }
+  else if (document.getElementById("profile_password_re").value !== document.getElementById("profile_password").value){
+    document.getElementById("profile_password_re_check").innerHTML = "Password does not match";
+    document.getElementById("profile_password_re_check").style.display = 'block';
+    document.getElementById("profile_password_re").classList.add('warning');		
+    isConfirmPasswordValid = false;	
+  } else {
+    document.getElementById("profile_password_re_check").style.display = 'none';
+    isConfirmPasswordValid = true;
+  }	
+}
+
+function updatePassword(){
+  checkPassword();
+  checkConfirmPassword();
+  if(isNewPasswordValid && isConfirmPasswordValid){
+    var sent_data = $('#form_user_profile_password').serializeArray();
+    sent_data.push({name: "id", value: userId});   
+    $.ajax({
+          type: 'post',
+          url: '../backend/user/UpdateUserPassword.php',
+          data: sent_data      
+        })
+    .done(function (response) {
+      console.log("Update password", response);
+      document.getElementById("passwordcheck").innerHTML = "Success!";
+      setTimeout(function(){
+      document.getElementById("passwordcheck").innerHTML = "&nbsp"
+      },5000)
+    });		
+    document.getElementById("form_user_profile_password").reset();
+  }
 }

@@ -1,12 +1,12 @@
 <?php
-	require_once "user.service.php";
+    require_once "user.service.php";
 	include_once("../environments/Constants.php");
 	$response = array();
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){
-		if(isset($_POST["firstName"]) && isset($_POST["lastName"]) && isset($_POST['email']) && isset($_POST['address']) && isset($_POST['id'])){
+		if(isset($_POST["newPassword"]) && isset($_POST["id"])){
 			$service = new UserService();
 			$service->__contruct();
-			$result = $service->updateUserInformation($_POST);
+			$result = $service->updateUserPassword($_POST);
 			if($result){
 				$response['error'] = false;
 				$response['message'] = 'Success';

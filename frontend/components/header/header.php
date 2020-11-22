@@ -42,7 +42,14 @@
         <div class="strip d-flex justify-content-between px-4 py-1 bg-light">
             <p class="font-rale font-size-12 text-black-50 m-0">Jordan Calderon 430-985 Eleifend St. Duluth Washington 92611 (427) 930-5255</p>
             <div class="font-rale font-size-14">
-                <a href="#" class="px-3 border-right border-left text-dark">Login</a>
+                <?php 
+                    session_start();
+                    include_once("../backend/environments/Constants.php");
+                    if(isset($_SESSION['userId']))
+                        echo "<a href='../backend/user/LogoutUser.php' class='px-3 border-right border-left text-dark' id='login-btn'>Logout</a>";
+                    else
+                        echo "<a href='../frontend/?page=login' class='px-3 border-right border-left text-dark' id='logout-btn'>Login</a>";?>
+                
                 <a href="#" class="px-3 border-right text-dark">Wishlist (0)</a>
             </div>
         </div>
