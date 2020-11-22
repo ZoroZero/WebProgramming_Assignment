@@ -62,11 +62,11 @@
 
         // Get user information
         function updateUserInformation($params){
-            $convert_userId = (int)$params["Id"];
-            $fname = $params["FirstName"];
-            $lname = $params["LastName"];
-            $email = $params["Email"];
-            $address = $params["Address"];
+            $convert_userId = (int)$params["id"];
+            $fname = $params["firstName"];
+            $lname = $params["lastName"];
+            $email = $params["email"];
+            $address = $params["address"];
             $isActive = isset($params["IsActive"])? int($params["IsActive"]): 1;
             $stmt = $this->con->prepare("CALL UpdateUserInformation(?, ?, ?, ?, ?, ?)");
             $stmt->bind_param("issssi", $convert_userId, $fname, $lname, $email, $address, $isActive);

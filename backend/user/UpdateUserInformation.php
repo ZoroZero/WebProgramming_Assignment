@@ -46,7 +46,7 @@
 	include_once("../environments/Constants.php");
 	$response = array();
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){
-		if(isset($_POST["FirstName"]) && isset($_POST["LastName"]) && isset($_POST['Email']) && isset($_POST['Address'])){
+		if(isset($_POST["firstName"]) && isset($_POST["lastName"]) && isset($_POST['email']) && isset($_POST['address']) && isset($_POST['id'])){
 			$service = new UserService();
 			$service->__contruct();
 			$result = $service->updateUserInformation($_POST);
@@ -60,6 +60,7 @@
 			}
 		}
 		else{
+			echo json_encode($_POST);
 			$response['error'] = true;
 			$response['message'] = 'Missing parameter';
 		}

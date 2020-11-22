@@ -6,7 +6,5 @@
     }
     else{
         include_once('index.html');
-		
     }
-
 ?>
