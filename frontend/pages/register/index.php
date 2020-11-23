@@ -5,6 +5,5 @@
         header("Location: ?page=homepage");
     }
     else{
-        include_once('index.html');
+        include_once('register.php');
     }
-?>

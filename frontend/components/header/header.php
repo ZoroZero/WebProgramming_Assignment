@@ -34,6 +34,9 @@
 
     <!--  isotope plugin cdn  -->
     <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+
+    <!-- google Recaptcha api-->
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body>
