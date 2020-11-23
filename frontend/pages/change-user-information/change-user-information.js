@@ -212,6 +212,7 @@ function uploadAvatar(){
     processData: false, // NEEDED, DON'T OMIT THIS
     success: function(res){
       console.log(res);
+      getUserInformation();
     }
   });
 }

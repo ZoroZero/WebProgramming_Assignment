@@ -8,8 +8,8 @@
             <button class="btn" data-filter='.Mac'>Mac</button>
             <button class="btn" data-filter='.Linux'>Linux</button>
         </div>
-        <div class="grid">
-            <div class="grid-item Windows border">
+        <div class="grid" id='special-price-grid'>
+            <!-- <div class="grid-item Windows border">
                 <div class="item py-2 px-2" style="width: 200px;">
                     <div class="product font-rale">
                         <a href="#">
@@ -428,7 +428,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>

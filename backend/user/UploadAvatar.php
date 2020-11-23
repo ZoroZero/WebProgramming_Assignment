@@ -30,7 +30,7 @@
         }
 
         // Allow certain file formats
-        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
             $response['error'] = true;
             $response['message'] = 'File is not in correct format';
             $uploadOk = 0;
@@ -50,9 +50,6 @@
                     $response['error'] = true;
                     $response['message'] = 'Failed';
                 }
-                // $response['error'] = false;
-                // $response['message'] = 'File is uploaded succesfully';
-                // echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
             } 
             else {
                 $response['error'] = true;

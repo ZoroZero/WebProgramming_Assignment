@@ -2,11 +2,11 @@
 <section id="top-sale">
     <div class="container py-5">
         <h4 class="font-rubik font-size-20">Top sale</h4>
-        <hr>
+    <hr>
 
         <!--Owl-carousel-->
-        <div class="owl-carousel owl-theme">
-            <div class="item py-2 px-2">
+        <div class="owl-carousel owl-theme" id='top-sale-carousel'>
+            <!-- <div class="item py-2 px-2">
                 <div class="product font-rale">
                     <a href="#">
                         <img src="../frontend/assets/imgs/homepage/windows/product2.png" alt="product2" class="img-fluid">
@@ -160,8 +160,8 @@
                         <button type="submit" class="btn btn-warning font-size-12">Add to cart</button>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div> -->
+        </div>  
         <!--!Owl-carousel-->
     </div>
 </section>
