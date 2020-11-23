@@ -74,15 +74,13 @@ $(document).ready(function() {
     
 })
 
-var request;
 
 function getTopSaleProduct(){
-    request = $.get('../backend/product/GetTopSales.php',
+    var request = $.get('../backend/product/GetTopSales.php',
       function(response) {
         if(response){
-            console.log(response);
             let information = JSON.parse(response)['data'];
-            console.log(information);
+            console.log("Top sale", information);
             var list_product = information.map(function(element){
                 return `<div class="item py-2 px-2">
                         <div class="product font-rale">
@@ -140,22 +138,21 @@ function getTopSaleProduct(){
 
 
 function getSpecialPriceProduct(){
-    request = $.get('../backend/product/GetSpecialPrice.php',
+    var request = $.get('../backend/product/GetSpecialPrice.php',
       function(response) {
         if(response){
-            console.log(response);
             let information = JSON.parse(response)['data'];
             console.log('Special prices ', information);
             var list_product = information.map(function(element){
-                return `<div class="grid-item Windows border">
+                return `<div class="grid-item ${getProductCategory(element['CategoryId'])} border">
                             <div class="item py-2 px-2" style="width: 200px;">
                                 <div class="product font-rale">
                                     <a href="#">
-                                        <img src="../frontend/assets/imgs/homepage/windows/product2.png" alt="product2" class="img-fluid">
+                                        <img src="../frontend/${element['Path']}" alt="product2" class="img-fluid">
                                     </a>
                                     <div class="text-center">
                                         <h6>
-                                            PVP (Windows)
+                                        ${element['Name']}
                                         </h6>
                                         <div class="rating text-warning font-size-12">
                                             <span>
@@ -167,7 +164,7 @@ function getSpecialPriceProduct(){
                                             </span>
                                         </div>
                                         <div class="price py-2">
-                                            <span>14,000,000đ</span>
+                                            <span>${element['Price']}đ</span>
                                         </div>
                                         <button type="submit" class="btn btn-warning font-size-12">Add to cart</button>
                                     </div>
@@ -196,4 +193,13 @@ function getSpecialPriceProduct(){
         // Log the error to the console
         console.error("The following error occurred: ", textStatus, errorThrown);
     });
+}
+
+
+function getProductCategory(categoryId){
+    switch(categoryId){
+        case 1: return 'Windows';
+        case 2: return 'Mac';
+        case 3: return 'Linux';
+    }
 }
