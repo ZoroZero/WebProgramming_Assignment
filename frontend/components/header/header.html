@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="header_footer.css">
+	<script src="https://kit.fontawesome.com/c9d4cc6b24.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#topnavbar').on('show.bs.collapse', function() {
+				$("#searchbar").css("width", "95%");
+				$("#searchbar").css("margin", "auto");
+				
+			});
+
+			$('.collapse').on('hidden.bs.collapse', function() {
+				$("#searchbar").css("width", "200%");
+			});
+		});
+	</script>
+	
+	<script src="./googlemap.js"></script>
+	<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByz03P6b4K2TUDMD8DCWG_KNHe7MNdtSs&callback=initMap"></script>
+	<style>
+	.title_footer {
+		font-weight:bold;
+		color:fuchsia;
+		font-size:20px;
+		text-align:left;
+	}
+	
+
+	.text_footer{
+		text-align:left;
+	}
+	
+	.link_header_footer {
+		color:black;
+	}
+	
+	</style>
+</head>
+
+<body>
+
+	
+<nav class="navbar navbar-default"  style="background-color:pink;padding-bottom:60px;border:none"> <!--FIX ZOOM ON EXPANSE-->
+  <div class="container-fluid">
+    <div class="navbar-header">
+	<a class="navbar-brand link_header_footer" href="#">Brand</a>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#topnavbar" aria-expanded="false" id="navbar-collapse-btn" style="border:none">
+		<i class="fas fa-ellipsis-h" style="padding-bottom:-10px"></i>
+      </button>
+    </div>
+	
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="topnavbar" style="border:none; z-index: 999; margin-bottom: 20px; background-color:pink">
+	  	<form class="navbar-form navbar-left" action="#" style="border:none;outline:none">
+			<div class="input-group" style="width:200%" id="searchbar">
+				<input type="text" class="form-control" placeholder="Tìm kiếm...">
+				<div class="input-group-btn">
+					<button class="btn btn-default" type="submit" style="display:block;border:0px;margin:0px;padding:7px;">
+						<i class="fas fa-search fa-lg"></i>
+					</button>
+				</div>
+			</div>
+		</form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a class="link_header_footer" href="#"><i class="fas fa-shopping-cart fa-2x"></i></a></li>
+        <li><a class="link_header_footer" href="#">Link</a></li>
+		
+        <li class="dropdown"></li>
+        <li><a class="link_header_footer" href="#">Link</a></li>
+        <li class="dropdown">
+			<a href="#" class="dropdown-toggle link_header_footer" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="background-color:transparent">
+				<i class="fas fa-cogs fa-2x"></i> <span class="caret"></span>
+			</a>
+          <ul class="dropdown-menu">
+            <li><a class="link_header_footer" href="#">Action</a></li>
+            <li><a class="link_header_footer" href="#">Another action</a></li>
+            <li><a class="link_header_footer" href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a class="link_header_footer" href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+	<div>
+	<p>CONTENT HERE</p>
+	<p>CONTENT HERE</p>
+	<p>CONTENT HERE</p>
+	<p>CONTENT HERE</p>
+	<p>CONTENT HERE</p>
+	<p>CONTENT HERE</p>
+	<p>CONTENT HERE</p>
+	<p>CONTENT HERE</p>
+	<p>CONTENT HERE</p>
+	<p>CONTENT HERE</p>
+	</div>

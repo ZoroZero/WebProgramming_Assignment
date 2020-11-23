@@ -22,7 +22,7 @@
             // $stmt =$this->con->prepare("INSERT INTO user(`UserName`,`HashedPassword`,`Email`,`FirstName`,`LastName`,`RoleId`) VALUES (?, ?, ?, ?, ?, ?);");
             //$stmt->bind_param("sssssi", $username, $hashedPass, $email, $fname, $lname, $roleId);
             $stmt =$this->con->prepare("CALL CreateUser(?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssssi", $username, $hashedPass, $email, $fname, $lname, $roleId);
+            $stmt->bind_param("sssssi", $username, $hashedPass, $fname, $lname, $email, $roleId);
 
             if($stmt->execute()){
                 return $stmt->get_result()->fetch_assoc();
@@ -48,6 +48,60 @@
             $stmt->bind_param("ss", $params['username'], $hashedPass);
             $stmt->execute();
             return $stmt->get_result()->fetch_assoc();
+        }
+
+
+        // Get user information
+        function getUserInformation($userId){
+            $convert_userId = (int)$userId;
+            $stmt = $this->con->prepare("CALL GetUserInformation(?) ");
+            $stmt->bind_param("i", $convert_userId);
+            $stmt->execute();
+            return $stmt->get_result()->fetch_assoc();
+        }
+
+        // Get user information
+        function updateUserInformation($params){
+            $convert_userId = (int)$params["id"];
+            $fname = $params["firstName"];
+            $lname = $params["lastName"];
+            $email = $params["email"];
+            $address = $params["address"];
+            $isActive = isset($params["IsActive"])? int($params["IsActive"]): 1;
+            $stmt = $this->con->prepare("CALL UpdateUserInformation(?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("issssi", $convert_userId, $fname, $lname, $email, $address, $isActive);
+            if($stmt->execute()){
+                return true;
+            }
+            else
+                return false;
+        }
+
+        // Update user password
+        function updateUserPassword($params){
+            $convert_userId = (int)$params["id"];
+            $newPassword = $params['newPassword'];
+            $newHashedPass = md5($newPassword);
+            $stmt = $this->con->prepare("CALL UpdateUserPassword(?, ?)");
+            $stmt->bind_param("is", $convert_userId, $newHashedPass);
+            if($stmt->execute()){
+                return true;
+            }
+            else
+                return false;
+        }
+
+        // Update user avatar
+        function updateUserAvatar($params, $newFileType, $newFilePath){
+            $convert_userId = (int)$params["id"];
+            $fileName = $params["id"];
+            $stmt = $this->con->prepare("CALL UpdateAvatar(?, ?, ?, ?)");
+            $stmt->bind_param("isss", $convert_userId, $fileName, $newFileType, $newFilePath);
+            if($stmt->execute()){
+                return true;
+            }
+            else
+                return false;
         }
     }
 ?>
