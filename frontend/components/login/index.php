@@ -55,15 +55,15 @@
                 <div class="card card-signin">
                     <div class="card-body">
                         <h5 class="card-title text-center font-baloo">Sign In</h5>
-                        <form class="form-signin" role="form" action="http://localhost/webassignment/backend/user/LoginUser.php" method="post">
+                        <form class="form-signin" role="form" action="../backend/user/LoginUser.php" method="post">
                             <div class="form-label-group">
-                                <label for="inputEmail" class="font-rubik font-size-16">Email address</label>
-                                <input type="email" id="inputEmail" class="form-control font-raleway p-4 login-input" placeholder="Enter your email" required autofocus>
+                                <label for="inputEmail" class="font-rubik font-size-16">Username</label>
+                                <input type="text" name='username' id="inputEmail" class="form-control font-raleway p-4 login-input" placeholder="Enter your email" required autofocus>
                             </div>
 
                             <div class="form-label-group mt-2">
                                 <label for="inputPassword" class="font-rubik font-size-16">Password</label>
-                                <input type="password" id="inputPassword" class="form-control font-raleway p-4 login-input" placeholder="Enter your password" minlength="8" required>
+                                <input type="password" name='password' id="inputPassword" class="form-control font-raleway p-4 login-input" placeholder="Enter your password" minlength="8" required>
                             </div>
 
                             <div class="custom-control custom-checkbox my-3">
