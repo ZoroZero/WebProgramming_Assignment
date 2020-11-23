@@ -1,0 +1,39 @@
+/*register css*/
+.card-register {
+  border: 0;
+  width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-register .card-title {
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.card-register .card-body {
+  padding: 2rem;
+}
+
+.form-register {
+  width: 100%;
+}
+
+.form-register .btn {
+  border-radius: 5rem;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: all 0.2s;
+}
+
+.register-go-back {
+  color: rgba(0, 0, 0, 0.7);
+  width: fit-content;
+}
+
+.register-go-back:hover {
+  text-decoration: none;
+  color: $color-secondary;
+}

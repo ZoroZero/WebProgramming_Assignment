@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Raleway&family=Rubik&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Raleway&family=Rubik&display=swap');
 /* Global classes */
 button,
 button:focus {
@@ -8,15 +8,15 @@ button:focus {
 
 /*typography classes*/
 .font-baloo {
-  font-family: "Baloo Thambi 2", cursive;
+  font-family: 'Baloo Thambi 2', cursive;
 }
 
 .font-raleway {
-  font-family: "Raleway", cursive;
+  font-family: 'Raleway', cursive;
 }
 
 .font-rubik {
-  font-family: "Rubik", cursive;
+  font-family: 'Rubik', cursive;
 }
 
 .font-size-12 {
@@ -104,6 +104,102 @@ button:focus {
 #special-price .grid .grid-item {
   margin-top: 1rem;
   margin-right: 1.2rem;
+}
+
+/*login css*/
+.card-signin {
+  border: 0;
+  width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-signin .card-title {
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.card-signin .card-body {
+  padding: 2rem;
+}
+
+.form-signin {
+  width: 100%;
+}
+
+.form-signin .btn {
+  border-radius: 5rem;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: all 0.2s;
+}
+
+.form-reset .btn {
+  border-radius: 5rem;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: all 0.2s;
+}
+
+.login-input {
+  border-radius: 2rem;
+}
+
+.login-container {
+  min-height: 80vh;
+}
+
+.login-go-to {
+  color: rgba(0, 0, 0, 0.7);
+  width: fit-content;
+}
+
+.login-go-to:hover {
+  text-decoration: none;
+  color: #00a5c4;
+}
+
+/*register css*/
+.card-register {
+  border: 0;
+  width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-register .card-title {
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.card-register .card-body {
+  padding: 2rem;
+}
+
+.form-register {
+  width: 100%;
+}
+
+.form-register .btn {
+  border-radius: 5rem;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: all 0.2s;
+}
+
+.register-go-back {
+  color: rgba(0, 0, 0, 0.7);
+  width: fit-content;
+}
+
+.register-go-back:hover {
+  text-decoration: none;
+  color: #00a5c4;
 }
 
 /*# sourceMappingURL=style.css.map */
