@@ -6,7 +6,7 @@
                 <img src="../frontend/assets/imgs/homepage/windows/product3.png" alt="product" class="img-fluid">
             </div>
             <div class="col-sm-6 mt-4">
-                <h5 class="font-baloo font-size-20">PVP</h5>
+                <h5 class="font-baloo font-size-20" id='product-name'>PVP</h5>
                 <small>by Dell</small>
                 <div class="d-flex">
                     <div class="rating text-warning font-size-12">
@@ -25,20 +25,20 @@
                 <!--Product Price-->
                 <table class="my-3">
                     <tr class="font-rale font-size-14">
-                        <td>Old price</td>
-                        <td><strike>15,450,129đ</strike></td>
+                        <td>Original price: </td>
+                        <td id='original-price'>15,450,129đ</td>
                     </tr>
                     <tr class="font-rale font-size-14">
-                        <td>New price</td>
+                        <td>Discount: </td>
                         <td class="font-size-20 text-danger">
-                            <span>12,450,129đ</span>
+                            <span id='discount'>12,450,129đ</span>
                             <small class="text-dark font-size-12">&nbsp;&nbsp;Inclusive of all taxes</small>
                         </td>
                     </tr>
                     <tr class="font-rale font-size-14">
-                        <td>You save</td>
+                        <td>Current price: </td>
                         <td>
-                            <span class="font-size-20 text-danger">3,000,000đ</span>
+                            <span class="font-size-20 text-danger" id='current-price'>3,000,000đ</span>
                         </td>
                     </tr>
                 </table>
@@ -103,39 +103,35 @@
                         <tbody>
                             <tr>
                                 <th scope="row">Mainboard</th>
-                                <td>Asus EX H410M-V3</td>
+                                <td id='mainboard-information'>Asus EX H410M-V3</td>
                             </tr>
                             <tr>
                                 <th scope="row">CPU </th>
-                                <td>Intel Pentium G6400 / 4MB / 4.0GHz / 2 Nhân 4 Luồng / LGA 1200</td>
+                                <td id='cpu-information'>Intel Pentium G6400 / 4MB / 4.0GHz / 2 Nhân 4 Luồng / LGA 1200</td>
                             </tr>
                             <tr>
                                 <th scope="row">RAM </th>
-                                <td>G.SKILL Ripjaws V 1x8GB 2800</td>
+                                <td id='ram-information'>G.SKILL Ripjaws V 1x8GB 2800</td>
                             </tr>
                             <tr>
-                                <th scope="row">HDD </th>
-                                <td>(Upgradable)</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">SSD </th>
-                                <td>PNY SSD CS900 120G 2.5" Sata 3</td>
+                                <th scope="row">Storage </th>
+                                <td id='storage-information'>PNY SSD CS900 120G 2.5" Sata 3</td>
                             </tr>
                             <tr>
                                 <th scope="row">GPU </th>
-                                <td>ASUS TUF Gaming GeForce GTX 1650 4GB GDDR6</td>
+                                <td id='gpu-information'>ASUS TUF Gaming GeForce GTX 1650 4GB GDDR6</td>
                             </tr>
                             <tr>
                                 <th scope="row">PSU </th>
-                                <td>Deepcool DN450 80 Plus</td>
+                                <td id='psu-information'>Deepcool DN450 80 Plus</td>
                             </tr>
                             <tr>
                                 <th scope="row">Case </th>
-                                <td>Xigmatek NYX 3F RGB ( Mini Tower )</td>
+                                <td id='case-information'>Xigmatek NYX 3F RGB ( Mini Tower )</td>
                             </tr>
                             <tr>
                                 <th scope="row">OS </th>
-                                <td>Windows</td>
+                                <td id='os-information'>Windows</td>
                             </tr>
                         </tbody>
                     </table>

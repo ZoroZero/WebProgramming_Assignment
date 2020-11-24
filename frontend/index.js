@@ -217,7 +217,24 @@ function getProductInformation(){
     var request = $.get(`../backend/product/GetProductInformation.php?productId=${productId}`,
       function(response) {
         if(response){
-            
+            let productInformation = JSON.parse(response)['data'][0];
+            console.log("Product: ", productInformation);
+            if(productInformation){
+                document.getElementById('product-name').innerHTML = productInformation.Name;
+                document.getElementById('original-price').innerHTML = `${productInformation.Price}đ`;
+                document.getElementById('discount').innerHTML = `${productInformation.Discount}%`;
+                document.getElementById('current-price').innerHTML = `${productInformation.Price*(100-productInformation.Discount)/100}đ`;
+                document.getElementById('mainboard-information').innerHTML = productInformation.Mainboard;
+                document.getElementById('cpu-information').innerHTML = productInformation.Cpu;
+                document.getElementById('ram-information').innerHTML = productInformation.Ram;
+                document.getElementById('storage-information').innerHTML = productInformation.Storage;
+                document.getElementById('gpu-information').innerHTML = productInformation.Gpu;
+                document.getElementById('psu-information').innerHTML = productInformation.Psu;
+                document.getElementById('case-information').innerHTML = productInformation.Case;
+                document.getElementById('os-information').innerHTML = productInformation.Os;
+
+
+            }
         }
     });
 }

@@ -29,6 +29,14 @@
             $stmt->execute();
             return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
+
+        function getProductByProductId($productId){
+            $convert_Id = (int)$productId;
+            $stmt =$this->con->prepare("CALL GetProductByProductId(?)");
+            $stmt->bind_param("i", $convert_Id);
+            $stmt->execute();
+            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        }
     }
 
 ?>
