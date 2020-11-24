@@ -1,5 +1,5 @@
 const Http = new XMLHttpRequest();
-const url='http://localhost/webassignment/backend/product/GetAllProduct.php';
+const url='http://localhost/WebProgramming_Assignment/backend/product/GetAllProduct.php';
 Http.open("GET", url);
 Http.send();
 

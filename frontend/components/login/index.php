@@ -57,8 +57,8 @@
                         <h5 class="card-title text-center font-baloo">Sign In</h5>
                         <form class="form-signin" role="form" action="../backend/user/LoginUser.php" method="post">
                             <div class="form-label-group">
-                                <label for="inputEmail" class="font-rubik font-size-16">Username</label>
-                                <input type="text" name='username' id="inputEmail" class="form-control font-raleway p-4 login-input" placeholder="Enter your email" required autofocus>
+                                <label for="inputUsername" class="font-rubik font-size-16">Username</label>
+                                <input type="text" name='username' id="inputUsername" class="form-control font-raleway p-4 login-input" placeholder="Enter your username" required autofocus>
                             </div>
 
                             <div class="form-label-group mt-2">
