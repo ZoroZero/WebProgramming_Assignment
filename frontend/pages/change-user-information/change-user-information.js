@@ -21,7 +21,7 @@ function getCookie(cname) {
 }
 
 function getUserInformation(){
-  request = $.get(`http://localhost/webassignment/backend/user/GetUserInformation.php?userId=${userId}`,
+  request = $.get(`../backend/user/GetUserInformation.php?userId=${userId}`,
       function(response) {
         if(response){
           console.log(response);
