@@ -1,60 +1,145 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>Checkout</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 	<script src="https://kit.fontawesome.com/c9d4cc6b24.js" crossorigin="anonymous"></script>
+	<script src="cart.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<link rel="stylesheet" href="./cart.css">
+	<link rel="stylesheet" href="cart.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script>
+		function toBillingAddress(){
+    // $('#section_cart_billing').tab('show');
+    // $('#section_cart_item_list').tab('dispose');
+
+    document.getElementById("section_notification_title").innerHTML = "Confirm shipping information";
+    document.getElementById("notification_step").innerHTML = "<i class='fas fa-chevron-left'></i> Review Cart";
+    document.getElementById("notification_step").onclick = function(){toCart();}
+    document.getElementById("notification_step").setAttribute("data-target", "#section_cart_billing");
+    document.getElementById("btn_checkout").disabled = false;
+
+    //$("notification_step").prop("href", "section_cart_billing");
+
+}
+
+function toCart(){
+    // $('#section_cart_item_list').tab('show');
+    // $('#section_cart_billing').tab('dispose');
+
+    document.getElementById("section_notification_title").innerHTML = "Review cart";
+    document.getElementById("notification_step").innerHTML = "Billing Address <i class='fas fa-chevron-right'></i>";
+    document.getElementById("notification_step").onclick = function(){toBillingAddress();}
+    document.getElementById("notification_step").setAttribute("data-target", "#section_cart_item_list");
+    document.getElementById("btn_checkout").disabled = true;
+
+    //$("notification_step").prop("href", "section_cart_item_list");
+
+}
+	</script>
 </head>
 <body>
 	<div class="container" >
 		<!--TOP TEXT-->
 		<div class="section_notification row justify-content-between align-items-center">
-			<p class="section_notification_quantity">X item(s) in your cart</p>
-			<a href="#" style="color:black">Continue shopping</a>
+			<p class="section_notification_title" id="section_notification_title">Review your cart</p>
+			<a href="#" onclick="toBillingAddress();" data-target="#section_cart_item_list" data-toggle="tab" role="tab" id="notification_step" class="nav_link notification_step" style="color:black">
+				Billing Address <i class="fas fa-chevron-right"></i>
+			</a>
 		</div>
 		<!--!TOP TEXT-->
 		
 		<!--------------->
 		<div class="section_cart row">
-			<!--ITEM LIST-->
-			<div class="section_cart_item_list col-xl-8 col-lg-9 px-0">
-			
-				<div class="list_item row mx-0"> <!--ONE ITEM-->
-					<div class=" list_item_image col-lg-2 col-md-2 col-sm-4 col-4 px-0">
-						<img src="avatar/thinh.jpg" class="img-fluid" alt="image here"/>
-						
-					</div>
-					<div class="list_item_description col-lg-8 col-md-8 col-sm-8 col-8 d-flex flex-column">
-						<p>
-						item name here item name here item name here item name here 
+			<!--TAB MAIN-->
+			<div class="tab-content col-lg-9 px-0">
+				<!--TAB ITEM LIST-->
+				<div class="section_cart_item_list tab-pane fade show active" id="section_cart_item_list">
+					
+					<!--ONE ITEM-->
+					<div class="list_item row mx-0"> 
+						<div class=" list_item_image col-lg-2 col-md-2 col-sm-4 col-4 px-0">
+							<img src="avatar/thinh.jpg" class="img-fluid" alt="image here"/>
+							
+						</div>
+						<div class="list_item_description col-lg-8 col-md-8 col-sm-8 col-8 d-flex flex-column">
+							<p>
 							item name here item name here item name here item name here 
-						</p>
-						<button type="button" class="btn btn-light btn_remove" onclick="">Remove this item</button>
-					</div>
-					<div class="list_item_quantity col-lg-2 col-md-2 col-sm-12 col-12 px-lg-2 d-flex flex-column justify-content-between">
-						
-							<select id="list_item_quantity_select" class="list_item_quantity_select form-control my-2">
-								<option selected value="1">1</option>
-								<option  value="2">2</option>
-								<option  value="3">3</option>
-								<option  value="4">4</option>
-								<option  value="5">5</option>
-							</select>
-						
-							<p id="list_item_price" class="list_item_price"><i class="fas fa-dollar-sign"></i>69.690.000</p> <!--remember to also include the icon-->
-						
-					</div>					
-				</div>	<!--END ONE ITEM-->							
+								item name here item name here item name here item name here 
+							</p>
+							<button type="button" class="btn btn-light btn_remove shadow-none" onclick="">Remove this item</button>
+						</div>
+						<div class="list_item_quantity col-lg-2 col-md-2 col-sm-12 col-12 px-lg-2 d-flex flex-column justify-content-between">
+								<select id="list_item_quantity_select" class="list_item_quantity_select form-control my-2">
+									<option selected value="1">1</option>
+									<option  value="2">2</option>
+									<option  value="3">3</option>
+									<option  value="4">4</option>
+									<option  value="5">5</option>
+								</select>
+								<p id="list_item_price" class="list_item_price"><i class="fas fa-dollar-sign"></i>69.690.000</p> <!--remember to also include the icon-->
+						</div>					
+					</div>	
+					<!--!ONE ITEM-->	
+				</div>
+				<!--!TAB ITEM LIST-->
+				
+				<!--!TAB BILLING-->
+				<div class="section_cart_billing tab-pane fade" id="section_cart_billing">
+					<form id="billing_address" action="">		
+						<h3>Billing Address</h3>
+						<div class="row">
+							<div class="form-group col-6 col-xs-4 col-sm-4">
+								<label for="fname"><i class="fa fa-user"></i> Full Name</label>
+								<input type="text" class="form-control p-0 billing_address_input" id="fname" name="firstname" placeholder=" Thang P. Vinh">
+							</div>  
+							<div class="form-group col-6 col-xs-7 col-sm-7">
+								<label for="email"><i class="fa fa-envelope"></i> Email</label>
+								<input type="email" class="form-control p-0 billing_address_input_email" id="email" name="email" placeholder=" vinh.thang.something@hcmut.edu.vn">
+							</div>  
+						</div>
+						<div class="row">
+							<div class="form-group col-12 col-xs-4 col-sm-4">
+								<label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+						  		<input type="text" class="form-control p-0 billing_address_input" id="adr" name="address" placeholder=" 69/420 Phố Đình Diệm">
+							</div>
+							<div class="form-group col-6 col-xs-4 col-sm-4">
+								<label for="city"><i class="fa fa-institution"></i> City/Province</label>
+						  		<input type="text" class="form-control p-0 billing_address_input" id="city" name="city" placeholder=" Thành Phố Hồ Chí Minh">
+							</div>
+							<div class="form-group col-6 col-xs-2 col-sm-3">
+								<label for="zip">ZIP Code</label>
+								<input type="text" class="form-control p-0 billing_address_input" id="zip" name="zip" placeholder=" 270000">
+							</div>
+						</div>
+
+						<h3>Payment TRÍ BẢO KHÔNG BIẾT NÊN TAO CỨ ĐỂ LẠI</h3>
+						<!--OPTIONAL, Delete if needed-->
+						  <label for="fname">Accepted Cards</label>
+							<i class="fa fa-cc-visa" style="color:navy;"></i>
+							<i class="fa fa-cc-mastercard" style="color:red;"></i>
+						  <label for="cname">Name on Card</label>
+						  <input type="text" class="form-control p-0 billing_address_input" id="cname" name="cardname" placeholder="John More Doe">
+						  <label for="ccnum">Credit card number</label>
+						  <input type="text"  class="form-control p-0 billing_address_input"id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+						  <label for="expmonth">Exp Month</label>
+						  <input type="text" class="form-control p-0 billing_address_input" id="expmonth" name="expmonth" placeholder="September">
+						  <label for="expyear">Exp Year</label>
+						  <input type="text" class="form-control p-0 billing_address_input" id="expyear" name="expyear" placeholder="2018">		
+						  <label for="cvv">CVV</label>
+						  <input type="text" class="form-control p-0 billing_address_input" id="cvv" name="cvv" placeholder="352">
+						<!--OPTIONAL, Delete if needed-->
+					</form>
+				</div>
+				<!--!TAB BILLING-->
 			</div>
-			<!--!ITEM LIST-->
-			
+			<!--!TAB MAIN-->
+
 			<!--CHECKOUT BOX-->
-			<div class="section_cart_payment  col-xl-4 col-lg-3  px-0">
+			<div class="section_cart_payment col-lg-3  px-0">
 				<div class="cart_payment shadow rounded-lg">
 				<!-- DELETE THIS IF NOT NEEDED -->
 					<h1 class="cart_payment_title">Choose payment method</h1> 
@@ -92,18 +177,19 @@
 						</tr>						
 						<tr>
 							<th class="payment_table" style="font-weight:bold;">Purchase Total</th>
-							<th class="payment_total payment_table" style="text-align:right;"><i class="fas fa-dollar-sign">10000</th>
+							<th class="payment_total payment_table" style="text-align:right;"><i class="fas fa-dollar-sign">100000000</th>
 						</tr>
 					</table></div>
 					<div style="text-align:center">
-						<button class="btn_checkout">PROCEED TO CHECKOUT</button> <!--CHANGE CONTENT ACCORDING TO PAYMENT INPUT CHOSEN-->
+						<button class="btn shadow-none btn_checkout" id="btn_checkout" form="billing_address" data-toggle="tooltip" data-placement="top" title="Please fill out billing address first!" disabled>
+							CHECKOUT
+						</button>
 					</div>
 				</div>
 			</div>
 			<!--!CHECKOUT BOX-->	
 		</div>
-		<!--------------->	
-		
+		<!--------------->			
 	</div>
 </body> 
 </html>

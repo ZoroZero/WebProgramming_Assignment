@@ -1,4 +1,4 @@
-	.section_notification_quantity{
+	.section_notification_title{
 		font-size:30px;
 	}
 	.section_notification_return_link{
@@ -25,9 +25,9 @@
 	}
 	.btn_checkout{
 		width:75%;
-		background-color: cyan;
+		background-color: rgb(18, 22, 22);
 		border: none;
-		color: black;
+		color: rgb(255, 255, 255);
 		font-weight:bold;
 		font-size:20px;
 		padding: 10px 20px;
@@ -35,7 +35,11 @@
 		margin-bottom:10px;
 		text-align: center;
 		cursor: pointer;
-		border-radius: 16px;	
+		border-radius: 16px;
+		outline:none;	
+	}
+	.btn_checkout:hover{
+		color: rgb(255, 255, 255);
 	}
 	.list_item_quantity_select{
 		width:85px;
@@ -47,7 +51,7 @@
 		box-shadow: none !important;
 	}
 	.list_item_quantity{
-		font-size:17px;
+		font-size:15px;
 	}
 	.list_item_quantity_select, .list_item_price{
 		margin-left:10px;
@@ -66,5 +70,5 @@
 	.payment_table{
 		margin-left:8px;
 		font-weight:normal;
-		font-size:20px;
+		font-size:15px;
 	}
