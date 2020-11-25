@@ -1,12 +1,6 @@
 	.section_notification_title{
 		font-size:30px;
 	}
-	.section_notification_return_link{
-		text-align:right;
-		font-weight:bold;
-		margin-top:auto;
-		margin-bottom:auto;
-	}
 	.list_item{
 		margin-bottom:10px;
 	}
@@ -71,4 +65,8 @@
 		margin-left:8px;
 		font-weight:normal;
 		font-size:15px;
+	}
+	.check_billing{
+		font-size:12px;
+		color:red;
 	}
