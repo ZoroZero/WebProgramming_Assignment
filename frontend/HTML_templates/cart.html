@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<script src="https://kit.fontawesome.com/c9d4cc6b24.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./cart.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container" >
+		<!--TOP TEXT-->
+		<div class="section_notification row justify-content-between align-items-center">
+			<p class="section_notification_quantity">X item(s) in your cart</p>
+			<a href="#" style="color:black">Continue shopping</a>
+		</div>
+		<!--!TOP TEXT-->
+		
+		<!--------------->
+		<div class="section_cart row">
+			<!--ITEM LIST-->
+			<div class="section_cart_item_list col-xl-8 col-lg-9 px-0">
+			
+				<div class="list_item row mx-0"> <!--ONE ITEM-->
+					<div class=" list_item_image col-lg-2 col-md-2 col-sm-4 col-4 px-0">
+						<img src="avatar/thinh.jpg" class="img-fluid" alt="image here"/>
+						
+					</div>
+					<div class="list_item_description col-lg-8 col-md-8 col-sm-8 col-8 d-flex flex-column">
+						<p>
+						item name here item name here item name here item name here 
+							item name here item name here item name here item name here 
+						</p>
+						<button type="button" class="btn btn-light btn_remove" onclick="">Remove this item</button>
+					</div>
+					<div class="list_item_quantity col-lg-2 col-md-2 col-sm-12 col-12 px-lg-2 d-flex flex-column justify-content-between">
+						
+							<select id="list_item_quantity_select" class="list_item_quantity_select form-control my-2">
+								<option selected value="1">1</option>
+								<option  value="2">2</option>
+								<option  value="3">3</option>
+								<option  value="4">4</option>
+								<option  value="5">5</option>
+							</select>
+						
+							<p id="list_item_price" class="list_item_price"><i class="fas fa-dollar-sign"></i>69.690.000</p> <!--remember to also include the icon-->
+						
+					</div>					
+				</div>	<!--END ONE ITEM-->							
+			</div>
+			<!--!ITEM LIST-->
+			
+			<!--CHECKOUT BOX-->
+			<div class="section_cart_payment  col-xl-4 col-lg-3  px-0">
+				<div class="cart_payment shadow rounded-lg">
+				<!-- DELETE THIS IF NOT NEEDED -->
+					<h1 class="cart_payment_title">Choose payment method</h1> 
+					<div class="form-check cart_payment_payment_method ml-2">
+						<input class="form-check-input" type="radio" name="payment_method" id="credit" value="credit">
+						<label class="form-check-label" for="credit"><img src="visa.svg" width="60px" height="48px" alt="VISA">
+																	 <img src="mastercard.svg" width="60px" height="48px" alt="MASTERCARD">
+						</label>
+					</div>
+					<div class="form-check cart_payment_payment_method ml-2">
+						<input class="form-check-input" type="radio" name="payment_method" id="cash" value="cash">
+						<label class="form-check-label" for="cash"><i class="far fa-money-bill-alt fa-3x"></i></label>
+					</div>
+					<div class="form-check cart_payment_payment_method ml-2">
+						<input class="form-check-input" type="radio" name="payment_method" id="dwallet" value="dwallet">
+						<label class="form-check-label" for="dwallet"><img src="gpay.svg" width="60px" height="48px" alt="Google Pay"></label>
+					</div> 
+				<!-- DELETE THIS IF NOT NEEDED -->
+					<div><table width="96%" class="payment_table">
+						<tr>
+							<th class="payment_table">Item(s) Total</th>
+							<th id="payment_price_item" class="payment_price_item payment_table" style="text-align:right;"><i class="fas fa-dollar-sign">10000</th>
+						</tr>
+						<tr>
+							<th class="payment_table">Tax</th>
+							<th id="payment_tax" class="payment_tax payment_table" style="text-align:right;"><i class="fas fa-dollar-sign">10000</th>
+						</tr>
+						<tr>
+							<th class="payment_table">Shipping cost</th>
+							<th id="payment_shipping" class="payment_tax payment_table" style="text-align:right;"><i class="fas fa-dollar-sign">10000</th>
+						</tr>
+						<tr>
+							<th class="payment_table">Discount</th>
+							<th id="payment_discount" class="payment_tax payment_table" style="text-align:right;"><i class="fas fa-dollar-sign">-10000</th>
+						</tr>						
+						<tr>
+							<th class="payment_table" style="font-weight:bold;">Purchase Total</th>
+							<th class="payment_total payment_table" style="text-align:right;"><i class="fas fa-dollar-sign">10000</th>
+						</tr>
+					</table></div>
+					<div style="text-align:center">
+						<button class="btn_checkout">PROCEED TO CHECKOUT</button> <!--CHANGE CONTENT ACCORDING TO PAYMENT INPUT CHOSEN-->
+					</div>
+				</div>
+			</div>
+			<!--!CHECKOUT BOX-->	
+		</div>
+		<!--------------->	
+		
+	</div>
+</body> 
+</html>
+

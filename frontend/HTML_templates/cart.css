@@ -1,0 +1,70 @@
+	.section_notification_quantity{
+		font-size:30px;
+	}
+	.section_notification_return_link{
+		text-align:right;
+		font-weight:bold;
+		margin-top:auto;
+		margin-bottom:auto;
+	}
+	.list_item{
+		margin-bottom:10px;
+	}
+	.btn_remove, .btn_remove:focus{ /*this has problems, try it out*/
+		font-size:15px;
+		font-weight:bold;
+		width:150px;
+		padding-left:3px;
+		padding-right:3px;
+		margin-top:10px;
+		border:none;
+		background-color:transparent;
+	}
+	.btn_remove:hover{
+		background-color:rgb(217, 217, 217);
+	}
+	.btn_checkout{
+		width:75%;
+		background-color: cyan;
+		border: none;
+		color: black;
+		font-weight:bold;
+		font-size:20px;
+		padding: 10px 20px;
+		margin-top:10px;
+		margin-bottom:10px;
+		text-align: center;
+		cursor: pointer;
+		border-radius: 16px;	
+	}
+	.list_item_quantity_select{
+		width:85px;
+		padding:0;
+		outline: none;
+		border: 0.5px solid black;
+		-webkit-box-shadow: none !important;
+		-moz-box-shadow: none !important;
+		box-shadow: none !important;
+	}
+	.list_item_quantity{
+		font-size:17px;
+	}
+	.list_item_quantity_select, .list_item_price{
+		margin-left:10px;
+	}
+	@media screen and (max-width:991px){
+
+	}
+	.cart_payment_title{
+		font-size:20px;
+		border:transparent;
+		text-align:center;
+	}
+	.form-check-input{
+		margin-top:15px;
+	}
+	.payment_table{
+		margin-left:8px;
+		font-weight:normal;
+		font-size:20px;
+	}
