@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PhuVinh</title>
@@ -28,7 +27,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
 
     <!-- Custom CSS file -->
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="style.css">
 
     <!-- Custom Javascript-->
     <script src="./index.js"></script>
@@ -93,145 +92,7 @@
 
     <!--start #main-site-->
     <div id="main-site" style="flex-grow: 1;">
-        <section id="admin">
-            <p> <b>Staff manager</b></p>
-            <input type="text" id="name" name="name" required minlength="4" maxlength="40" size="20">
-            <button> Search</button>
-            <br>
-            <br>
-
-            <!--Staff table-->
-            <div class="table-wrapper-scroll-y my-custom-scrollbar">
-
-                <table class="table table-bordered table-striped mb-0">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">First Name</th>
-                            <th scope="col">Last Name</th>
-                            <th scope="col">Role ID</th>
-                            <th scope="col">Updated Date</th>
-                            <th scope="col">Updated By</th>
-                            <th scope="col">IsActive</th>
-                            <th scope="col">Avatar</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">Update</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td> <button>Update</button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td> <button>Update</button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td> <button>Update</button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td> <button>Update</button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">5</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td> <button>Update</button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">6</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td> <button>Update</button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">7</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td> <button>Update</button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">8</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td> <button>Update</button></td>
-                        </tr>
-
-                    </tbody>
-                </table>
-
-            </div>
-            <br> <br>
-
-
+        <section id="staff">
             <!--Product table-->
             <p> <b>Product manager</b></p>
             <input type="text" id="name" name="name" required minlength="4" maxlength="40" size="20">
@@ -454,7 +315,12 @@
                 </table>
 
             </div>
+
         </section>
+
+
+
+
 
 
     </div>
@@ -505,6 +371,5 @@
     </div>
     <!-- !start #footer -->
 </body>
-
 
 </html>

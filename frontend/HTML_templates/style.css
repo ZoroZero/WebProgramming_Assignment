@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Raleway&family=Rubik&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Raleway&family=Rubik&display=swap");
 /* Global classes */
 button,
 button:focus {
@@ -8,15 +8,15 @@ button:focus {
 
 /*typography classes*/
 .font-baloo {
-  font-family: 'Baloo Thambi 2', cursive;
+  font-family: "Baloo Thambi 2", cursive;
 }
 
 .font-raleway {
-  font-family: 'Raleway', cursive;
+  font-family: "Raleway", cursive;
 }
 
 .font-rubik {
-  font-family: 'Rubik', cursive;
+  font-family: "Rubik", cursive;
 }
 
 .font-size-12 {
@@ -200,6 +200,105 @@ button:focus {
 .register-go-back:hover {
   text-decoration: none;
   color: #00a5c4;
+}
+
+/*style of admin.html and staff.html*/
+.my-custom-scrollbar {
+  position: relative;
+  height: 400px;
+  overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+  display: block;
+}
+
+/*style of product-form.html and staff-form.html*/
+.form-style-8 {
+  font-family: "Open Sans Condensed", arial, sans;
+  width: 500px;
+  padding: 30px;
+  background: #FFFFFF;
+  margin: 50px auto;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+  -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+  -webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+}
+
+.form-style-8 h2 {
+  background: lightblue;
+  text-transform: uppercase;
+  font-family: "Open Sans Condensed", sans-serif;
+  color: black;
+  font-size: 18px;
+  font-weight: 100;
+  padding: 20px;
+  margin: -30px -30px 30px -30px;
+}
+
+.form-style-8 input[type=ID],
+.form-style-8 input[type=CategoryID],
+.form-style-8 input[type=ImageFile],
+.form-style-8 input[type=Name],
+.form-style-8 input[type=Description],
+.form-style-8 input[type=Price],
+.form-style-8 input[type=Os],
+.form-style-8 input[type=Ram],
+.form-style-8 input[type=Monitor],
+.form-style-8 input[type=Mouse],
+.form-style-8 input[type=Storage],
+.form-style-8 input[type=CPU],
+.form-style-8 input[type=GPU],
+.form-style-8 input[type=PSU],
+.form-style-8 input[type=Amount],
+.form-style-8 input[type=UpdatedDate],
+.form-style-8 input[type=UpdatedBy],
+.form-style-8 input[type=IsDeleted],
+.form-style-8 input[type=Discount],
+.form-style-8 input[type=QuantitySold],
+.form-style-8 textarea,
+.form-style-8 select {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  display: block;
+  width: 100%;
+  padding: 7px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  background: transparent;
+  margin-bottom: 10px;
+  font: 16px Arial, Helvetica, sans-serif;
+  height: 45px;
+}
+
+.form-style-8 textarea {
+  resize: none;
+  overflow: hidden;
+}
+
+.form-style-8 input[type=button],
+.form-style-8 input[type=submit] {
+  -moz-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+  box-shadow: inset 0px 1px 0px 0px #45D6D6;
+  background-color: #2CBBBB;
+  border: 1px solid #27A0A0;
+  display: inline-block;
+  cursor: pointer;
+  color: #FFFFFF;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 14px;
+  padding: 8px 18px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.form-style-8 input[type=button]:hover,
+.form-style-8 input[type=submit]:hover {
+  background: linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
+  background-color: #34CACA;
 }
 
 /*# sourceMappingURL=style.css.map */
