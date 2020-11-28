@@ -35,6 +35,10 @@ button:focus {
   font-size: 18px;
 }
 
+.font-size-20 {
+  font-size: 20px;
+}
+
 /*color template*/
 .color-primary {
   color: #003859;
@@ -200,6 +204,96 @@ button:focus {
 .register-go-back:hover {
   text-decoration: none;
   color: #00a5c4;
+}
+
+/*style cart page*/
+@media screen and (min-width: 1400px) {
+  .cart-img {
+    height: 175px;
+  }
+
+  .cart-img img {
+    height: 100%;
+  }
+
+  .qty {
+    width: 50%;
+    margin: auto;
+  }
+}
+/*Style setting page*/
+.avt-modal {
+  margin-bottom: 1rem;
+  width: 300px;
+  height: auto;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+}
+
+.side_panel_tab {
+  color: black;
+}
+
+.side_panel_tab.active,
+.side_panel_tab:hover,
+.side_panel_tab.active:focus,
+.side_panel_tab.active:hover {
+  color: #00a5c4 !important;
+}
+
+.input_check {
+  padding: 10px 5px;
+}
+
+.input_imgs {
+  display: block;
+  overflow: hidden;
+}
+
+.imgs-label {
+  overflow: hidden;
+}
+
+div.form-group input.error {
+  border: 2px dashed red;
+  background: #fee;
+}
+
+div.form-group label.error {
+  color: red;
+  font-size: 1rem;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.loader {
+  border: 7px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 7px solid blue;
+  border-right: 7px solid green;
+  border-bottom: 7px solid red;
+  width: 40px;
+  height: 40px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  display: none;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
