@@ -581,5 +581,13 @@ function addtoCart(element){
 
 function getCartProductInformation(){
     var productIdList = getCookie('cart-porducts')
-    console.log(document.cookie);
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var productId = url.searchParams.get("productId");
+    console.log(productId);
+    $.get(`../backend/product/GetProductListInformation.php?productIds=${productIdList}`,
+      function(response) {
+        if(response){
+        }
+    });
 }
