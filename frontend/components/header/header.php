@@ -59,7 +59,7 @@
                 else
                     echo "<a href='../frontend/?page=login' class='px-3 border-right border-left text-dark' id='logout-btn'>Login</a>"; ?>
 
-                <a href="#" class="px-3 border-right text-dark">Wishlist (0)</a>
+                <a href="../frontend?page=cart" class="px-3 border-right text-dark">Wishlist <sapn id='cart-count'>(0)</span></a>
             </div>
         </div>
 

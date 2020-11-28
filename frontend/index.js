@@ -72,16 +72,17 @@ $(document).ready(function() {
             }
         });
     }
-    
-    if(window.location.href.includes('product')){
+    else if(window.location.href.includes('product')){
         getProductInformation();
     }
-
-    if(window.location.href.includes('settings')){
+    else if(window.location.href.includes('settings')){
         getUserInformation();
         jQuery.validator.addMethod("notEqual", function(value, element, param) {
             return this.optional(element) || value != $(param).val();
         }, "This has to be different...");
+    }
+    else if(window.location.href.includes('cart')){
+        getCartProductInformation();
     }
 
     // check form submission general settings
@@ -195,6 +196,8 @@ $(document).ready(function() {
 const Http = new XMLHttpRequest();
 const userId = getCookie("userId");
 
+const cartItemList = []
+
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
@@ -208,6 +211,17 @@ function getCookie(cname) {
         }
     }
     return "";
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function deleteCookie(name) { 
+    setCookie(name, "", -1); 
 }
 
 function getUserInformation(){
@@ -301,7 +315,7 @@ function getTopSaleProduct(){
                                 <div class="price py-2">
                                     <span>${formatPrice(element['Price'])}</span>
                                 </div>
-                                <button type="submit" class="btn btn-warning font-size-12">Add to cart</button>
+                                <button type="submit" class="btn btn-warning font-size-12" onclick="addtoCart(${element['Id']})">Add to cart</button>
                             </div>
                         </div>
                     </div>`;
@@ -547,5 +561,25 @@ function openAlert(id) {
 }
 
 function formatPrice(price){
-    return `${price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} vnđ`
+    return `${price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} vnđ`;
+}
+
+function addtoCart(element){
+    if(cartItemList.filter(x => x === element).length === 0){
+        cartItemList.push(element);
+        $('#cart-count').html(`(${cartItemList.length})`);
+        var productIdList = cartItemList.join(',').toString();
+        console.log(getCookie("cart-porducts"));
+        
+        if(getCookie("cart-porducts") !== ""){
+            deleteCookie('cart-porducts');
+        }
+        setCookie('cart-porducts', productIdList, 1);
+    }
+}
+
+
+function getCartProductInformation(){
+    var productIdList = getCookie('cart-porducts')
+    console.log(document.cookie);
 }
