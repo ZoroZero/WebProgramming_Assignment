@@ -299,7 +299,7 @@ function getTopSaleProduct(){
                                     </span>
                                 </div>
                                 <div class="price py-2">
-                                    <span>${element['Price']}</span>
+                                    <span>${formatPrice(element['Price'])}</span>
                                 </div>
                                 <button type="submit" class="btn btn-warning font-size-12">Add to cart</button>
                             </div>
@@ -361,7 +361,7 @@ function getSpecialPriceProduct(){
                                             </span>
                                         </div>
                                         <div class="price py-2">
-                                            <span>${element['Price']}đ</span>
+                                            <span>${formatPrice(element['Price'])}</span>
                                         </div>
                                         <button type="submit" class="btn btn-warning font-size-12">Add to cart</button>
                                     </div>
@@ -412,9 +412,9 @@ function getProductInformation(){
             console.log("Product: ", productInformation);
             if(productInformation){
                 document.getElementById('product-name').innerHTML = productInformation.Name;
-                document.getElementById('original-price').innerHTML = `${productInformation.Price}đ`;
+                document.getElementById('original-price').innerHTML = `${formatPrice(productInformation.Price)}`;
                 document.getElementById('discount').innerHTML = `${productInformation.Discount}%`;
-                document.getElementById('current-price').innerHTML = `${productInformation.Price*(100-productInformation.Discount)/100}đ`;
+                document.getElementById('current-price').innerHTML = `${formatPrice(productInformation.Price*(100-productInformation.Discount)/100)}`;
                 document.getElementById('mainboard-information').innerHTML = productInformation.Mainboard;
                 document.getElementById('cpu-information').innerHTML = productInformation.Cpu;
                 document.getElementById('ram-information').innerHTML = productInformation.Ram;
@@ -544,4 +544,8 @@ function closeAlert(id) {
 
 function openAlert(id) {
     $(`#${id}`).show()
+}
+
+function formatPrice(price){
+    return `${price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} vnđ`
 }

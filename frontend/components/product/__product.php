@@ -3,11 +3,11 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <img id='product-image'src="../frontend/assets/imgs/homepage/windows/product3.png" alt="product" class="img-fluid">
+                <img id='product-image' alt="product" class="img-fluid">
             </div>
             <div class="col-sm-6 mt-4">
-                <h5 class="font-baloo font-size-20" id='product-name'>PVP</h5>
-                <small>by Dell</small>
+                <h5 class="font-baloo font-size-20" id='product-name'></h5>
+                <small></small>
                 <div class="d-flex">
                     <div class="rating text-warning font-size-12">
                         <span>
@@ -18,7 +18,7 @@
                             <i class="fas fa-star-half-alt"></i>
                         </span>
                     </div>
-                    <p class="px-2 font-rale font-size-14">20,411 ratings</p>
+                    <p class="px-2 font-rale font-size-14"></p>
                 </div>
                 <hr class="m-0">
 
@@ -26,19 +26,19 @@
                 <table class="my-3">
                     <tr class="font-rale font-size-14">
                         <td>Original price: </td>
-                        <td id='original-price'>15,450,129đ</td>
+                        <td id='original-price'></td>
                     </tr>
                     <tr class="font-rale font-size-14">
                         <td>Discount: </td>
                         <td class="font-size-20 text-danger">
-                            <span id='discount'>12,450,129đ</span>
-                            <small class="text-dark font-size-12">&nbsp;&nbsp;Inclusive of all taxes</small>
+                            <span id='discount'></span>
+                            <small class="text-dark font-size-12"></small>
                         </td>
                     </tr>
                     <tr class="font-rale font-size-14">
                         <td>Current price: </td>
                         <td>
-                            <span class="font-size-20 text-danger" id='current-price'>3,000,000đ</span>
+                            <span class="font-size-20 text-danger" id='current-price'></span>
                         </td>
                     </tr>
                 </table>
