@@ -88,7 +88,7 @@ function getTopSaleProduct(){
             var list_product = information.map(function(element){
                 return `<div class="item py-2 px-2">
                         <div class="product font-rale">
-                            <a href="#">
+                            <a href="../frontend/?page=product&productId=${element['Id']}">
                                 <img src="../frontend/${element['Path']}" alt="product1" class="img-fluid">
                             </a>
                             <div class="text-center">
@@ -151,7 +151,7 @@ function getSpecialPriceProduct(){
                 return `<div class="grid-item ${getProductCategory(element['CategoryId'])} border">
                             <div class="item py-2 px-2" style="width: 200px;">
                                 <div class="product font-rale">
-                                    <a href="#">
+                                    <a href="../frontend/?page=product&productId=${element['Id']}">
                                         <img src="../frontend/${element['Path']}" alt="product2" class="img-fluid">
                                     </a>
                                     <div class="text-center">
@@ -232,7 +232,7 @@ function getProductInformation(){
                 document.getElementById('psu-information').innerHTML = productInformation.Psu;
                 document.getElementById('case-information').innerHTML = productInformation.Case;
                 document.getElementById('os-information').innerHTML = productInformation.Os;
-
+                document.getElementById('product-image').src = `../frontend/${productInformation.Path}`
 
             }
         }

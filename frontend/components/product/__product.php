@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <img src="../frontend/assets/imgs/homepage/windows/product3.png" alt="product" class="img-fluid">
+                <img id='product-image'src="../frontend/assets/imgs/homepage/windows/product3.png" alt="product" class="img-fluid">
             </div>
             <div class="col-sm-6 mt-4">
                 <h5 class="font-baloo font-size-20" id='product-name'>PVP</h5>
