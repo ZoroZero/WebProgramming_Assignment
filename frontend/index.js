@@ -9,8 +9,11 @@ const center = { lat: 10.795532861871804, lng: 106.63649092163753 };
 $(document).ready(function() {
     if(window.location.href.includes('homepage')){
         getTopSaleProduct();
-        getSpecialPriceProduct();   
-        
+        getSpecialPriceProduct();
+        cartProductList = getCookie('cart-porducts');
+        cartItemList = cartProductList && cartProductList!=""? cartProductList.split(','):[];
+        $('#cart-count').html(cartItemList.length);
+        console.log(cartItemList);
         //banner owl carousel
         $("#banner-area .owl-carousel").owlCarousel({
             dots: true,
@@ -53,32 +56,6 @@ $(document).ready(function() {
                 }
             }
         })
-
-        // // product qty section
-        // let $qty_up = $(".qty .qty-up");
-        // let $qty_down = $(".qty .qty-down");
-        // let $input = $(".qty .qty_input");
-
-        // // click on qty up button
-        // $qty_up.click(function(e){
-        //     alert($input.val())
-        //     //let $input = $(`.qty_input[data-id='${$(this).data("id")}']`);
-        //     if($input.val() >= 1 && $input.val() <= 9){
-        //         $input.val(function(i, oldval){
-        //             return ++oldval;
-        //         });
-        //     }
-        // });
-
-        // // click on qty down button
-        // $qty_down.click(function(e){
-        //     //let $input = $(`.qty_input[data-id='${$(this).data("id")}']`);
-        //     if($input.val() > 1 && $input.val() <= 10){
-        //         $input.val(function(i, oldval){
-        //             return --oldval;
-        //         });
-        //     }
-        // });
     }
     else if(window.location.href.includes('product')){
         getProductInformation();
@@ -201,10 +178,7 @@ $(document).ready(function() {
         
 })
 
-const Http = new XMLHttpRequest();
-const userId = getCookie("userId");
 
-const cartItemList = []
 
 function getCookie(cname) {
     var name = cname + "=";
@@ -293,7 +267,7 @@ function getTopSaleProduct(){
     var request = $.get('../backend/product/GetTopSales.php',
       function(response) {
         if(response){
-            if(!response['error']){
+            if(!JSON.parse(response)['error']){
                 let information = JSON.parse(response)['data'];
                 console.log("Top sale", information);
                 var list_product = information.map(function(element){
@@ -326,7 +300,7 @@ function getTopSaleProduct(){
                 document.getElementById('top-sale-carousel').innerHTML = list_product.join(' ');
             }
             else{
-                console.log("Error ", response['message']);
+                console.log("Error ", JSON.parse(response)['message']);
             }
             //top sale owl carousel
             $("#top-sale .owl-carousel").owlCarousel({
@@ -515,7 +489,6 @@ function uploadAvatar(){
         contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
         processData: false, // NEEDED, DON'T OMIT THIS
         success: function(res){
-            
             var data = JSON.parse(res)
             getUserInformation();
             if(data.error===true) {
@@ -550,11 +523,13 @@ function openAlert(id) {
     $(`#${id}`).show()
 }
 
-function increment() {
+function increment(id) {
     document.getElementById('demoInput').stepUp();
+    total_price = productList.map(o => o.Price*o.BuyAmount).reduce((acc, cur) => cur + acc, 0)
+    total_buy_amount = productList.map(o => o.BuyAmount).reduce((acc, cur) => cur + acc, 0)
 }
 
-function decrement() {
+function decrement(id) {
     document.getElementById('demoInput').stepDown();
 }
 
@@ -566,10 +541,18 @@ function formatPrice(price){
     return `${price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} vnđ`;
 }
 
+var cartItemList = [];
+var productList = [];
+var total_price;
+var total_buy_amount;
+
 function addtoCart(element){
-    if(cartItemList.filter(x => x === element).length === 0){
+    cartProductList = getCookie('cart-porducts');
+    cartItemList = cartProductList && cartProductList!=""? cartProductList.split(','):[];
+    console.log(cartItemList)
+    if(cartItemList.filter(x => x === element.toString()).length === 0){
         cartItemList.push(element);
-        $('#cart-count').html(`(${cartItemList.length})`);
+        $('#cart-count').html(cartItemList.length);
         var productIdList = cartItemList.join(',').toString();
         console.log(getCookie("cart-porducts"));
         
@@ -582,13 +565,90 @@ function addtoCart(element){
 
 function getCartProductInformation(){
     var productIdList = getCookie('cart-porducts')
-    var url_string = window.location.href;
-    var url = new URL(url_string);
-    var productId = url.searchParams.get("productId");
-    console.log(productId);
     $.get(`../backend/product/GetCartProducts.php?productIdList=${productIdList}`,
       function(response) {
         if(response){
+            console.log(response);
+            if(!JSON.parse(response)['error']){
+                productList = JSON.parse(response)['data'];
+                console.log("Cart products: ",productIdList);
+                total_price = productList.map(o => o.Price).reduce((acc, cur) => cur + acc, 0)
+                total_buy_amount = productList.map(o => o.BuyAmount).reduce((acc, cur) => cur + acc, 0)
+                var list_product = productList.map(function(element){
+                    return `<div class="row border-top py-3">
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 col-xl-2 cart-img">
+                        <img src="../frontend/${element['Path']}" alt="cart1" class="img-fluid">
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-5">
+                        <h5 class="font-baloo font-size-20 m-0">${element['Name']}</h5>
+                        <!--    #policy -->
+                        <div id="policy">
+                            <div class="d-flex">
+                                <div class="return mr-3 mr-lg-4 mr-xl-5">
+                                    <div class="font-size-12 my-2 color-secondary">
+                                        <span class="fas fa-retweet border p-2 rounded-pill"></span>
+                                    </div>
+                                    <a href="#" class="font-rale font-size-12">10 Days <br> Replacement</a>
+                                </div>
+                                <div class="return mr-3 mr-lg-4 mr-xl-5">
+                                    <div class="font-size-12 my-2 color-secondary">
+                                        <span class="fas fa-truck  border p-2 rounded-pill"></span>
+                                    </div>
+                                    <a href="#" class="font-rale font-size-12">Free <br> Shipping</a>
+                                </div>
+                                <div class="return mr-3 mr-lg-4 mr-xl-5">
+                                    <div class="font-size-12 my-2 color-secondary">
+                                        <span class="fas fa-check-double border p-2 rounded-pill"></span>
+                                    </div>
+                                    <a href="#" class="font-rale font-size-12">1 Year <br> Warranty</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--    !policy -->
+                        <button onclick="removeFromCart(${element['Id']})" type="submit" class="btn font-baloo text-danger px-0 text-left">Delete item</button>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                        <!-- product qty -->
+                        <div class="qty">
+                            <div class="d-flex font-rale">
+                                <button class="border bg-light" onclick="decrement(${element["Id"]})"><i class="fas fa-angle-down"></i></button>
+                                <input type="number" id="demoInput" class="border px-2 w-100 bg-light" min="1" max="5" value="1">
+                                <button class="border bg-light" onclick="increment(${element["Id"]})"><i class="fas fa-angle-up"></i></button>
+                            </div>
+                        </div>
+                        <!-- !product qty -->
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-2 col-lg-2 col-xl -2 text-right">
+                        <div class="font-size-20 text-danger font-baloo">
+                            <span class="product_price">${formatPrice(element["Price"])}</span>
+                        </div>
+                    </div>
+                </div>`});
+                $('#product-list-container').html(list_product.join(' '));
+                $('#deal-price').html(formatPrice(total_price))
+                $('#deal-amount').html(`Subtotal (${total_buy_amount} items):`)
+            }
+            else{
+                console.log("Error ", response['message']);
+            }
         }
     });
+}
+
+
+function removeFromCart(productId){
+    cartProductList = getCookie('cart-porducts');
+    cartItemList = cartProductList && cartProductList!=""? cartProductList.split(','):[];
+    console.log(cartItemList)
+    if(cartItemList.filter(x => x === productId.toString()).length !== 0){
+        cartItemList.remove(element);
+        $('#cart-count').html(cartItemList.length);
+        var productIdList = cartItemList.join(',').toString();
+        console.log(getCookie("cart-porducts"));
+        
+        if(getCookie("cart-porducts") !== ""){
+            deleteCookie('cart-porducts');
+        }
+        setCookie('cart-porducts', productIdList, 1);
+    }
 }

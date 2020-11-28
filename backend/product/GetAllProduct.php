@@ -9,5 +9,6 @@
     }
     else{
         $response['error'] = true;
+        $response['message'] = "Wrong request type";
     }
     echo json_encode($response);
