@@ -107,7 +107,8 @@ $(document).ready(function() {
     showTab(currentTab); 
 
 
-    
+    $('#dtBasicExample').DataTable();
+    $('.dataTables_length').addClass('bs-select');
 })
 
 var currentTab = 0; // Current tab is set to be the first tab (0)
