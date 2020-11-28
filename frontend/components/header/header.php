@@ -54,12 +54,13 @@
                 <?php
                 session_start();
                 include_once("../backend/environments/Constants.php");
-                if (isset($_SESSION['userId']))
+                if (isset($_SESSION['userId'])){
+                    echo "<p class='px-3 text-dark m-0'>Username</p>";
+                    echo "<a href='../frontend/?page=settings' class='px-3 border-right border-left text-dark'>Setting</a>";
                     echo "<a href='../backend/user/LogoutUser.php' class='px-3 border-right border-left text-dark' id='login-btn'>Logout</a>";
+                }
                 else
                     echo "<a href='../frontend/?page=login' class='px-3 border-right border-left text-dark' id='logout-btn'>Login</a>"; ?>
-
-                <p class="px-3 text-dark m-0">username</p>
             </div>
         </div>
 
@@ -93,7 +94,7 @@
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
                 </form>
-                <a href='../frontend/?page=settings' class='button btn btn-secondary mx-lg-2 my-3 my-lg-0 mx-sm-0'>Setting</a>
+                
                 <form action="#" class="font-size-14 font-rale">
                     <a href="#" class="py-2 rounded-pill color-primary-bg">
                         <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
