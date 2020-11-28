@@ -2,10 +2,10 @@
     require_once "product.service.php";
     $response = array();
     if($_SERVER['REQUEST_METHOD'] == 'GET'){
-        if(isset($_GET['productId'])){
+        if(isset($_GET['productIdList'])){
             $service = new ProductService();
             $service->__contruct();
-            $result = $service->getProductByProductId($_GET['productId']);
+            $result = $service->getCartProducts($_GET['productIdList']);
             $response['data'] = $result;
             $response['error'] = false;
         }

@@ -37,6 +37,14 @@
             $stmt->execute();
             return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
+
+        // Get products in a cart
+        function getCartProducts($productIdList){
+            $stmt =$this->con->prepare("CALL GetCartProducts(?)");
+            $stmt->bind_param("i", $productIdList);
+            $stmt->execute();
+            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        }
     }
 
 ?>

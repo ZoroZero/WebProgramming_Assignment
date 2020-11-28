@@ -291,36 +291,41 @@ function getTopSaleProduct(){
     var request = $.get('../backend/product/GetTopSales.php',
       function(response) {
         if(response){
-            let information = JSON.parse(response)['data'];
-            console.log("Top sale", information);
-            var list_product = information.map(function(element){
-                return `<div class="item py-2 px-2">
-                        <div class="product font-rale">
-                            <a href="../frontend/?page=product&productId=${element['Id']}">
-                                <img src="../frontend/${element['Path']}" alt="product1" class="img-fluid">
-                            </a>
-                            <div class="text-center">
-                                <h6>
-                                    ${element['Name']}
-                                </h6>
-                                <div class="rating text-warning font-size-12">
-                                    <span>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                    </span>
+            if(!response['error']){
+                let information = JSON.parse(response)['data'];
+                console.log("Top sale", information);
+                var list_product = information.map(function(element){
+                    return `<div class="item py-2 px-2">
+                            <div class="product font-rale">
+                                <a href="../frontend/?page=product&productId=${element['Id']}">
+                                    <img src="../frontend/${element['Path']}" alt="product1" class="img-fluid">
+                                </a>
+                                <div class="text-center">
+                                    <h6>
+                                        ${element['Name']}
+                                    </h6>
+                                    <div class="rating text-warning font-size-12">
+                                        <span>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </span>
+                                    </div>
+                                    <div class="price py-2">
+                                        <span>${formatPrice(element['Price'])}</span>
+                                    </div>
+                                    <button type="submit" class="btn btn-warning font-size-12" onclick="addtoCart(${element['Id']})">Add to cart</button>
                                 </div>
-                                <div class="price py-2">
-                                    <span>${formatPrice(element['Price'])}</span>
-                                </div>
-                                <button type="submit" class="btn btn-warning font-size-12" onclick="addtoCart(${element['Id']})">Add to cart</button>
                             </div>
-                        </div>
-                    </div>`;
-            });
-            document.getElementById('top-sale-carousel').innerHTML = list_product.join(' ');
+                        </div>`;
+                });
+                document.getElementById('top-sale-carousel').innerHTML = list_product.join(' ');
+            }
+            else{
+                console.log("Error ", response['message']);
+            }
             //top sale owl carousel
             $("#top-sale .owl-carousel").owlCarousel({
                 loop:true,
@@ -352,39 +357,43 @@ function getSpecialPriceProduct(){
     var request = $.get('../backend/product/GetSpecialPrice.php',
       function(response) {
         if(response){
-            let information = JSON.parse(response)['data'];
-            console.log('Special prices ', information);
-            var list_product = information.map(function(element){
-                return `<div class="grid-item ${getProductCategory(element['CategoryId'])} border">
-                            <div class="item py-2 px-2" style="width: 200px;">
-                                <div class="product font-rale">
-                                    <a href="../frontend/?page=product&productId=${element['Id']}">
-                                        <img src="../frontend/${element['Path']}" alt="product2" class="img-fluid">
-                                    </a>
-                                    <div class="text-center">
-                                        <h6>
-                                        ${element['Name']}
-                                        </h6>
-                                        <div class="rating text-warning font-size-12">
-                                            <span>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star-half-alt"></i>
-                                            </span>
+            if(!response['error']){
+                let information = JSON.parse(response)['data'];
+                console.log('Special prices ', information);
+                var list_product = information.map(function(element){
+                    return `<div class="grid-item ${getProductCategory(element['CategoryId'])} border">
+                                <div class="item py-2 px-2" style="width: 200px;">
+                                    <div class="product font-rale">
+                                        <a href="../frontend/?page=product&productId=${element['Id']}">
+                                            <img src="../frontend/${element['Path']}" alt="product2" class="img-fluid">
+                                        </a>
+                                        <div class="text-center">
+                                            <h6>
+                                            ${element['Name']}
+                                            </h6>
+                                            <div class="rating text-warning font-size-12">
+                                                <span>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star-half-alt"></i>
+                                                </span>
+                                            </div>
+                                            <div class="price py-2">
+                                                <span>${formatPrice(element['Price'])}</span>
+                                            </div>
+                                            <button type="submit" class="btn btn-warning font-size-12">Add to cart</button>
                                         </div>
-                                        <div class="price py-2">
-                                            <span>${formatPrice(element['Price'])}</span>
-                                        </div>
-                                        <button type="submit" class="btn btn-warning font-size-12">Add to cart</button>
                                     </div>
                                 </div>
-                            </div>
-                        </div>`;
-            });
-            document.getElementById('special-price-grid').innerHTML = list_product.join(' ');
-            
+                            </div>`;
+                });
+                document.getElementById('special-price-grid').innerHTML = list_product.join(' ');
+            }
+            else{
+                console.log("Error ", response['message']);
+            }
             //isotope filter
             var $grid = $(".grid").isotope({
                 itemSelector: '.grid-item',
@@ -396,6 +405,7 @@ function getSpecialPriceProduct(){
                 var filterValue = $(this).attr('data-filter');
                 $grid.isotope({filter: filterValue});
             })
+        
         }
     });
 
@@ -422,22 +432,26 @@ function getProductInformation(){
     var request = $.get(`../backend/product/GetProductInformation.php?productId=${productId}`,
         function(response) {
             if(response){  
-                let productInformation = JSON.parse(response)['data'][0];
-                console.log("Product: ", productInformation);
-                if(productInformation){
-                    document.getElementById('product-name').innerHTML = productInformation.Name;
-                    document.getElementById('original-price').innerHTML = `${formatPrice(productInformation.Price)}`;
-                    document.getElementById('discount').innerHTML = `${productInformation.Discount}%`;
-                    document.getElementById('current-price').innerHTML = `${formatPrice(productInformation.Price*(100-productInformation.Discount)/100)}`;
-                    document.getElementById('mainboard-information').innerHTML = productInformation.Mainboard;
-                    document.getElementById('cpu-information').innerHTML = productInformation.Cpu;
-                    document.getElementById('ram-information').innerHTML = productInformation.Ram;
-                    document.getElementById('storage-information').innerHTML = productInformation.Storage;
-                    document.getElementById('gpu-information').innerHTML = productInformation.Gpu;
-                    document.getElementById('psu-information').innerHTML = productInformation.Psu !== "" ? productInformation.Psu : "(500W) SilverStone ST50F-ES230 80 Plus";
-                    document.getElementById('case-information').innerHTML = productInformation.Case;
-                    document.getElementById('os-information').innerHTML = productInformation.Os;
-                    document.getElementById('product-image').src = `../frontend/${productInformation.Path}`
+                if(!response['error']){
+                    let productInformation = JSON.parse(response)['data'][0];
+                    if(productInformation){
+                        document.getElementById('product-name').innerHTML = productInformation.Name;
+                        document.getElementById('original-price').innerHTML = `${formatPrice(productInformation.Price)}`;
+                        document.getElementById('discount').innerHTML = `${productInformation.Discount}%`;
+                        document.getElementById('current-price').innerHTML = `${formatPrice(productInformation.Price*(100-productInformation.Discount)/100)}`;
+                        document.getElementById('mainboard-information').innerHTML = productInformation.Mainboard;
+                        document.getElementById('cpu-information').innerHTML = productInformation.Cpu;
+                        document.getElementById('ram-information').innerHTML = productInformation.Ram;
+                        document.getElementById('storage-information').innerHTML = productInformation.Storage;
+                        document.getElementById('gpu-information').innerHTML = productInformation.Gpu;
+                        document.getElementById('psu-information').innerHTML = productInformation.Psu !== "" ? productInformation.Psu : "(500W) SilverStone ST50F-ES230 80 Plus";
+                        document.getElementById('case-information').innerHTML = productInformation.Case;
+                        document.getElementById('os-information').innerHTML = productInformation.Os;
+                        document.getElementById('product-image').src = `../frontend/${productInformation.Path}`
+                    }
+                }
+                else{
+                    console.log("Error: ", response['message']);
                 }
             }
     });
@@ -577,14 +591,13 @@ function addtoCart(element){
     }
 }
 
-
 function getCartProductInformation(){
     var productIdList = getCookie('cart-porducts')
     var url_string = window.location.href;
     var url = new URL(url_string);
     var productId = url.searchParams.get("productId");
     console.log(productId);
-    $.get(`../backend/product/GetProductListInformation.php?productIds=${productIdList}`,
+    $.get(`../backend/product/GetCartProducts.php?productIdList=${productIdList}`,
       function(response) {
         if(response){
         }

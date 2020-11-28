@@ -6,6 +6,7 @@
         $service->__contruct();
         $result = $service->getTopSales();
         $response['data'] = $result;
+        $response['error'] = false;
     }
     else{
         $response['error'] = true;
