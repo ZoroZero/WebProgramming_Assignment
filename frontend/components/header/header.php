@@ -93,7 +93,14 @@
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
                 </form>
-                <button class="btn btn-danger mx-lg-2 my-3 my-lg-0 mx-sm-0">Login</button>
+                <?php
+                // include_once("../backend/environments/Constants.php");
+                if (isset($_SESSION['userId']))
+                    echo "<a href='../backend/user/LogoutUser.php' class='button btn btn-danger mx-lg-2 my-3 my-lg-0 mx-sm-0'>Logout</a>";
+                else
+                    echo "<a href='../frontend/?page=login' class='button btn btn-danger mx-lg-2 my-3 my-lg-0 mx-sm-0'>Login</a>";
+                ?>
+
                 <form action="#" class="font-size-14 font-rale">
                     <a href="#" class="py-2 rounded-pill color-primary-bg">
                         <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
