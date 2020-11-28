@@ -38,9 +38,9 @@
                         <!-- product qty -->
                         <div class="qty">
                             <div class="d-flex font-rale">
-                                <button class="qty-up border bg-light"><i class="fas fa-angle-up"></i></button>
-                                <input type="text" class="qty_input border px-2 w-100 bg-light" disabled value="1" placeholder="1">
-                                <button class="qty-down border bg-light"><i class="fas fa-angle-down"></i></button>
+                                <button class="border bg-light" onclick="decrement()"><i class="fas fa-angle-down"></i></button>
+                                <input type="number" id="demoInput" class="border px-2 w-100 bg-light" min="1" max="5" value="1">
+                                <button class="border bg-light" onclick="increment()"><i class="fas fa-angle-up"></i></button>
                             </div>
                         </div>
                         <!-- !product qty -->

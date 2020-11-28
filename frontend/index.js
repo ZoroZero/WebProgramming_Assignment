@@ -1,3 +1,11 @@
+const Http = new XMLHttpRequest();
+const userId = getCookie("userId");
+// Googlemap js
+const address1 = { lat: 10.772713935537316, lng: 106.65967597467676 };
+const address2 = { lat: 10.790040966516928, lng: 106.66139794610773 };
+const address3 = { lat: 10.812376924038709, lng: 106.61820978330887 };
+const center = { lat: 10.795532861871804, lng: 106.63649092163753 };
+
 $(document).ready(function() {
     if(window.location.href.includes('homepage')){
         getTopSaleProduct();
@@ -46,31 +54,31 @@ $(document).ready(function() {
             }
         })
 
-        // product qty section
-        let $qty_up = $(".qty .qty-up");
-        let $qty_down = $(".qty .qty-down");
-        let $input = $(".qty .qty_input");
+        // // product qty section
+        // let $qty_up = $(".qty .qty-up");
+        // let $qty_down = $(".qty .qty-down");
+        // let $input = $(".qty .qty_input");
 
-        // click on qty up button
-        $qty_up.click(function(e){
-            alert($input.val())
-            //let $input = $(`.qty_input[data-id='${$(this).data("id")}']`);
-            if($input.val() >= 1 && $input.val() <= 9){
-                $input.val(function(i, oldval){
-                    return ++oldval;
-                });
-            }
-        });
+        // // click on qty up button
+        // $qty_up.click(function(e){
+        //     alert($input.val())
+        //     //let $input = $(`.qty_input[data-id='${$(this).data("id")}']`);
+        //     if($input.val() >= 1 && $input.val() <= 9){
+        //         $input.val(function(i, oldval){
+        //             return ++oldval;
+        //         });
+        //     }
+        // });
 
-        // click on qty down button
-        $qty_down.click(function(e){
-            //let $input = $(`.qty_input[data-id='${$(this).data("id")}']`);
-            if($input.val() > 1 && $input.val() <= 10){
-                $input.val(function(i, oldval){
-                    return --oldval;
-                });
-            }
-        });
+        // // click on qty down button
+        // $qty_down.click(function(e){
+        //     //let $input = $(`.qty_input[data-id='${$(this).data("id")}']`);
+        //     if($input.val() > 1 && $input.val() <= 10){
+        //         $input.val(function(i, oldval){
+        //             return --oldval;
+        //         });
+        //     }
+        // });
     }
     else if(window.location.href.includes('product')){
         getProductInformation();
@@ -247,12 +255,6 @@ function getUserInformation(){
         console.error("The following error occurred: ", textStatus, errorThrown);
     });
 }
-
-// Googlemap js
-const address1 = { lat: 10.772713935537316, lng: 106.65967597467676 };
-const address2 = { lat: 10.790040966516928, lng: 106.66139794610773 };
-const address3 = { lat: 10.812376924038709, lng: 106.61820978330887 };
-const center = { lat: 10.795532861871804, lng: 106.63649092163753 };
 
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
@@ -486,31 +488,6 @@ function checkDefaultValue() {
     
 }
 
-function updateUserInformation(){
-    var sent_data = $('#form_user_profile_general').serializeArray();
-    sent_data.push({name: "id", value: userId});   
-    $.ajax({
-        type: 'post',
-        url: '../backend/user/UpdateUserInformation.php',
-        data: sent_data      
-    })
-    .done(function (response) {
-        if(document.getElementById("inputcheck").style.display === "block") {
-            document.getElementById("inputcheck").style.display = "none";
-            document.getElementById("loader").style.display = "inline"
-            setTimeout(function(){
-                document.getElementById("loader").style.display = "none"
-                document.getElementById("inputcheck").style.display = "block"
-            },5000)
-        }
-        document.getElementById("loader").style.display = "block"
-        setTimeout(function(){
-            document.getElementById("loader").style.display = "none"
-            document.getElementById("inputcheck").style.display = "block"
-        },5000)
-    });
-}
-
 var loadFile = function(event) {
     var output = document.getElementById('output');
     output.src = URL.createObjectURL(event.target.files[0]);
@@ -571,6 +548,18 @@ function closeAlert(id) {
 
 function openAlert(id) {
     $(`#${id}`).show()
+}
+
+function increment() {
+    document.getElementById('demoInput').stepUp();
+}
+
+function decrement() {
+    document.getElementById('demoInput').stepDown();
+}
+
+function getQuantityValue() {
+    console.log(document.getElementById('demoInput').value)
 }
 
 function formatPrice(price){

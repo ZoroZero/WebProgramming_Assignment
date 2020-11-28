@@ -73,16 +73,16 @@
                 <div class="qty d-flex mt-4 justify-content-center align-items-center">
                     <h6 class="font-baloo mb-0">Quantities: </h6>
                     <div class="px-4 d-flex font-rale">
-                        <button class="qty-up border bg-light" data-id="pro1"><i class="fas fa-angle-up"></i></button>
-                        <input type="text" data-id="pro1" class="qty_input border px-2 w-50 bg-light" disabled value="1">
-                        <button data-id="pro1" class="qty-down border bg-light"><i class="fas fa-angle-down"></i></button>
+                        <button class="qty-down border bg-light"><i class="fas fa-angle-down" onclick="decrement()"></i></button>
+                        <input type="number" id="demoInput" class="qty_input border px-2 w-50 bg-light" min="1" max="5" disabled value="1">
+                        <button class="qty-up border bg-light" onclick="increment()"><i class="fas fa-angle-up"></i></button>
                     </div>
                 </div>
                 <!-- !product qty section -->
 
                 <div class="form-row pt-4 font-size-16 font-baloo">
                     <div class="col">
-                        <button type="submit" class="btn btn-danger form-control">Add to cart</button>
+                        <button type="submit" class="btn btn-danger w-100" onclick="getQuantityValue()">Add to cart</button>
                     </div>
                 </div>
 
