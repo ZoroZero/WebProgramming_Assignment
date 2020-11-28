@@ -16,5 +16,6 @@
   "bugs": {
     "url": "https://github.com/ZoroZero/WebProgramming_Assignment/issues"
   },
-  "homepage": "https://github.com/ZoroZero/WebProgramming_Assignment#readme"
+  "homepage": "https://github.com/ZoroZero/WebProgramming_Assignment#readme",
+  "dependencies": {}
 }
