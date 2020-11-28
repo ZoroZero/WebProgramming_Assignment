@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Raleway&family=Rubik&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Raleway&family=Rubik&display=swap');
 /* Global classes */
 button,
 button:focus {
@@ -8,15 +8,15 @@ button:focus {
 
 /*typography classes*/
 .font-baloo {
-  font-family: "Baloo Thambi 2", cursive;
+  font-family: 'Baloo Thambi 2', cursive;
 }
 
 .font-raleway {
-  font-family: "Raleway", cursive;
+  font-family: 'Raleway', cursive;
 }
 
 .font-rubik {
-  font-family: "Rubik", cursive;
+  font-family: 'Rubik', cursive;
 }
 
 .font-size-12 {
