@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhuVinh</title>
+
+    <!-- Bootstrap CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"> -->
+    <!-- </script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+
+    <!-- Owl-carousel CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
+
+    <!-- Owl Carousel Js file -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha256-pTxD+DSzIwmwhOqTFN+DB+nHjO4iAsbgfyFq5K5bcE0=" crossorigin="anonymous">
+    </script>
+
+    <!-- font awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+
+    <!-- Custom CSS file -->
+    <link rel="stylesheet" href="./style.css">
+
+    <!-- Custom Javascript-->
+    <script src="./index.js"></script>
+
+    <!--  isotope plugin cdn  -->
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+
+    <!-- google Recaptcha api-->
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByz03P6b4K2TUDMD8DCWG_KNHe7MNdtSs&callback=initMap"></script>
+</head>
+
+<body class="d-flex flex-column" style="min-height: 100vh;">
+    <!-- start #header -->
+    <header id="header">
+        <div class="strip d-flex justify-content-between px-4 py-1 bg-light">
+            <p class="font-rale font-size-12 text-black-50 m-0">Jordan Calderon 430-985 Eleifend St. Duluth Washington 92611 (427) 930-5255</p>
+            <div class="font-rale font-size-14">
+                <a href='../frontend/?page=login' class='px-3 border-right border-left text-dark' id='logout-btn'>Login</a>
+                <a href="#" class="px-3 border-right text-dark">Wishlist (0)</a>
+            </div>
+        </div>
+
+        <!-- Primary Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark color-secondary-bg">
+            <a class="navbar-brand" href="#">Mobile Shopee</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav font-rubik mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Homepage</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Category
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Windows</a>
+                            <a class="dropdown-item" href="#">Linux</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Mac</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Blog</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-lg-0 mx-lg-2 mx-sm-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <button class="btn btn-danger mx-lg-2 my-3 my-lg-0 mx-sm-0">Login</button>
+                <form action="#" class="font-size-14 font-rale">
+                    <a href="#" class="py-2 rounded-pill color-primary-bg">
+                        <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
+                        <span class="px-3 py-2 rounded-pill text-dark bg-light">0</span>
+                    </a>
+                </form>
+            </div>
+        </nav>
+        <!-- !Primary Navigation -->
+
+    </header>
+    <!-- !start #header -->
+
+    <!-- start #main-site -->
+    <main id="main-site" style="flex-grow: 1;">
+        <!--start setting-->
+        <section id="setting" class="py-5">
+            <div class="container-fluid">
+                <div class="col-lg-6 col-xl-5 col-md-8 m-auto user_profile_main">
+                    <!-- Nav tabs -->
+                    <div class="user_profile_sidepanel">
+                        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a href="#tab_general" data-toggle="tab" class="nav-link active font-raleway font-weight-bold font-size-16 side_panel_tab" role="tab" aria-controls="tab_general" aria-selected="true">
+                                    <i class="fas fa-users-cog fa-lg mr-2"></i>
+                                    Genenal
+                                </a>
+                            </li> 
+                            <li class="nav-item">
+                                <a href="#tab_avatar" data-toggle="tab" class="nav-link font-raleway font-weight-bold font-size-16 side_panel_tab" role="tab" aria-controls="tab_avatar" aria-selected="false">
+                                    <i class="far fa-user-circle fa-lg mr-2"></i>
+                                    Profile image
+                                </a>
+                            </li>
+                            <li class="nav-item">	
+                                <a href="#tab_password" data-toggle="tab" class="nav-link font-raleway font-weight-bold font-size-16 side_panel_tab" role="tab" aria-controls="tab_password" aria-selected="false">
+                                    <i class="fas fa-key fa-lg mr-2"></i>
+                                    Password
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Tab panes -->
+                    <div class="tab-content profile_tab">
+                        <!--Tab General-->
+                        <div class="tab-pane active" id="tab_general">
+                            <h1 class="font-baloo font-weight-bold mt-2">General</h1>
+                            <form class="needs-validation" novalidate id="form_user_profile_general" name="form_user_profile_general" autocomplete="off">
+                                <div class="profile_edit mb-3">
+                                    <label for="profile_username" class="font-raleway font-italic font-weight-bold">Username</label>
+                                    <input type="text" id="profile_username" name="profile_username" search="false" image-upload="false" 
+                                    maxlength="50" class="form-control font-rubik" placeholder="" spellcheck="false" readonly>
+                                    <!-- <div class="input_check"> &nbsp </div> --> 
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="profile_firstName" class="font-raleway font-italic font-weight-bold">First name*</label>
+                                        <input type="text" id="profile_firstName" name="firstName" search="false" image-upload="false" maxlength="50" 
+                                        class="form-control font-rubik" placeholder="" spellcheck="false" onchange="checkFirstName()" required>
+                                        <div class="invalid-feedback input_check font-italic font-size-14 mt-2 mb-0" id="profile_firstName_check" role="alert">
+                                            <i class="fas fa-exclamation-circle"></i>
+                                            Please fill this field out!
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="profile_lastName" class="font-raleway font-italic font-weight-bold">Last name*</label>
+                                        <input type="text" id="profile_lastName" name="lastName" search="false" image-upload="false" maxlength="50" 
+                                        class="form-control font-rubik" placeholder="" spellcheck="false" onchange="checkLastName()" required>
+                                        <div class="invalid-feedback input_check font-italic font-size-14 mt-2 mb-0" id="profile_lastName_check" role="alert">
+                                            <i class="fas fa-exclamation-circle"></i>
+                                            Please fill this field out!
+                                        </div>
+                                    </div>
+                                </div>                           
+                            
+                                <div class="form-group">
+                                    <label for="profile_email" class="font-raleway font-italic font-weight-bold">Email*</label>
+                                    <input type="email" id="profile_email" name="email" search="false" image-upload="false" maxlength="50" 
+                                    class="form-control font-rubik" placeholder="" spellcheck="false" onchange="checkEmail()" required>
+                                    <div class="invalid-feedback input_check font-italic font-size-14 mt-2 mb-0" role="alert">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        Please fill this field out or provide a correct email address!
+                                    </div>
+                                </div>
+                                    
+                            
+                                <div class="form-group">
+                                    <label for="profile_address" class="font-raleway font-italic font-weight-bold">Address*</label>
+                                    <input type="text" id="profile_address" name="address" search="false" image-upload="false" maxlength="200" 
+                                    class="form-control user_profile_input_form" placeholder="" spellcheck="false" onchange="checkAddress()" required>
+                                    <div class="invalid-feedback input_check font-italic font-size-14 mt-2 mb-0" id="profile_address_check" role="alert">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        Please fill this field out!
+                                    </div>
+                                </div>
+                                <button value="save" class="btn btn-info d-block w-25 mx-auto" onclick="updateUserInformation()">Save</button>
+                                <div>
+                                    <div class="loader"></div>
+                                </div>	
+                            </form>                
+                        </div>
+
+                        <!--Tab Profile Image-->
+                        <div class="tab-pane" id="tab_avatar">
+                            <h1 class="font-baloo font-weight-bold mt-2">Profile image</h1>
+                            <div class="row">
+                                <img src="./assets/users/5.png" id="user_profile_avatar" class="avt-modal mx-auto">
+                            </div>
+                            <div class="row">
+                                <button value="save" class="btn btn-info font-raleway font-size-16 mx-auto mt-2" data-toggle="modal" data-target="#modal_avatar">Change avatar</button>
+                            </div>
+                            <div id="modal_avatar" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Select an image</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img src="./assets/users/5.png" id='output' class='avt-modal mx-auto d-block'>
+                                            <form id="form_user_profile_avatar" name="form_user_profile_avatar" class="user_profile_form" action="../backend/user/UploadAvatar.php" method="post" enctype="multipart/form-data">
+                                                <!-- <input type="file" name="fileToUpload" class="input_imgs font-size-16 color-primary-bg text-white font-rubik" accept="image/*" id="fileToUpload" onchange="loadFile(event)"> -->
+                                                <!-- <input type="submit" value="Upload Image" name="submit"> -->
+                                                <!-- <div class="row">
+                                                    <div class="column">
+                                                        <label class="user_profile_avatar_label">
+                                                        <input class="user_profile_avatar_radio" type="radio" name="profile_avatar">
+                                                        <img class="user_profile_avatar_img" 
+                                                        style="width:100px;height:100px;margin-bottom:5px;margin-left:10px;"/>
+                                                        </label>
+                                                    </div>
+                                                </div> -->
+                                                <div class="input-group mt-3">
+                                                    <div class="custom-file">
+                                                      <input type="file" class="custom-file-input font-size-16 font-rubik" id="inputGroupFile01" accept="image/*" onchange="loadFile(event)">
+                                                      <label class="custom-file-label imgs-label font-size-16 font-rubik" id="imgs-label" for="inputGroupFile01">Choose file</label>
+                                                    </div>
+                                                  </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="uploadAvatar()">Apply</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Tab Change Password-->
+                        <div class="tab-pane" id="tab_password"> <!-- CALL A PHP FILE FROM AJAX TO CHECK PASSWORD-->
+                            <h1 class="font-baloo font-weight-bold mt-2">Change password</h1>
+                            <form id="form_user_profile_password" name="form_user_profile_password" class="needs-validation2" novalidate method="post" autocomplete="off">
+                            
+                            <div class="form-group">
+                                <label for="profile_Oldpassword" class="font-raleway font-italic font-weight-bold">Old</label>
+                                <input type="password" id="profile_Oldpassword" name="oldPassword" onPaste="return false" onCopy="return false" 
+                                search="false" image-upload="false" maxlength="32" class="form-control font-rubik" 
+                                placeholder="" spellcheck="false" required>
+                                <div class="invalid-feedback input_check font-italic font-size-14 mt-2 mb-0" id="profile_password_check" role="alert">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    Please fill this field out!
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="profile_password" class="font-raleway font-italic font-weight-bold">New</label>
+                                <input type="password" id="profile_password" name="newPassword" onPaste="return false" onCopy="return false" 
+                                search="false" image-upload="false" maxlength="32" class="form-control font-rubik" 
+                                placeholder="" spellcheck="false" required>
+                                <div class="invalid-feedback input_check font-italic font-size-14 mt-2 mb-0" id="profile_password_check" role="alert">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    Please fill this field out!
+                                </div>
+                            </div>
+            
+                            <div class="form-group">
+                                <label for="profile_password_re" class="font-raleway font-italic font-weight-bold">Confirm</label>
+                                <input type="password" id="profile_password_re" name="confirmNewPassword" onPaste="return false" 
+                                onCopy="return false" search="false" image-upload="false" maxlength="32" 
+                                class="form-control font-rubik" placeholder="" spellcheck="false" required>
+                                <div class="invalid-feedback input_check font-italic font-size-14 mt-2 mb-0" id="profile_password_re_check" role="alert">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    Please fill this field out!
+                                </div>
+                            </div>	
+                            <button value="confirm" class="btn btn-info d-block w-25 mx-auto">Confirm</button>					  
+                            </form>
+                            <div>
+                                <p class="user_profile_check_result" id="passwordcheck">&nbsp</p>				
+                            </div>			
+                        </div>
+                    </div>
+                <div class="clearfix"></div>
+            </div>
+        </section>
+        <!--end setting-->
+    </main>
+    <!-- !start #main-site -->
+    
+    <!-- start #footer -->
+    <footer id="footer" class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-12">
+                    <h4 class="font-rubik font-size-20">Phu Vinh</h4>
+                    <p class="font-size-14 font-rale text-white-50">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, deserunt.</p>
+                </div>
+                <div class="col-lg-2 col-12">
+                    <h4 class="font-rubik font-size-20">Information</h4>
+                    <div class="d-flex flex-column flex-wrap">
+                        <p class="font-rale font-size-14 text-white-50 pb-1 m-0"> Technical Assistant: 096.709.1640 <i class="fas fa-phone ml-2" aria-hidden="true"></i></p>
+                        <p class="font-rale font-size-14 text-white-50 pb-1 m-0"> Sale Consultant: 090.000.0000 <i class="fas fa-phone ml-2" aria-hidden="true"></i></p>
+                        <a href="https://www.facebook.com/duyan.nguyen.50309" class="font-rale font-size-14 text-white-50 pb-1">An Ngo (GM) <i class="fab fa-facebook-square" aria-hidden="true"></i></a>
+                        <a href="https://www.facebook.com/dung0" class="font-rale font-size-14 text-white-50 pb-1">Dung Hoang (Janitor) <i class="fab fa-facebook-square" aria-hidden="true"></i></a>
+                        <a href="https://www.facebook.com/trinhmai.duy.9" class="font-rale font-size-14 text-white-50 pb-1">Duy Trinh (hr) <i class="fab fa-facebook-square" aria-hidden="true"></i></a>
+                        <a href="https://www.termsfeed.com/live/67448ba7-9d9c-4d37-9edb-2dabb7fd9a82" class="font-rale font-size-14 text-white-50 pb-1">Terms & Conditions</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-12">
+                    <h4 class="font-rubik font-size-20">Visit us!</h4>
+                    <div class="d-flex flex-column flex-wrap">
+                        <a href="#" class="font-rale font-size-14 text-white-50 pb-1">(HQ) 268 Lý Thường Kiệt, Phường 14, Quận 10, Thành phố Hồ Chí Minh <i class="fas fa-map-marker-alt" aria-hidden="true"></i></a>
+                        <a href="#" class="font-rale font-size-14 text-white-50 pb-1">233 Phạm Văn Hai, Phường 5, Quận Tân Bình, Thành phố Hồ Chí Minh. <i class="fas fa-map-marker-alt" aria-hidden="true"></i></a>
+                        <a href="#" class="font-rale font-size-14 text-white-50 pb-1">Đường T5, phường Tây Thạnh, Quận Tân Phú, Thành phố Hồ Chí Minh. <i class="fas fa-map-marker-alt" aria-hidden="true"></i></a>
+                        <a href="#" class="font-rale font-size-14 text-white-50 pb-1">Opening hours: 8:00 - 20:00 Weekdays</a>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-12" style="height: 350px" id="map">
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="copyright text-center bg-dark text-white py-2">
+        <p class="font-rale font-size-14">&copy; Copyrights 2020. Design By <a href="#" class="color-second">Vo Hoang Tri LCC</a></p>
+    </div>
+    <!-- !start #footer -->
+</body>
+    
+</html>
