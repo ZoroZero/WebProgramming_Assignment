@@ -524,17 +524,29 @@ function openAlert(id) {
 }
 
 function increment(id) {
-    document.getElementById('demoInput').stepUp();
-    total_price = productList.map(o => o.Price*o.BuyAmount).reduce((acc, cur) => cur + acc, 0)
-    total_buy_amount = productList.map(o => o.BuyAmount).reduce((acc, cur) => cur + acc, 0)
+    
+    var product = productList.find(o => o.Id === id);
+    if(product.Amount > parseInt(document.getElementById(`amount-${id}`).value)){
+        document.getElementById(`amount-${id}`).stepUp();
+        product.BuyAmount = parseInt(document.getElementById(`amount-${id}`).value);
+        total_price = productList.map(o => o.Price*o.BuyAmount).reduce((acc, cur) => cur + acc, 0);
+        total_buy_amount = productList.map(o => o.BuyAmount).reduce((acc, cur) => cur + acc, 0);
+        $('#deal-price').html(formatPrice(total_price));
+        $('#deal-amount').html(`Subtotal (${total_buy_amount} items):`);
+    }
 }
 
 function decrement(id) {
-    document.getElementById('demoInput').stepDown();
+    document.getElementById(`amount-${id}`).stepDown();
+    productList.find(o => o.Id === id).BuyAmount = parseInt(document.getElementById(`amount-${id}`).value);
+    total_price = productList.map(o => o.Price*o.BuyAmount).reduce((acc, cur) => cur + acc, 0);
+    total_buy_amount = productList.map(o => o.BuyAmount).reduce((acc, cur) => cur + acc, 0);
+    $('#deal-price').html(formatPrice(total_price))
+    $('#deal-amount').html(`Subtotal (${total_buy_amount} items):`)
 }
 
 function getQuantityValue() {
-    console.log(document.getElementById('demoInput').value)
+    console.log(document.getElementById('amount-${id}').value);
 }
 
 function formatPrice(price){
@@ -577,10 +589,10 @@ function getCartProductInformation(){
                 var list_product = productList.map(function(element){
                     return `<div class="row border-top py-3">
                     <div class="col-12 col-sm-6 col-md-3 col-lg-3 col-xl-2 cart-img">
-                        <img src="../frontend/${element['Path']}" alt="cart1" class="img-fluid">
+                        <img src="../frontend/${element.Path}" alt="cart1" class="img-fluid">
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-5">
-                        <h5 class="font-baloo font-size-20 m-0">${element['Name']}</h5>
+                        <h5 class="font-baloo font-size-20 m-0">${element.Name}</h5>
                         <!--    #policy -->
                         <div id="policy">
                             <div class="d-flex">
@@ -605,22 +617,22 @@ function getCartProductInformation(){
                             </div>
                         </div>
                         <!--    !policy -->
-                        <button onclick="removeFromCart(${element['Id']})" type="submit" class="btn font-baloo text-danger px-0 text-left">Delete item</button>
+                        <button onclick="removeFromCart(${element.Id})" type="submit" class="btn font-baloo text-danger px-0 text-left">Delete item</button>
                     </div>
                     <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
                         <!-- product qty -->
                         <div class="qty">
                             <div class="d-flex font-rale">
-                                <button class="border bg-light" onclick="decrement(${element["Id"]})"><i class="fas fa-angle-down"></i></button>
-                                <input type="number" id="demoInput" class="border px-2 w-100 bg-light" min="1" max="5" value="1">
-                                <button class="border bg-light" onclick="increment(${element["Id"]})"><i class="fas fa-angle-up"></i></button>
+                                <button class="border bg-light" onclick="decrement(${element.Id})"><i class="fas fa-angle-down"></i></button>
+                                <input type="number" id="amount-${element.Id}" class="border px-2 w-100 bg-light" min="1" max="5" value="${element.Amount >= 1 ? 1: 0}">
+                                <button class="border bg-light" onclick="increment(${element.Id})"><i class="fas fa-angle-up"></i></button>
                             </div>
                         </div>
                         <!-- !product qty -->
                     </div>
                     <div class="col-6 col-sm-6 col-md-2 col-lg-2 col-xl -2 text-right">
                         <div class="font-size-20 text-danger font-baloo">
-                            <span class="product_price">${formatPrice(element["Price"])}</span>
+                            <span class="product_price">${formatPrice(element.Price)}</span>
                         </div>
                     </div>
                 </div>`});
@@ -639,16 +651,15 @@ function getCartProductInformation(){
 function removeFromCart(productId){
     cartProductList = getCookie('cart-porducts');
     cartItemList = cartProductList && cartProductList!=""? cartProductList.split(','):[];
-    console.log(cartItemList)
     if(cartItemList.filter(x => x === productId.toString()).length !== 0){
-        cartItemList.remove(element);
+        cartItemList = cartItemList.filter(element => element !== productId.toString());
         $('#cart-count').html(cartItemList.length);
         var productIdList = cartItemList.join(',').toString();
-        console.log(getCookie("cart-porducts"));
         
         if(getCookie("cart-porducts") !== ""){
             deleteCookie('cart-porducts');
         }
         setCookie('cart-porducts', productIdList, 1);
+        getCartProductInformation();
     }
 }
