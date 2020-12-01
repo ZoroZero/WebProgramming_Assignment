@@ -52,17 +52,16 @@
             <p class="font-rale font-size-12 text-black-50 m-0">Jordan Calderon 430-985 Eleifend St. Duluth Washington 92611 (427) 930-5255</p>
             <div class="font-rale font-size-14 d-flex">
                 <?php
-                   if(session_status()==PHP_SESSION_NONE){
-                        session_start();
-                    }
-                    include_once("../backend/environments/Constants.php");
-                    if (isset($_SESSION['userId'])){
-                        echo "<p class='px-3 text-dark m-0'>".$_COOKIE[USER_NAME]."</p>";
-                        echo "<a href='../frontend/?page=settings' class='px-3 border-right border-left text-dark'>Setting</a>";
-                        echo "<a href='../backend/user/LogoutUser.php' class='px-3 border-right border-left text-dark' id='login-btn'>Logout</a>";
-                    }
-                    else
-                        echo "<a href='../frontend/?page=login' class='px-3 border-right border-left text-dark' id='logout-btn'>Login</a>"; ?>
+                if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
+                include_once("../backend/environments/Constants.php");
+                if (isset($_SESSION['userId'])) {
+                    echo "<p class='px-3 text-dark m-0'>" . $_COOKIE[USER_NAME] . "</p>";
+                    echo "<a href='../frontend/?page=settings' class='px-3 border-right border-left text-dark'>Setting</a>";
+                    echo "<a href='../backend/user/LogoutUser.php' class='px-3 border-right border-left text-dark' id='login-btn'>Logout</a>";
+                } else
+                    echo "<a href='../frontend/?page=login' class='px-3 border-right border-left text-dark' id='logout-btn'>Login</a>"; ?>
             </div>
         </div>
 
@@ -96,7 +95,7 @@
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
                 </form>
-                
+
                 <form action="#" class="font-size-14 font-rale">
                     <a href="../frontend/?page=cart" class="py-2 rounded-pill color-primary-bg">
                         <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>

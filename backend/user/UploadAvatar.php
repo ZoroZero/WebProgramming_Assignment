@@ -20,7 +20,6 @@ if (isset($_POST['id'])) {
         }
     }
 
-
     // Check file size
     if ($_FILES["fileToUpload"]["size"] > 5000000) {
         $response['error'] = true;

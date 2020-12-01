@@ -6,36 +6,56 @@
                 <div class="card card-register">
                     <div class="card-body">
                         <h5 class="card-title text-center font-baloo">Register</h5>
-                        <form class="form-register">
+                        <form class="form-register" id="register-form">
                             <div class="form-row">
-                                <div class="col-sm-12 col-md-6 my-2">
-                                    <input type="text" class="form-control font-raleway" placeholder="First name">
+                                <div class="form-group col-sm-12 col-md-6 my-2">
+                                    <label for="inputFirstname">Firstname</label>
+                                    <input id="inputFirstname" type="text" name="inputFirstname" class="form-control font-raleway" placeholder="Enter your firstname here..." autofocus>
                                 </div>
-                                <div class="col-sm-12 col-md-6 my-2">
-                                    <input type="text" class="form-control font-raleway" placeholder="Last name">
+                                <div class="form-group col-sm-12 col-md-6 my-2">
+                                    <label for="inputLastname">Lastname</label>
+                                    <input type="text" id="inputLastname" name="inputLastname" class="form-control font-raleway" placeholder="Enter your lastname here...">
                                 </div>
                             </div>
-                            <input type="email" id="inputEmail" class="form-control mt-2 mb-3 font-raleway" placeholder="Enter your email" required autofocus>
-                            <input type="text" class="form-control font-raleway" name="username" id="username" pattern="^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$" title="Username must be 8 to 20 characters long with no _ or . at the beginning, no __ or _. or ._ or .. inside and no _ or . at the end " placeholder="Username" required>
-                            <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-                                Must be 8 to 20 characters long with no _ or . at the beginning, no __ or _. or ._ or .. inside and no _ or . at the end
-                            </small>
-
-                            <input type="password" class="form-control font-raleway" name="password" id="password" onchange="Validate()" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" placeholder="Password" minlength="8" required>
-                            <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-                                Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters
-                            </small>
-                            <input type="password" class="form-control mb-2 font-raleway" id="rePassword" onkeyup="Validate()" placeholder="Re-enter Password" required>
+                            <div class="form-group">
+                                <label for="inputEmail">Email</label>
+                                <input type="email" id="inputEmail" name="inputEmail" class="form-control font-raleway" placeholder="Enter your email here...">
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control font-raleway" name="username" id="username" placeholder="Enter your username here...">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control font-raleway" name="password" id="password" placeholder="Input your password here...">
+                            </div>
+                            <div class="form-group">
+                                <label for="rePassword">Re-password</label>
+                                <input type="password" class="form-control font-raleway" name="rePassword" id="rePassword" placeholder="Re-enter your password">
+                            </div>
 
                             <div class="g-recaptcha my-3" data-sitekey="6LfXiekZAAAAAI-Yk6QMS9vGMhwP0DH1k6N59GfC"></div>
                             <button type="submit" class="btn color-primary-bg text-white btn-block font-size-18 mt-5">
-                                <i class="fas fa-user-plus"></i>
-                                &nbsp;Register
+                                <i class="fas fa-user-plus mr-2"></i>
+                                Register
                             </button>
                         </form>
+                        <div class="loader" id="loader3" style="display: none;"></div>
+                        <div class="alert alert-danger alert-dismissible fade show mt-2" style="display: none;" id="inputcheck_error" role="alert">
+                            Error!
+                            <button type="button" class="close" onclick="closeAlert('inputcheck_error')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="alert alert-success alert-dismissible fade show mt-2" style="display: none;" id="inputcheck_success" role="alert">
+                            Success!
+                            <button type="button" class="close" onclick="closeAlert('inputcheck_success')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <a href="#" class="my-5 font-size-18 register-go-back">
+                <a href="../frontend/?page=login" class="my-5 font-size-18 register-go-back">
                     <i class="fas fa-arrow-left mr-2"></i>
                     Go back to login
                 </a>

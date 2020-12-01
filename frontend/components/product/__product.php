@@ -70,14 +70,14 @@
                 <!--    !policy -->
 
                 <!-- product qty section -->
-                <div class="qty d-flex mt-4 justify-content-center align-items-center">
+                <!-- <div class="qty d-flex mt-4 justify-content-center align-items-center">
                     <h6 class="font-baloo mb-0">Quantities: </h6>
                     <div class="px-4 d-flex font-rale">
                         <button class="qty-down border bg-light"><i class="fas fa-angle-down" onclick="decrement()"></i></button>
                         <input type="number" id="demoInput" class="qty_input border px-2 w-50 bg-light" min="1" max="5" disabled value="1">
                         <button class="qty-up border bg-light" onclick="increment()"><i class="fas fa-angle-up"></i></button>
                     </div>
-                </div>
+                </div> -->
                 <!-- !product qty section -->
 
                 <div class="form-row pt-4 font-size-16 font-baloo">

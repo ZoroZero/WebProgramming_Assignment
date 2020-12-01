@@ -15,6 +15,7 @@ $(document).ready(function() {
     if(window.location.href.includes('homepage')){
         getTopSaleProduct();
         getSpecialPriceProduct();
+
         //banner owl carousel
         $("#banner-area .owl-carousel").owlCarousel({
             dots: true,
@@ -63,13 +64,214 @@ $(document).ready(function() {
     }
     else if(window.location.href.includes('settings')){
         getUserInformation();
-        jQuery.validator.addMethod("notEqual", function(value, element, param) {
-            return this.optional(element) || value != $(param).val();
-        }, "This has to be different...");
     }
     else if(window.location.href.includes('cart')){
         getCartProductInformation();
     }
+
+    if(window.location.href.includes('register')) {
+
+    }
+
+    $(function () {
+        jQuery.validator.addMethod("notEqual", function(value, element, param) {
+            return this.optional(element) || value != $(param).val();
+        }, "This has to be different...");
+        jQuery.validator.addMethod(
+            "pattern",
+            function(value, element, regexp) {
+                var re = new RegExp(regexp);
+                return this.optional(element) || re.test(value);
+            },
+            "Please check your input."
+        );
+    })
+
+    //check form register submission
+    $(function () {
+        $("form[id='register-form']").validate({
+            rules:{
+                inputFirstname: {
+                    required: true,
+                    minlength: 2,
+                },
+                inputLastname: {
+                    required: true,
+                    minlength: 2,
+                },
+                inputEmail: {
+                    required: true,
+                    email: true,
+                },
+                username: {
+                    required: true,
+                    minlength: 8,
+                },
+                password: {
+                    required: true,
+                    pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
+                },
+                rePassword: {
+                    required: true,
+                    equalTo: "#password"
+                }
+            },
+            messages: {
+                inputFirstname: {
+                    required: "This field is required",
+                    minlength: jQuery.validator.format("At least {0} characters required!"),
+                },
+                inputLastname: {
+                    required: "This field is required",
+                    minlength: jQuery.validator.format("At least {0} characters required!"),
+                },
+                inputEmail: {
+                    required: "This field is required",
+                    email: "Please check your email again",
+                },
+                password: {
+                    required: "This field is required",
+                    pattern: "The password must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                },
+                rePassword: {
+                    required: "This field is required",
+                    equalTo : "This has to be the same as the password"
+                },
+            },
+            invalidHandler: function(e) {
+                e.stopPropagation()
+            },
+            submitHandler: function(form, e) {
+                var response = grecaptcha.getResponse();
+                if (response.length === 0) {
+                    alert("please verify you are human!"); 
+                    return false;
+                } 
+                var sent_data = $(form).serializeArray();
+                console.log(sent_data)
+                $.ajax({
+                    type: 'post',
+                    url: '../backend/user/RegisterUser.php',
+                    data: sent_data      
+                })
+                .done(function (response) {
+                    response = JSON.parse(response);
+                    console.log(response)
+                    if(document.getElementById("inputcheck_success").style.display !== "none") {
+                        closeAlert("inputcheck_success")
+                    }
+                    if(document.getElementById("inputcheck_error").style.display !== "none") {
+                        closeAlert("inputcheck_error")
+                    }
+                    if(response.error) {
+                        document.getElementById("loader3").style.display = "block"
+                        setTimeout(function(){
+                            document.getElementById("loader3").style.display = "none"
+                            document.getElementById("inputcheck_error").innerHTML = `Error! ${response.message}
+                                <button type="button" class="close" onclick="closeAlert('inputcheck_error')">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>`
+                            openAlert("inputcheck_error")
+                            
+                        },2000)
+                    }
+                    else {
+                        document.getElementById("loader3").style.display = "block"
+                        setTimeout(function(){
+                            document.getElementById("loader3").style.display = "none"
+                            document.getElementById("inputcheck_success").innerHTML = `${response.message}! Please go back to the login session.
+                                <button type="button" class="close" onclick="closeAlert('inputcheck_success')">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>`
+                            openAlert("inputcheck_success")
+                            
+                        },2000)
+                    }
+                    
+                });		
+                return false;
+            }
+        });
+    });
+
+    //check form login submission
+    $(function () {
+        $("form[id='form-login']").validate({
+            rules:{
+                inputUsername: {
+                    required: true,
+                },
+                inputPassword: {
+                    required: true,
+                },
+            },
+            messages: {
+                inputUsername: {
+                    required: "This field is required",
+                },
+                inputPassword: {
+                    required: "This field is required",
+                },
+            },
+            invalidHandler: function(e) {
+                e.stopPropagation()
+            },
+            submitHandler: function(form, e) {
+                var sent_data = $(form).serializeArray();
+                $.ajax({
+                    type: 'post',
+                    url: '../backend/user/loginUser.php',
+                    data: sent_data      
+                })
+                .done(function (response) {
+                    console.log(response)
+                    response = JSON.parse(response);
+                    
+                    
+                    if(document.getElementById("inputcheck_success").style.display !== "none") {
+                        closeAlert("inputcheck_success")
+                    }
+                    if(document.getElementById("inputcheck_error").style.display !== "none") {
+                        closeAlert("inputcheck_error")
+                    }
+                    if(response.error) {
+                        document.getElementById("loader4").style.display = "block";
+                        document.getElementById("submit_login_btn").setAttribute("disabled", true)
+
+                        setTimeout(function(){
+                            document.getElementById("loader4").style.display = "none"
+                            document.getElementById("inputcheck_error").innerHTML = `Error! ${response.message}
+                                <button type="button" class="close" onclick="closeAlert('inputcheck_error')">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>`
+                            openAlert("inputcheck_error")
+                            document.getElementById("submit_login_btn").removeAttribute("disabled")
+                        },2000)
+                    }
+                    else {
+                        document.getElementById("loader4").style.display = "block"
+                        document.getElementById("submit_login_btn").setAttribute("disabled", true)
+                        var timeleft = 2;
+                        setTimeout(function(){
+                            document.getElementById("loader4").style.display = "none"
+                            var downloadTimer = setInterval(function() {
+                                if (timeleft <= 0) {
+                                    clearInterval(downloadTimer);
+                                    window.location.replace("?page=homepage");
+                                } else {
+                                    document.getElementById("inputcheck_success").innerHTML = `${response.message}! Please wait for ${timeleft} seconds to redirect to homepage.`;
+                                }
+                                timeleft -= 1;
+                            }, 1000);    
+                            openAlert("inputcheck_success")
+                        },1000)
+                    }
+                    
+                });		
+                return false;
+            }
+        });
+    });
 
     // check form submission general settings
     $(function () {
@@ -80,7 +282,8 @@ $(document).ready(function() {
             submitHandler: function(form, e) {
                 e.preventDefault();
                 var sent_data = $(form).serializeArray();
-                sent_data.push({name: "id", value: userId});   
+                sent_data.push({name: "id", value: userId});
+                console.log(sent_data)   
                 $.ajax({
                     type: 'post',
                     url: '../backend/user/UpdateUserInformation.php',
@@ -118,12 +321,11 @@ $(document).ready(function() {
                 },
                 profile_password: {
                     required: true,
-                    minlength: 8,
-                    notEqual: "#profile_Oldpassword"
+                    notEqual: "#profile_Oldpassword",
+                    pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
                 },
                 profile_password_re: {
                     required: true,
-                    minlength: 8,
                     equalTo: "#profile_password"
                 }
             },
@@ -134,12 +336,11 @@ $(document).ready(function() {
                 },
                 profile_password: {
                     required: "This field is required",
-                    minlength: jQuery.validator.format("At least {0} characters required!"),
-                    notEqual: "New password can not be the same as old password"
+                    notEqual: "New password can not be the same as old password",
+                    pattern: "The password must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                 },
                 profile_password_re: {
                     required: "This field is required",
-                    minlength: jQuery.validator.format("At least {0} characters required!"),
                     equalTo : "This has to be the same as new password"
                 },
             },
@@ -148,8 +349,7 @@ $(document).ready(function() {
             },
             submitHandler: function(form, e) {
                 e.preventDefault();
-                var sent_data = $(form).serializeArray();
-                sent_data.push({name: "id", value: userId});   
+                var sent_data = $(form).serializeArray();  
                 $.ajax({
                     type: 'post',
                     url: '../backend/user/UpdateUserPassword.php',
@@ -177,6 +377,9 @@ $(document).ready(function() {
         });
     });
         
+
+    var x = document.cookie;
+        console.log(x) 
 })
 
 
@@ -218,8 +421,8 @@ function getUserInformation(){
                 document.getElementById("profile_lastName").value = information['LastName'];
                 document.getElementById("profile_email").value = information['Email'];
                 document.getElementById("profile_address").value = information['Address'];
-                document.getElementById('user_profile_avatar').src = '../frontend/' + information['Path'];
-                document.getElementById('output').src = '../frontend/' + information['Path'];
+                document.getElementById('user_profile_avatar').src = information['Path'] ? '../frontend/' + information['Path'] : './assets/imgs/users/avatar/default-avatar.png';
+                document.getElementById('output').src = information['Path'] ? '../frontend/' + information['Path'] : './assets/imgs/users/avatar/default-avatar.png';
             }
         }
     );
