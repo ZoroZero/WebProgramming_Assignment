@@ -33,7 +33,7 @@
                     <form class="needs-validation" method="" action="" id="form_user_profile_general" name="form_user_profile_general" autocomplete="off">
                         <div class="profile_edit mb-3">
                             <label for="profile_username" class="font-raleway font-italic font-weight-bold">Username</label>
-                            <input type="text" id="profile_username" name="profile_username" search="false" image-upload="false" maxlength="50" class="form-control font-rubik" placeholder="" spellcheck="false" readonly>
+                            <input type="text" id="profile_username" name="profile_username" class="form-control font-rubik" placeholder="" readonly>
                             <!-- <div class="input_check"> &nbsp </div> -->
                         </div>
 

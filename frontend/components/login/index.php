@@ -55,27 +55,31 @@
                 <div class="card card-signin">
                     <div class="card-body">
                         <h5 class="card-title text-center font-baloo">Sign In</h5>
-                        <form class="form-signin" role="form" action="../backend/user/LoginUser.php" method="post">
-                            <div class="form-label-group">
+                        <form class="form-signin" id="form-login" role="form" action="" method="">
+                            <div class="form-group">
                                 <label for="inputUsername" class="font-rubik font-size-16">Username</label>
-                                <input type="text" name='username' id="inputUsername" class="form-control font-raleway p-4 login-input" placeholder="Enter your username" required autofocus>
+                                <input type="text" name='inputUsername' id="inputUsername" class="form-control font-raleway p-4 login-input" placeholder="Enter your username">
                             </div>
-
-                            <div class="form-label-group mt-2">
+                            <div class="form-group">
                                 <label for="inputPassword" class="font-rubik font-size-16">Password</label>
-                                <input type="password" name='password' id="inputPassword" class="form-control font-raleway p-4 login-input" placeholder="Enter your password" minlength="8" required>
+                                <input type="password" name='inputPassword' id="inputPassword" class="form-control font-raleway p-4 login-input" placeholder="Enter your password">
                             </div>
-
-                            <div class="custom-control custom-checkbox my-3">
-                                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                <label class="custom-control-label font-rubik font-size-16" for="customCheck1">Remember password</label>
-                            </div>
-                            <div class="g-recaptcha my-3" data-sitekey="6LfXiekZAAAAAI-Yk6QMS9vGMhwP0DH1k6N59GfC"></div>
-                            <button type="submit" class="btn color-primary-bg text-white btn-block font-size-16 mt-5">
-                                <i class="fas fa-sign-in-alt"></i>
-                                &nbsp;Login
+                            <button type="submit" id="submit_login_btn" class="btn color-primary-bg text-white btn-block font-size-16 mt-5">
+                                <i class="fas fa-sign-in-alt mr-2"></i>
+                                Login
                             </button>
                         </form>
+                        <div class="loader" id="loader4" style="display: none;"></div>
+                        <div class="alert alert-danger alert-dismissible fade show mt-2" style="display: none;" id="inputcheck_error" role="alert">
+                            Error!
+                            <button type="button" class="close" onclick="closeAlert('inputcheck_error')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="alert alert-success alert-dismissible fade show mt-2" style="display: none;" id="inputcheck_success" role="alert">
+                            Success! Please wait for 3 seconds to redirect to homepage.
+                        </div>
+                        <div id="countdown"></div>
                     </div>
                 </div>
             </div>
@@ -97,7 +101,7 @@
                         </form>
                     </div>
                 </div>
-                <a href="#" class="my-5 font-size-18 login-go-to ml-auto">
+                <a href="../frontend/?page=register" class="my-5 font-size-18 login-go-to ml-auto">
                     Go to register
                     <i class="fas fa-arrow-right ml-2"></i>
                 </a>
