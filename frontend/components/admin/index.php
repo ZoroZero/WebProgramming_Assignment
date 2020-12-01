@@ -70,7 +70,6 @@
                             <td>@mdo</td>
                             <td> <?php include('./components/ModalProduct/index.php') ?></td>
                         </tr>
-
                     </tbody>
                 </table>
             </div>

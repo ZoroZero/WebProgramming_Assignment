@@ -60,7 +60,7 @@
 
                         <div>
                             <button type="submit" value="save" disabled class="btn btn-info d-block w-25 mx-auto" id="submit-info">Save</button>
-                            <div class="loader" id="loader"></div>
+                            <div class="loader" id="loader" style="display: none;"></div>
                             <div class="alert alert-success alert-dismissible fade show mt-2" style="display: none;" id="inputcheck" role="alert">
                                 Success!
                                 <button type="button" class="close" onclick="closeAlert('inputcheck')">
@@ -153,7 +153,7 @@
                             <input type="password" id="profile_password_re" name="profile_password_re" onPaste="return false" onCopy="return false" search="false" maxlength="32" class="form-control font-rubik" spellcheck="false">
                         </div>
                         <button value="confirm" class="btn btn-info d-block w-25 mx-auto">Confirm</button>
-                        <div class="loader" id="loader2"></div>
+                        <div class="loader" id="loader2" style="display: none;"></div>
                         <div class="alert alert-success alert-dismissible fade show mt-2" style="display: none;" id="inputcheck_password" role="alert">
                             Success!
                             <button type="button" class="close" onclick="closeAlert('inputcheck_password')">

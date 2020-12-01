@@ -72,16 +72,6 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="productUpdatedDate" class="col-form-label">UpdatedDate:</label>
-                            <input type="text" class="form-control" id="productUpdatedDate">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="productUpdatedDateBy" class="col-form-label">UpdatedDateBy:</label>
-                            <input type="text" class="form-control" id="productUpdatedDateBy">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
                             <label for="productDiscount" class="col-form-label">Discount:</label>
                             <input type="text" class="form-control" id="productDiscount">
                         </div>

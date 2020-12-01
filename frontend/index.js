@@ -421,8 +421,8 @@ function getUserInformation(){
                 document.getElementById("profile_lastName").value = information['LastName'];
                 document.getElementById("profile_email").value = information['Email'];
                 document.getElementById("profile_address").value = information['Address'];
-                document.getElementById('user_profile_avatar').src = '../frontend/' + information['Path'];
-                document.getElementById('output').src = '../frontend/' + information['Path'];
+                document.getElementById('user_profile_avatar').src = information['Path'] ? '../frontend/' + information['Path'] : './assets/imgs/users/avatar/default-avatar.png';
+                document.getElementById('output').src = information['Path'] ? '../frontend/' + information['Path'] : './assets/imgs/users/avatar/default-avatar.png';
             }
         }
     );

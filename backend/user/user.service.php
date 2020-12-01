@@ -6,9 +6,7 @@ class UserService
     function __contruct()
     {
         require_once('../dbconnector/DbConnector.php');
-
         $db = new DbConnector();
-
         $this->con = $db->connect();
     }
 

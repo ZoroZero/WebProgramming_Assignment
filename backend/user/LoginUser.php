@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             session_start();
             setcookie(USER_ID, $result['Id'], time() + (86400 * 30), "/"); // 86400 = 1 day
-            setcookie(USER_NAME, $_POST['username'], time() + (86400 * 30), "/");
+            setcookie(USER_NAME, $_POST['inputUsername'], time() + (86400 * 30), "/");
             $_SESSION[USER_ID] = $result['Id'];
             $_SESSION[ROLE_ID] = $result["roleId"];
 

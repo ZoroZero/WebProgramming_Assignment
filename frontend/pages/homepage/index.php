@@ -1,30 +1,18 @@
-
 <?php
-require_once('../frontend/components/header/header.php') ?>
-
-<?php
-include('../frontend/components/homepage/__banner_erea.php')
-?>
-
-<?php
-include('../frontend/components/homepage/__top_sale.php')
-?>
-
-<?php
-include('../frontend/components/homepage/__special_price.php')
-?>
-
-<?php
-include('../frontend/components/homepage/__banner_ads.php')
-?>
-
-<?php
-include('../frontend/components/homepage/__new_pc.php')
-?>
-
-<?php
-include('../frontend/components/homepage/__blogs.php')
-?>
-
-<?php
-require_once('../frontend/components/footer/footer.php') ?>
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+include_once("../backend/environments/Constants.php");
+if (!isset($_SESSION[USER_ID])) {
+    header("Location: ?page=login");
+} else {
+    require_once('../frontend/components/header/header.php');
+    include('../frontend/components/homepage/__banner_erea.php');
+    include('../frontend/components/homepage/__top_sale.php');
+    include('../frontend/components/homepage/__special_price.php');
+    include('../frontend/components/homepage/__banner_ads.php');
+    include('../frontend/components/homepage/__new_pc.php');
+    include('../frontend/components/homepage/__blogs.php');
+    require_once('../frontend/components/footer/footer.php');
+    require_once('../frontend/components/footer/footer.php');
+}
