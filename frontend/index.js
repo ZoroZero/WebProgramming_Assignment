@@ -11,7 +11,7 @@ $(document).ready(function() {
     cartProductList = getCookie(cartCookie);
     cartItemList = cartProductList && cartProductList!=""? cartProductList.split(','):[];
     $('#cart-count').html(cartItemList.length);
-    console.log(cartItemList);
+
     if(window.location.href.includes('homepage')){
         getTopSaleProduct();
         getSpecialPriceProduct();
@@ -424,7 +424,10 @@ function getProductInformation(){
                         document.getElementById('psu-information').innerHTML = productInformation.Psu !== "" ? productInformation.Psu : "(500W) SilverStone ST50F-ES230 80 Plus";
                         document.getElementById('case-information').innerHTML = productInformation.Case;
                         document.getElementById('os-information').innerHTML = productInformation.Os;
-                        document.getElementById('product-image').src = `../frontend/${productInformation.Path}`
+                        document.getElementById('product-image').src = `../frontend/${productInformation.Path}`;
+                        $('#add-product-to-cart').click(function(){
+                            addtoCart(productInformation.Id);
+                        });
                     }
                 }
                 else{

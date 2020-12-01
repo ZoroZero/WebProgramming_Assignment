@@ -82,7 +82,7 @@
 
                 <div class="form-row pt-4 font-size-16 font-baloo">
                     <div class="col">
-                        <button type="submit" class="btn btn-danger w-100" onclick="getQuantityValue()">Add to cart</button>
+                        <button type="submit" class="btn btn-danger w-100" id='add-product-to-cart'>Add to cart</button>
                     </div>
                 </div>
 
