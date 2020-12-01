@@ -1,5 +1,6 @@
 const Http = new XMLHttpRequest();
 const userId = getCookie("userId");
+const cartCookie = 'cart-products';
 // Googlemap js
 const address1 = { lat: 10.772713935537316, lng: 106.65967597467676 };
 const address2 = { lat: 10.790040966516928, lng: 106.66139794610773 };
@@ -7,10 +8,13 @@ const address3 = { lat: 10.812376924038709, lng: 106.61820978330887 };
 const center = { lat: 10.795532861871804, lng: 106.63649092163753 };
 
 $(document).ready(function() {
+    cartProductList = getCookie(cartCookie);
+    cartItemList = cartProductList && cartProductList!=""? cartProductList.split(','):[];
+    $('#cart-count').html(cartItemList.length);
+
     if(window.location.href.includes('homepage')){
         getTopSaleProduct();
-        getSpecialPriceProduct();   
-        
+        getSpecialPriceProduct();
         //banner owl carousel
         $("#banner-area .owl-carousel").owlCarousel({
             dots: true,
@@ -53,43 +57,18 @@ $(document).ready(function() {
                 }
             }
         })
-
-        // // product qty section
-        // let $qty_up = $(".qty .qty-up");
-        // let $qty_down = $(".qty .qty-down");
-        // let $input = $(".qty .qty_input");
-
-        // // click on qty up button
-        // $qty_up.click(function(e){
-        //     alert($input.val())
-        //     //let $input = $(`.qty_input[data-id='${$(this).data("id")}']`);
-        //     if($input.val() >= 1 && $input.val() <= 9){
-        //         $input.val(function(i, oldval){
-        //             return ++oldval;
-        //         });
-        //     }
-        // });
-
-        // // click on qty down button
-        // $qty_down.click(function(e){
-        //     //let $input = $(`.qty_input[data-id='${$(this).data("id")}']`);
-        //     if($input.val() > 1 && $input.val() <= 10){
-        //         $input.val(function(i, oldval){
-        //             return --oldval;
-        //         });
-        //     }
-        // });
     }
-    
-    if(window.location.href.includes('product')){
+    else if(window.location.href.includes('product')){
         getProductInformation();
     }
-
-    if(window.location.href.includes('settings')){
+    else if(window.location.href.includes('settings')){
         getUserInformation();
         jQuery.validator.addMethod("notEqual", function(value, element, param) {
             return this.optional(element) || value != $(param).val();
         }, "This has to be different...");
+    }
+    else if(window.location.href.includes('cart')){
+        getCartProductInformation();
     }
 
     // check form submission general settings
@@ -200,6 +179,8 @@ $(document).ready(function() {
         
 })
 
+
+
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
@@ -213,6 +194,17 @@ function getCookie(cname) {
         }
     }
     return "";
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function deleteCookie(name) { 
+    setCookie(name, "", -1); 
 }
 
 function getUserInformation(){
@@ -276,36 +268,41 @@ function getTopSaleProduct(){
     var request = $.get('../backend/product/GetTopSales.php',
       function(response) {
         if(response){
-            let information = JSON.parse(response)['data'];
-            console.log("Top sale", information);
-            var list_product = information.map(function(element){
-                return `<div class="item py-2 px-2">
-                        <div class="product font-rale">
-                            <a href="../frontend/?page=product&productId=${element['Id']}">
-                                <img src="../frontend/${element['Path']}" alt="product1" class="img-fluid">
-                            </a>
-                            <div class="text-center">
-                                <h6>
-                                    ${element['Name']}
-                                </h6>
-                                <div class="rating text-warning font-size-12">
-                                    <span>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                    </span>
+            if(!JSON.parse(response)['error']){
+                let information = JSON.parse(response)['data'];
+                console.log("Top sale", information);
+                var list_product = information.map(function(element){
+                    return `<div class="item py-2 px-2">
+                            <div class="product font-rale">
+                                <a href="../frontend/?page=product&productId=${element['Id']}">
+                                    <img src="../frontend/${element['Path']}" alt="product1" class="img-fluid">
+                                </a>
+                                <div class="text-center">
+                                    <h6>
+                                        ${element['Name']}
+                                    </h6>
+                                    <div class="rating text-warning font-size-12">
+                                        <span>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </span>
+                                    </div>
+                                    <div class="price py-2">
+                                        <span>${formatPrice(element['Price'])}</span>
+                                    </div>
+                                    <button type="submit" class="btn btn-warning font-size-12" onclick="addtoCart(${element['Id']})">Add to cart</button>
                                 </div>
-                                <div class="price py-2">
-                                    <span>${formatPrice(element['Price'])}</span>
-                                </div>
-                                <button type="submit" class="btn btn-warning font-size-12">Add to cart</button>
                             </div>
-                        </div>
-                    </div>`;
-            });
-            document.getElementById('top-sale-carousel').innerHTML = list_product.join(' ');
+                        </div>`;
+                });
+                document.getElementById('top-sale-carousel').innerHTML = list_product.join(' ');
+            }
+            else{
+                console.log("Error ", JSON.parse(response)['message']);
+            }
             //top sale owl carousel
             $("#top-sale .owl-carousel").owlCarousel({
                 loop:true,
@@ -337,39 +334,43 @@ function getSpecialPriceProduct(){
     var request = $.get('../backend/product/GetSpecialPrice.php',
       function(response) {
         if(response){
-            let information = JSON.parse(response)['data'];
-            console.log('Special prices ', information);
-            var list_product = information.map(function(element){
-                return `<div class="grid-item ${getProductCategory(element['CategoryId'])} border">
-                            <div class="item py-2 px-2" style="width: 200px;">
-                                <div class="product font-rale">
-                                    <a href="../frontend/?page=product&productId=${element['Id']}">
-                                        <img src="../frontend/${element['Path']}" alt="product2" class="img-fluid">
-                                    </a>
-                                    <div class="text-center">
-                                        <h6>
-                                        ${element['Name']}
-                                        </h6>
-                                        <div class="rating text-warning font-size-12">
-                                            <span>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star-half-alt"></i>
-                                            </span>
+            if(!response['error']){
+                let information = JSON.parse(response)['data'];
+                console.log('Special prices ', information);
+                var list_product = information.map(function(element){
+                    return `<div class="grid-item ${getProductCategory(element['CategoryId'])} border">
+                                <div class="item py-2 px-2" style="width: 200px;">
+                                    <div class="product font-rale">
+                                        <a href="../frontend/?page=product&productId=${element['Id']}">
+                                            <img src="../frontend/${element['Path']}" alt="product2" class="img-fluid">
+                                        </a>
+                                        <div class="text-center">
+                                            <h6>
+                                            ${element['Name']}
+                                            </h6>
+                                            <div class="rating text-warning font-size-12">
+                                                <span>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star-half-alt"></i>
+                                                </span>
+                                            </div>
+                                            <div class="price py-2">
+                                                <span>${formatPrice(element['Price'])}</span>
+                                            </div>
+                                            <button type="submit" class="btn btn-warning font-size-12">Add to cart</button>
                                         </div>
-                                        <div class="price py-2">
-                                            <span>${formatPrice(element['Price'])}</span>
-                                        </div>
-                                        <button type="submit" class="btn btn-warning font-size-12">Add to cart</button>
                                     </div>
                                 </div>
-                            </div>
-                        </div>`;
-            });
-            document.getElementById('special-price-grid').innerHTML = list_product.join(' ');
-            
+                            </div>`;
+                });
+                document.getElementById('special-price-grid').innerHTML = list_product.join(' ');
+            }
+            else{
+                console.log("Error ", response['message']);
+            }
             //isotope filter
             var $grid = $(".grid").isotope({
                 itemSelector: '.grid-item',
@@ -381,6 +382,7 @@ function getSpecialPriceProduct(){
                 var filterValue = $(this).attr('data-filter');
                 $grid.isotope({filter: filterValue});
             })
+        
         }
     });
 
@@ -407,22 +409,29 @@ function getProductInformation(){
     var request = $.get(`../backend/product/GetProductInformation.php?productId=${productId}`,
         function(response) {
             if(response){  
-                let productInformation = JSON.parse(response)['data'][0];
-                console.log("Product: ", productInformation);
-                if(productInformation){
-                    document.getElementById('product-name').innerHTML = productInformation.Name;
-                    document.getElementById('original-price').innerHTML = `${formatPrice(productInformation.Price)}`;
-                    document.getElementById('discount').innerHTML = `${productInformation.Discount}%`;
-                    document.getElementById('current-price').innerHTML = `${formatPrice(productInformation.Price*(100-productInformation.Discount)/100)}`;
-                    document.getElementById('mainboard-information').innerHTML = productInformation.Mainboard;
-                    document.getElementById('cpu-information').innerHTML = productInformation.Cpu;
-                    document.getElementById('ram-information').innerHTML = productInformation.Ram;
-                    document.getElementById('storage-information').innerHTML = productInformation.Storage;
-                    document.getElementById('gpu-information').innerHTML = productInformation.Gpu;
-                    document.getElementById('psu-information').innerHTML = productInformation.Psu !== "" ? productInformation.Psu : "(500W) SilverStone ST50F-ES230 80 Plus";
-                    document.getElementById('case-information').innerHTML = productInformation.Case;
-                    document.getElementById('os-information').innerHTML = productInformation.Os;
-                    document.getElementById('product-image').src = `../frontend/${productInformation.Path}`
+                if(!response['error']){
+                    let productInformation = JSON.parse(response)['data'][0];
+                    if(productInformation){
+                        document.getElementById('product-name').innerHTML = productInformation.Name;
+                        document.getElementById('original-price').innerHTML = `${formatPrice(productInformation.Price)}`;
+                        document.getElementById('discount').innerHTML = `${productInformation.Discount}%`;
+                        document.getElementById('current-price').innerHTML = `${formatPrice(productInformation.Price*(100-productInformation.Discount)/100)}`;
+                        document.getElementById('mainboard-information').innerHTML = productInformation.Mainboard;
+                        document.getElementById('cpu-information').innerHTML = productInformation.Cpu;
+                        document.getElementById('ram-information').innerHTML = productInformation.Ram;
+                        document.getElementById('storage-information').innerHTML = productInformation.Storage;
+                        document.getElementById('gpu-information').innerHTML = productInformation.Gpu;
+                        document.getElementById('psu-information').innerHTML = productInformation.Psu !== "" ? productInformation.Psu : "(500W) SilverStone ST50F-ES230 80 Plus";
+                        document.getElementById('case-information').innerHTML = productInformation.Case;
+                        document.getElementById('os-information').innerHTML = productInformation.Os;
+                        document.getElementById('product-image').src = `../frontend/${productInformation.Path}`;
+                        $('#add-product-to-cart').click(function(){
+                            addtoCart(productInformation.Id);
+                        });
+                    }
+                }
+                else{
+                    console.log("Error: ", response['message']);
                 }
             }
     });
@@ -484,7 +493,6 @@ function uploadAvatar(){
         contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
         processData: false, // NEEDED, DON'T OMIT THIS
         success: function(res){
-            
             var data = JSON.parse(res)
             getUserInformation();
             if(data.error===true) {
@@ -519,18 +527,169 @@ function openAlert(id) {
     $(`#${id}`).show()
 }
 
-function increment() {
-    document.getElementById('demoInput').stepUp();
+function increment(id) {
+    
+    var product = productList.find(o => o.Id === id);
+    if(product.Amount > parseInt(document.getElementById(`amount-${id}`).value)){
+        document.getElementById(`amount-${id}`).stepUp();
+        product.BuyAmount = parseInt(document.getElementById(`amount-${id}`).value);
+        total_price = productList.map(o => o.Price*o.BuyAmount).reduce((acc, cur) => cur + acc, 0);
+        total_buy_amount = productList.map(o => o.BuyAmount).reduce((acc, cur) => cur + acc, 0);
+        $('#deal-price').html(formatPrice(total_price));
+        $('#deal-amount').html(`Subtotal (${total_buy_amount} items):`);
+    }
 }
 
-function decrement() {
-    document.getElementById('demoInput').stepDown();
+function decrement(id) {
+    document.getElementById(`amount-${id}`).stepDown();
+    productList.find(o => o.Id === id).BuyAmount = parseInt(document.getElementById(`amount-${id}`).value);
+    total_price = productList.map(o => o.Price*o.BuyAmount).reduce((acc, cur) => cur + acc, 0);
+    total_buy_amount = productList.map(o => o.BuyAmount).reduce((acc, cur) => cur + acc, 0);
+    $('#deal-price').html(formatPrice(total_price))
+    $('#deal-amount').html(`Subtotal (${total_buy_amount} items):`)
 }
 
 function getQuantityValue() {
-    console.log(document.getElementById('demoInput').value)
+    console.log(document.getElementById('amount-${id}').value);
 }
 
 function formatPrice(price){
-    return `${price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} vnđ`
+    return `${price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} vnđ`;
+}
+
+var cartItemList = [];
+var productList = [];
+var total_price;
+var total_buy_amount;
+
+function addtoCart(element){
+    cartProductList = getCookie(cartCookie);
+    cartItemList = cartProductList && cartProductList!=""? cartProductList.split(','):[];
+    console.log(cartItemList)
+    if(cartItemList.filter(x => x === element.toString()).length === 0){
+        cartItemList.push(element);
+        $('#cart-count').html(cartItemList.length);
+        var productIdList = cartItemList.join(',').toString();        
+        if(getCookie(cartCookie) !== ""){
+            deleteCookie(cartCookie);
+        }
+        setCookie(cartCookie, productIdList, 1);
+    }
+}
+
+function getCartProductInformation(){
+    var productIdList = getCookie(cartCookie)
+    $.get(`../backend/product/GetCartProducts.php?productIdList=${productIdList}`,
+      function(response) {
+        if(response){
+            console.log(response);
+            if(!JSON.parse(response)['error']){
+                productList = JSON.parse(response)['data'];
+                console.log("Cart products: ",productIdList);
+                total_price = productList.map(o => o.Price).reduce((acc, cur) => cur + acc, 0)
+                total_buy_amount = productList.map(o => o.BuyAmount).reduce((acc, cur) => cur + acc, 0)
+                var list_product = productList.map(function(element){
+                    return `<div class="row border-top py-3">
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 col-xl-2 cart-img">
+                        <a href="../frontend/?page=product&productId=${element.Id}">
+                            <img  src="../frontend/${element.Path}" alt="cart1" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-5">
+                        <h5 class="font-baloo font-size-20 m-0">${element.Name}</h5>
+                        <!--    #policy -->
+                        <div id="policy">
+                            <div class="d-flex">
+                                <div class="return mr-3 mr-lg-4 mr-xl-5">
+                                    <div class="font-size-12 my-2 color-secondary">
+                                        <span class="fas fa-retweet border p-2 rounded-pill"></span>
+                                    </div>
+                                    <a href="#" class="font-rale font-size-12">10 Days <br> Replacement</a>
+                                </div>
+                                <div class="return mr-3 mr-lg-4 mr-xl-5">
+                                    <div class="font-size-12 my-2 color-secondary">
+                                        <span class="fas fa-truck  border p-2 rounded-pill"></span>
+                                    </div>
+                                    <a href="#" class="font-rale font-size-12">Free <br> Shipping</a>
+                                </div>
+                                <div class="return mr-3 mr-lg-4 mr-xl-5">
+                                    <div class="font-size-12 my-2 color-secondary">
+                                        <span class="fas fa-check-double border p-2 rounded-pill"></span>
+                                    </div>
+                                    <a href="#" class="font-rale font-size-12">1 Year <br> Warranty</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--    !policy -->
+                        <button onclick="removeFromCart(${element.Id})" type="submit" class="btn font-baloo text-danger px-0 text-left">Delete item</button>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                        <!-- product qty -->
+                        <div class="qty">
+                            <div class="d-flex font-rale">
+                                <button class="border bg-light" onclick="decrement(${element.Id})"><i class="fas fa-angle-down"></i></button>
+                                <input type="number" id="amount-${element.Id}" class="border px-2 w-100 bg-light" min="1" max="5" value="${element.Amount >= 1 ? 1: 0}">
+                                <button class="border bg-light" onclick="increment(${element.Id})"><i class="fas fa-angle-up"></i></button>
+                            </div>
+                        </div>
+                        <!-- !product qty -->
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-2 col-lg-2 col-xl -2 text-right">
+                        <div class="font-size-20 text-danger font-baloo">
+                            <span class="product_price">${formatPrice(element.Price)}</span>
+                        </div>
+                    </div>
+                </div>`});
+                $('#product-list-container').html(list_product.join(' '));
+                $('#deal-price').html(formatPrice(total_price))
+                $('#deal-amount').html(`Subtotal (${total_buy_amount} items):`)
+            }
+            else{
+                console.log("Error ", response['message']);
+            }
+        }
+    });
+}
+
+
+function removeFromCart(productId){
+    cartProductList = getCookie(cartCookie);
+    cartItemList = cartProductList && cartProductList!=""? cartProductList.split(','):[];
+    if(cartItemList.filter(x => x === productId.toString()).length !== 0){
+        cartItemList = cartItemList.filter(element => element !== productId.toString());
+        $('#cart-count').html(cartItemList.length);
+        var productIdList = cartItemList.join(',').toString();
+        
+        if(getCookie(cartCookie) !== ""){
+            deleteCookie(cartCookie);
+        }
+        setCookie(cartCookie, productIdList, 1);
+        getCartProductInformation();
+    }
+}
+
+
+function buyProduct(){
+    var userId = getCookie('userId');
+    var buyList = productList.map(function(element){
+        return {id: element.Id, buyAmount: element.BuyAmount}
+    }); 
+    console.log("Buy list", buyList);
+    if(userId){
+        $.ajax({
+            type: 'POST',
+            url: '../backend/product/BuyProducts.php',
+            data: { 'userId': userId, 'buyList': buyList},
+            success: function (response) {          
+                console.log(response);
+                deleteCookie(cartCookie);
+            },
+            failure: function (response) {          
+                console.log("Error ", response);
+            }
+        }); 
+    }
+    else{
+        window.location = '../frontend/?page=login';
+    }
 }

@@ -6,8 +6,10 @@
         $service->__contruct();
         $result = $service->getSpecialPriceProducts();
         $response['data'] = $result;
+        $response['error'] = false;
     }
     else{
         $response['error'] = true;
+        $response['message'] = "Wrong request type";
     }
     echo json_encode($response);
