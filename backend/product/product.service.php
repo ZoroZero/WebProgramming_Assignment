@@ -45,6 +45,17 @@
             $stmt->execute();
             return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
+
+        function buyProducts($params){
+            $userId = $params['userId'];
+            $buyList = $params['buyList'];
+            $buyProducts = join(',', array_map(function($element){ return strval($element['id']); }, $buyList));
+            $buyAmounts = join(',', array_map(function($element){ return $element['buyAmount']; }, $buyList));
+            $stmt =$this->con->prepare("CALL UpdateMultipleProducts(?, ?)");
+            $stmt->bind_param("ss", $buyProducts, $buyAmounts);
+            $stmt->execute();
+            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        }
     }
 
 ?>

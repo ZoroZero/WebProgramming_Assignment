@@ -589,7 +589,9 @@ function getCartProductInformation(){
                 var list_product = productList.map(function(element){
                     return `<div class="row border-top py-3">
                     <div class="col-12 col-sm-6 col-md-3 col-lg-3 col-xl-2 cart-img">
-                        <img src="../frontend/${element.Path}" alt="cart1" class="img-fluid">
+                        <a href="../frontend/?page=product&productId=${element.Id}">
+                            <img  src="../frontend/${element.Path}" alt="cart1" class="img-fluid">
+                        </a>
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-5">
                         <h5 class="font-baloo font-size-20 m-0">${element.Name}</h5>
@@ -661,5 +663,30 @@ function removeFromCart(productId){
         }
         setCookie('cart-porducts', productIdList, 1);
         getCartProductInformation();
+    }
+}
+
+
+function buyProduct(){
+    var userId = getCookie('userId');
+    var buyList = productList.map(function(element){
+        return {id: element.Id, buyAmount: element.BuyAmount}
+    }); 
+    console.log("Buy list", buyList);
+    if(userId){
+        $.ajax({
+            type: 'POST',
+            url: '../backend/product/BuyProducts.php',
+            data: { 'userId': userId, 'buyList': buyList},
+            success: function (response) {          
+                console.log(response);
+            },
+            failure: function (response) {          
+                console.log("Error ", response);
+            }
+        }); 
+    }
+    else{
+        window.location = '../frontend/?page=login';
     }
 }
