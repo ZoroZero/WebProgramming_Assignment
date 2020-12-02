@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="../frontend/style.css">
 
     <!-- Custom Javascript-->
-    <script src="/webassignment/frontend/index.js"></script>
+    <script type="module" src="/webassignment/frontend/index.js"></script>
 
     <!--  isotope plugin cdn  -->
     <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>

@@ -11,6 +11,6 @@ if (!isset($_SESSION[USER_ID])) {
     include('../frontend/components/homepage/__banner_ads.php');
     include('../frontend/components/homepage/__new_pc.php');
     include('../frontend/components/homepage/__blogs.php');
-    require_once('../frontend/components/footer/footer.php');
+    echo "<script type='module' src='../frontend/pages/homepage/index.js'></script>";
     require_once('../frontend/components/footer/footer.php');
 }
