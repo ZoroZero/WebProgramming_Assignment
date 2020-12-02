@@ -58,23 +58,23 @@
                 include_once("../backend/environments/Constants.php");
                 if (isset($_SESSION['userId'])) {
                     echo "<p class='px-3 text-dark m-0'>" . $_COOKIE[USER_NAME] . "</p>";
-                    echo "<a href='../frontend/?page=settings' class='px-3 border-right border-left text-dark'>Setting</a>";
+                    echo "<a href='../frontend/settings' class='px-3 border-right border-left text-dark'>Setting</a>";
                     echo "<a href='../backend/user/LogoutUser.php' class='px-3 border-right border-left text-dark' id='login-btn'>Logout</a>";
                 } else
-                    echo "<a href='../frontend/?page=login' class='px-3 border-right border-left text-dark' id='logout-btn'>Login</a>"; ?>
+                    echo "<a href='../frontend/login' class='px-3 border-right border-left text-dark' id='logout-btn'>Login</a>"; ?>
             </div>
         </div>
 
         <!-- Primary Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark color-secondary-bg">
-            <a class="navbar-brand" href="../frontend/?page=homepage">Phu Vinh</a>
+            <a class="navbar-brand" href="../frontend/home">Phu Vinh</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav font-rubik mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="../frontend/?page=homepage">Homepage</a>
+                        <a class="nav-link" href="../frontend/home">Homepage</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -97,7 +97,7 @@
                 </form>
 
                 <form action="#" class="font-size-14 font-rale">
-                    <a href="../frontend/?page=cart" class="py-2 rounded-pill color-primary-bg">
+                    <a href="../frontend/cart" class="py-2 rounded-pill color-primary-bg">
                         <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
                         <span class="px-3 py-2 rounded-pill text-dark bg-light" id="cart-count">0</span>
                     </a>

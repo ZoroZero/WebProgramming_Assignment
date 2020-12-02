@@ -55,7 +55,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="../frontend/?page=login" class="my-5 font-size-18 register-go-back">
+                <a href="../frontend/login" class="my-5 font-size-18 register-go-back">
                     <i class="fas fa-arrow-left mr-2"></i>
                     Go back to login
                 </a>

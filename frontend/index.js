@@ -12,7 +12,7 @@ $(document).ready(function() {
     cartItemList = cartProductList && cartProductList!=""? cartProductList.split(','):[];
     $('#cart-count').html(cartItemList.length);
 
-    if(window.location.href.includes('homepage')){
+    if(window.location.href.includes('home')){
         getTopSaleProduct();
         getSpecialPriceProduct();
 
@@ -257,7 +257,7 @@ $(document).ready(function() {
                             var downloadTimer = setInterval(function() {
                                 if (timeleft <= 0) {
                                     clearInterval(downloadTimer);
-                                    window.location.replace("?page=homepage");
+                                    window.location.replace("../frontend/home");
                                 } else {
                                     document.getElementById("inputcheck_success").innerHTML = `${response.message}! Please wait for ${timeleft} seconds to redirect to homepage.`;
                                 }
@@ -349,14 +349,19 @@ $(document).ready(function() {
             },
             submitHandler: function(form, e) {
                 e.preventDefault();
-                var sent_data = $(form).serializeArray();  
+                var sent_data = $(form).serializeArray(); 
+                var id = {
+                    name: "id",
+                    value: userId
+                };
+                sent_data.push(id);
                 $.ajax({
                     type: 'post',
                     url: '../backend/user/UpdateUserPassword.php',
                     data: sent_data      
                     })
                 .done(function (response) {
-                    console.log("Update password", response);
+                    // console.log("Update password", response);
                     if(document.getElementById("inputcheck_password").style.display !== "none") {
                         closeAlert("inputcheck_password")
                         document.getElementById("loader2").style.display = "block"
@@ -477,7 +482,7 @@ function getTopSaleProduct(){
                 var list_product = information.map(function(element){
                     return `<div class="item py-2 px-2">
                             <div class="product font-rale">
-                                <a href="../frontend/?page=product&productId=${element['Id']}">
+                                <a href="../frontend/product/${element['Id']}">
                                     <img src="../frontend/${element['Path']}" alt="product1" class="img-fluid">
                                 </a>
                                 <div class="text-center">
@@ -544,7 +549,7 @@ function getSpecialPriceProduct(){
                     return `<div class="grid-item ${getProductCategory(element['CategoryId'])} border">
                                 <div class="item py-2 px-2" style="width: 200px;">
                                     <div class="product font-rale">
-                                        <a href="../frontend/?page=product&productId=${element['Id']}">
+                                        <a href="../frontend/product/${element['Id']}">
                                             <img src="../frontend/${element['Path']}" alt="product2" class="img-fluid">
                                         </a>
                                         <div class="text-center">
@@ -794,7 +799,7 @@ function getCartProductInformation(){
                 var list_product = productList.map(function(element){
                     return `<div class="row border-top py-3">
                     <div class="col-12 col-sm-6 col-md-3 col-lg-3 col-xl-2 cart-img">
-                        <a href="../frontend/?page=product&productId=${element.Id}">
+                        <a href="../frontend/product/${element.Id}">
                             <img  src="../frontend/${element.Path}" alt="cart1" class="img-fluid">
                         </a>
                     </div>
@@ -893,6 +898,6 @@ function buyProduct(){
         }); 
     }
     else{
-        window.location = '../frontend/?page=login';
+        window.location = '../frontend/login';
     }
 }

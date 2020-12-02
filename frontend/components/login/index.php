@@ -101,7 +101,7 @@
                         </form>
                     </div>
                 </div>
-                <a href="../frontend/?page=register" class="my-5 font-size-18 login-go-to ml-auto">
+                <a href="../frontend/register" class="my-5 font-size-18 login-go-to ml-auto">
                     Go to register
                     <i class="fas fa-arrow-right ml-2"></i>
                 </a>

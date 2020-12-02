@@ -7,4 +7,4 @@ unset($_COOKIE[USER_ID]);
 setcookie(USER_ID, '', time() - 3600, '/');
 setcookie(CART_COOKIE_ID, '', time() - 3600, '/');
 setcookie(USER_NAME, '', time() - 3600, '/');
-header("Location: ../../frontend?page=login");
+header("Location: ../../frontend/login");
