@@ -29,7 +29,7 @@ $router->get('/admin', function(){
     include "./pages/admin/index.php";
 });
 
-$router->get('/product', function($params){
+$router->get('/product/{id}', function($id){
     include "./pages/product/index.php";
 });
 

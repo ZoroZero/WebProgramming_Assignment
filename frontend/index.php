@@ -1,6 +1,10 @@
 <?php
 define('PATH_ROOT', __DIR__);
 include_once("../backend/environments/Constants.php");
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 spl_autoload_register(function (string $class_name) {
     include_once PATH_ROOT . '/' . $class_name . '.php';
 });
