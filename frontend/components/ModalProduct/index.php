@@ -1,4 +1,3 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#productModal" data-whatever="@mdo">Update</button>
 <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
     <div class="modal-dialog" style="max-width: 700px !important;" role="document">
         <div class="modal-content">
