@@ -145,12 +145,12 @@
 
                         <div class="form-group">
                             <label for="profile_password" class="font-raleway font-italic font-weight-bold">New</label>
-                            <input type="password" id="profile_password" name="profile_password" onPaste="return false" onCopy="return false" search="false" maxlength="32" class="form-control font-rubik" spellcheck="false">
+                            <input type="password" id="profile_password" name="newPassword" onPaste="return false" onCopy="return false" search="false" maxlength="32" class="form-control font-rubik" spellcheck="false">
                         </div>
 
                         <div class="form-group">
                             <label for="profile_password_re" class="font-raleway font-italic font-weight-bold">Confirm</label>
-                            <input type="password" id="profile_password_re" name="profile_password_re" onPaste="return false" onCopy="return false" search="false" maxlength="32" class="form-control font-rubik" spellcheck="false">
+                            <input type="password" id="profile_password_re" name="newPassword_re" onPaste="return false" onCopy="return false" search="false" maxlength="32" class="form-control font-rubik" spellcheck="false">
                         </div>
                         <button value="confirm" class="btn btn-info d-block w-25 mx-auto">Confirm</button>
                         <div class="loader" id="loader2" style="display: none;"></div>

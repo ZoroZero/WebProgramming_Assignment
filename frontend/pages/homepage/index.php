@@ -1,10 +1,8 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+
 include_once("../backend/environments/Constants.php");
 if (!isset($_SESSION[USER_ID])) {
-    header("Location: ?page=login");
+    header("Location: ./login");
 } else {
     require_once('../frontend/components/header/header.php');
     include('../frontend/components/homepage/__banner_erea.php');
@@ -13,6 +11,6 @@ if (!isset($_SESSION[USER_ID])) {
     include('../frontend/components/homepage/__banner_ads.php');
     include('../frontend/components/homepage/__new_pc.php');
     include('../frontend/components/homepage/__blogs.php');
-    require_once('../frontend/components/footer/footer.php');
+    echo "<script type='module' src='../frontend/pages/homepage/index.js'></script>";
     require_once('../frontend/components/footer/footer.php');
 }
