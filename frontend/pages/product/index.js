@@ -1,3 +1,5 @@
+import { formatPrice } from '../../index.js';
+
 $(document).ready(function() {
     getProductInformation();
 });

@@ -12,6 +12,8 @@ export var productList = [];
 export var total_price;
 export var total_buy_amount;
 window.addtoCart = addtoCart;
+window.initMap = initMap;
+
 $(document).ready(function() {
     var cartProductList = getCookie(cartCookie);
     cartItemList = cartProductList && cartProductList!=""? cartProductList.split(','):[];
@@ -31,6 +33,7 @@ $(document).ready(function() {
         );
     })
 })
+
 
 function addtoCart(element){
     var cartProductList = getCookie(cartCookie);
@@ -74,7 +77,7 @@ export function deleteCookie(name) {
 }
 
 function initMap() {
-    map = new google.maps.Map(document.getElementById("map"), {
+    var map = new google.maps.Map(document.getElementById("map"), {
         center: center,
         zoom: 13,
         streetViewControl: false,

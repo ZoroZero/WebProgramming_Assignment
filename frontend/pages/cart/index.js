@@ -6,7 +6,8 @@ var total_price;
 var total_buy_amount;
 window.increment = increment;
 window.decrement = decrement;
-
+window.removeFromCart = removeFromCart;
+window.buyProduct = buyProduct;
 $(document).ready(function() {
     getCartProductInformation();
 })
