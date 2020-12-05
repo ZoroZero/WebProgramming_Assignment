@@ -1,4 +1,7 @@
+import {formatPrice, getCookie} from '../../index.js';
 var tableProductList = [];
+
+const userId = getCookie("userId");
 
 $(document).ready(function() {
     getAllProduct();
@@ -17,7 +20,7 @@ function getAllProduct(){
                                 <th scope="row">${element.Id}</th>
                                 <td>${element.CategoryId}</td>
                                 <td>${element.Name}</td>
-                                <td>${element.Price}</td>
+                                <td>${formatPrice(element.Price)}</td>
                                 <td>${element.Amount}</td>
                                 <td>${element.Discount}</td>
                                 <td>${element.QuantitySold}</td>
@@ -36,12 +39,38 @@ function getAllProduct(){
 }
 
 function initUpdateProductForm(id){
-    var product = tableProductList.filter(element => element.Id === id);
+    var product = tableProductList.filter(element => element.Id === id)[0];
     $('#productId').val(id);
-    console.log(product);
+    $('#productName').val(product.Name);
+    $('#productDescription').val(product.Description);
+    $('#productPrice').val(product.Price);
+    $('#productOs').val(product.Os);
+    $('#productRam').val(product.Ram);
+    $('#productMonitor').val(product.Monitor);
+    $('#productMouse').val(product.Mouse);
+    $('#productStorage').val(product.Storage);
+    $('#productGpu').val(product.Gpu);
+    $('#productCpu').val(product.Cpu);
+    $('#productPsu').val(product.Psu);
+    $('#productAmount').val(product.Amount);
+    $('#productDiscount').val(product.Discount);
+    $('#productQuantitySold').val(product.QuantitySold);
+
+    document.getElementById('change-product-setting-img').src = '../frontend/' + product["Path"];
 }
 
 function updateProduct(){
-    var data = $('#update-product-form').serializeArray();
-    console.log("Update product: ", data);
+    var sent_data = $('#update-product-form').serializeArray();
+    sent_data.push({name: "userId", value: userId});  
+    console.log(sent_data);
+
+    $.post({
+        url: '../backend/product/UpdateProductInformation.php',
+        data: sent_data      
+    })
+    .done(function (response) {
+        if(response && !response.error){
+            $('#productModal').modal('hide');
+        }
+    });
 }

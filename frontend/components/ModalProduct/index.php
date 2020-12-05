@@ -8,6 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
+                <img id="change-product-setting-img" alt="" class="img-fluid">
                 <form id='update-product-form'>
                     <div class="form-group col-md-6">
                         <input type="hidden" class="form-control" id="productId" name='productId'>
@@ -79,7 +80,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="productQuantitySold" class="col-form-label">QuantitySold:</label>
-                            <input type="text" class="form-control" id="productQuantitySold" name='productId'>
+                            <input type="text" class="form-control" id="productQuantitySold" name='productQuantitySold'>
                         </div>
                     </div>
                 </form>
