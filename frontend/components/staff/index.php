@@ -9,15 +9,12 @@
                     <th scope="col">Name</th>
                     <th scope="col">Price</th>
                     <th scope="col">Amount</th>
-                    <th scope="col">Updated Date</th>
-                    <th scope="col">Updated By</th>
-                    <th scope="col">IsDeleted</th>
                     <th scope="col">Discount</th>
                     <th scope="col">Quanlity Sold</th>
                     <th scope="col">Update</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="manage-product-table-body">
                 <tr>
                     <th scope="row">1</th>
                     <td>Mark</td>
@@ -26,14 +23,11 @@
                     <td>@mdo</td>
                     <td>@mdo</td>
                     <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td> <?php include('./components/ModalProduct/index.php') ?></td>
+                    <td> </td>
                 </tr>
-
             </tbody>
         </table>
+        <?php include('./components/ModalProduct/index.php') ?>
     </div>
 </section>
 <!-- end staff section -->

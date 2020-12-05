@@ -66,6 +66,33 @@ class ProductService
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
+
+    // Update product information
+    function updateProductInformation($params){
+        $userId = (int)$params['userId'];
+        $productId = (int)$params['productId'];
+        $productName = $params['productName'];
+        $productDescription = $params['productDescription'];
+        $productPrice = (int)$params['productPrice'];
+        $productOs = $params['productOs'];
+        $productRam = $params['productRam'];
+        $productMonitor = $params['productMonitor'];
+        $productMouse = $params['productMouse'];
+        $productStorage = $params['productStorage'];
+        $productGpu = $params['productGpu'];
+        $productCpu = $params['productCpu'];
+        $productPsu = $params['productPsu'];
+        $productAmount = (int)$params['productAmount'];
+        $productDiscount = (int)$params['productDiscount'];
+        $productQuantitySold = (int)$params['productQuantitySold'];
+
+        $stmt = $this->con->prepare("CALL UpdateProductInformation(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("iississssssssiii", $userId, $productId, $productName, $productDescription, $productPrice, $productOs,
+        $productRam, $productMonitor, $productMouse, $productStorage, $productGpu, $productCpu, $productPsu, $productAmount, 
+        $productDiscount, $productQuantitySold);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
 }
 
 ?>

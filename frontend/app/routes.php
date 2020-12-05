@@ -33,6 +33,10 @@ $router->get('/product/{id}', function($id){
     include "./pages/product/index.php";
 });
 
+$router->get('/staff', function(){
+    include "./pages/staff/index.php";
+});
+
 
 
 
