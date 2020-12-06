@@ -122,10 +122,10 @@ $(document).ready(function() {
                     $('#productModal').modal('hide');
                 }
             });
-            getAllProduct()
+            getAllProduct();
             return false;
         } else {
-            console.log('object')
+            console.log("Invalid update form");
         }
     })
 })
