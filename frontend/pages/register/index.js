@@ -1,3 +1,6 @@
+import {openAlert, closeAlert} from '../../index.js';
+window.closeAlert = closeAlert;
+window.openAlert = openAlert;
 $(document).ready(function() {
     //check form register submission
     $(function () {

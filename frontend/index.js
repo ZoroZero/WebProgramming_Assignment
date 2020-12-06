@@ -21,8 +21,10 @@ $(document).ready(function() {
 
     $(function () {
         jQuery.validator.addMethod("notEqual", function(value, element, param) {
-            return this.optional(element) || value != $(param).val();
-        }, "This has to be different...");
+            return this.optional(element) || value != $(param).val(); 
+            }, 
+            "This has to be different..."
+        );
         jQuery.validator.addMethod(
             "pattern",
             function(value, element, regexp) {
@@ -30,6 +32,22 @@ $(document).ready(function() {
                 return this.optional(element) || re.test(value);
             },
             "Please check your input."
+        );
+        jQuery.validator.addMethod("greater", function(value, element, param) {
+            return this.optional(element) || parseInt(value) < parseInt($(param).val()); 
+            }, 
+            "The amount must be greater than quantity sold"
+        );
+        jQuery.validator.addMethod("greaterThan100", function(value, element, param) {
+            return this.optional(element) || parseInt(value) <= param; 
+            }, 
+            "The amount must be greater than quantity sold"
+        );
+        jQuery.validator.addMethod("intValue", function(value, element, regexp) {
+            var re = new RegExp(regexp);
+            return this.optional(element) || re.test(value); 
+            }, 
+            "Please put an integer value"
         );
     })
 })

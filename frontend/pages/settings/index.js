@@ -4,6 +4,7 @@ const userId = getCookie("userId");
 window.checkDefaultValue = checkDefaultValue;
 window.loadFile = loadFile;
 window.uploadAvatar = uploadAvatar;
+window.closeAlert = closeAlert;
 $(document).ready(function(){
     getUserInformation();
 
