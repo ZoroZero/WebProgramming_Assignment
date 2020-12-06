@@ -67,6 +67,33 @@ class ProductService
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
 
+    // Add new product
+    function addNewProduct($params, $imageFileName, $imageType, $imageFilePath){
+        $userId = (int)$params['userId'];
+        $category = (int)$params['category'];
+        $productName = $params['productName'];
+        $productDescription = $params['productDescription'];
+        $productPrice = (int)$params['productPrice'];
+        $productOs = $params['productOs'];
+        $productRam = $params['productRam'];
+        $productMonitor = $params['productMonitor'];
+        $productMouse = $params['productMouse'];
+        $productStorage = $params['productStorage'];
+        $productGpu = $params['productGpu'];
+        $productCpu = $params['productCpu'];
+        $productPsu = $params['productPsu'];
+        $productAmount = (int)$params['productAmount'];
+        $productDiscount = (int)$params['productDiscount'];
+        $productQuantitySold = 0;
+
+        $stmt = $this->con->prepare("CALL AddNewInformation(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("iississssssssiisss", $userId, $category, $productName, $productDescription, $productPrice, $productOs,
+        $productRam, $productMonitor, $productMouse, $productStorage, $productGpu, $productCpu, $productPsu, $productAmount, 
+        $productDiscount, $imageFileName, $imageType, $imageFilePath);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
+
     // Update product information
     function updateProductInformation($params){
         $userId = (int)$params['userId'];
