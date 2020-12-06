@@ -37,6 +37,10 @@ $router->get('/staff', function(){
     include "./pages/staff/index.php";
 });
 
+$router->get('/category', function(){
+    include "./pages/category/index.php";
+});
+
 
 
 

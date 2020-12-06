@@ -406,5 +406,9 @@ div.form-group label.error {
     transform: rotate(360deg);
   }
 }
+#category .grid .grid-item {
+  margin-top: 1rem;
+  margin-right: 1.2rem;
+}
 
 /*# sourceMappingURL=style.css.map */

@@ -22,6 +22,9 @@ function getCartProductInformation(){
             console.log(response);
             if(!JSON.parse(response)['error']){
                 productList = JSON.parse(response)['data'];
+                if(productList.length === 0) {
+                    document.getElementById('buy-button').setAttribute("disabled", true)
+                }
                 console.log("Cart products: ",productIdList);
                 total_price = productList.map(o => o.Price).reduce((acc, cur) => cur + acc, 0)
                 total_buy_amount = productList.map(o => o.BuyAmount).reduce((acc, cur) => cur + acc, 0)
@@ -90,7 +93,7 @@ function getCartProductInformation(){
 
 
 function removeFromCart(productId){
-    cartProductList = getCookie(cartCookie);
+    var cartProductList = getCookie(cartCookie);
     cartItemList = cartProductList && cartProductList!=""? cartProductList.split(','):[];
     if(cartItemList.filter(x => x === productId.toString()).length !== 0){
         cartItemList = cartItemList.filter(element => element !== productId.toString());
