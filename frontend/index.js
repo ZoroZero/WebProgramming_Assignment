@@ -68,6 +68,20 @@ function addtoCart(element){
     }
 }
 
+export function loadFile(event, imgId, id) {
+    var output = document.getElementById(imgId);
+    output.src = URL.createObjectURL(event.target.files[0]);
+    document.getElementById(id).innerHTML = event.target.files[0].name;
+    document.getElementById(id).setAttribute("title", event.target.files[0].name);
+    if(imgId === 'output') {
+        output.style.display= 'inline';
+    }
+    output.onload = function() {
+        URL.revokeObjectURL(output.src) // free memory
+    }
+    console.log(event.target.files[0])
+};
+
 export function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');

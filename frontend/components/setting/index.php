@@ -118,7 +118,7 @@
                                                 </div> -->
                                         <div class="input-group mt-3">
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input font-size-16 font-rubik" name="fileToUpload" id="fileToUpload" accept="image/*" onchange="loadFile(event)">
+                                                <input type="file" class="custom-file-input font-size-16 font-rubik" name="fileToUpload" id="fileToUpload" accept="image/*" onchange="loadFile(event, 'output', 'imgs-label')">
                                                 <label class="custom-file-label imgs-label font-size-16 font-rubik" id="imgs-label" for="fileToUpload">Choose file</label>
                                             </div>
                                         </div>
