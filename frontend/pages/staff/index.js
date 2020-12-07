@@ -1,14 +1,15 @@
-import {formatPrice, getCookie, loadFile} from '../../index.js';
+import {formatPrice, getCookie, loadFile } from '../../index.js';
 window.initUpdateProductForm = initUpdateProductForm;
 window.checkDefaultValueUpdateProduct = checkDefaultValueUpdateProduct;
 window.checkDefaultPicture = checkDefaultPicture;
 window.addProductImg = addProductImg;
+window.loadFile = loadFile;
 
 var tableProductList = [];
 var product = {};
 const userId = getCookie("userId");
 var validator;
-
+window.addProduct = addProduct;
 $(document).ready(function() {
     getAllProduct();
 
@@ -254,4 +255,25 @@ function checkDefaultValueUpdateProduct() {
         productPicture === '../frontend/' + product["Path"]) {
             document.getElementById('btn-submit-update').setAttribute("disabled", true)
     }
+}
+
+function addProduct(){
+    var formData = new FormData();
+    formData.append('section', 'general');
+    formData.append('action', 'previewImg');
+    var sent_data = $('#add-new-product-form').serializeArray();
+    formData.append('fileToUpload', $('#fileToUpload')[0].files[0]);
+    formData.append("userId", userId);
+    // formData.append("sendData", sent_data);
+
+    $.ajax({
+        url: '../backend/product/AddNewProduct.php',
+        data: formData,
+        type: 'POST',
+        contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+        processData: false, // NEEDED, DON'T OMIT THIS
+        success: function(res){
+           console.log(res)
+        }
+    });
 }

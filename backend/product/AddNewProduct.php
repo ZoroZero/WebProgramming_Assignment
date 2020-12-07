@@ -5,6 +5,7 @@ $target_dir = "../../frontend/assets/imgs/product/";
 $response = array();
 $uploadOk = 1;
 if (isset($_POST['userId'])) {
+    echo json_encode($_POST);
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $fileName = "product-" . uniqid();
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
