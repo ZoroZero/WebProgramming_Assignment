@@ -1,15 +1,18 @@
-import {formatPrice, getCookie} from '../../index.js';
+import {formatPrice, getCookie, loadFile} from '../../index.js';
 window.initUpdateProductForm = initUpdateProductForm;
 window.checkDefaultValueUpdateProduct = checkDefaultValueUpdateProduct;
+window.checkDefaultPicture = checkDefaultPicture;
+window.addProductImg = addProductImg;
 
 var tableProductList = [];
 var product = {};
 const userId = getCookie("userId");
+var validator;
 
 $(document).ready(function() {
     getAllProduct();
 
-    $("form[id='form-update-product']").validate({
+    validator = $("form[id='form-update-product']").validate({
         rules:{
             productName: {
                 required: true,
@@ -122,15 +125,23 @@ $(document).ready(function() {
                     $('#productModal').modal('hide');
                 }
             });
-            getAllProduct();
+            getAllProduct()
             return false;
         } else {
-            console.log("Invalid update form");
+            console.log('invalid form')
         }
     })
 })
 
+function checkDefaultPicture(event, imgId, id) {
+    checkDefaultValueUpdateProduct();
+    loadFile(event, imgId, id)
+}
 
+function addProductImg(event, imgId, id) {
+    document.getElementById(imgId).style.display= 'block';
+    loadFile(event, imgId, id)
+}
 
 function getAllProduct(){
     $.get(`../backend/product/GetAllProduct.php`,
@@ -165,6 +176,12 @@ function getAllProduct(){
 function initUpdateProductForm(id){
     product = tableProductList.filter(element => element.Id === id)[0];
     document.getElementById('btn-submit-update').setAttribute("disabled", true)
+    document.getElementById('imgs-label').innerHTML = 'Choose file';
+    document.getElementById('imgs-label').removeAttribute("title");
+    for (var i = 0; i < document.getElementsByTagName('input').length; i++) {
+        document.getElementsByTagName('input')[i].classList.remove("error");
+    }
+    validator.resetForm()
     document.getElementById("productName").value = product.Name;
     $('#productId').val(id);
     // $('#productName').val(product.Name);
@@ -186,6 +203,7 @@ function initUpdateProductForm(id){
 }
 
 function checkDefaultValueUpdateProduct() {
+    var productPicture = document.getElementById("change-product-setting-img").src;
     var productName = document.getElementById("productName").value;
     var productDescription = document.getElementById("productDescription").value;
     var productPrice = document.getElementById("productPrice").value;
@@ -214,7 +232,8 @@ function checkDefaultValueUpdateProduct() {
         product.Psu !== productPsu ||
         product.Amount !== productAmount ||
         product.Discount !== productDiscount ||
-        product.QuantitySold !== productQuantitySold) {
+        product.QuantitySold !== productQuantitySold ||
+        productPicture !== '../frontend/' + product["Path"]) {
             document.getElementById('btn-submit-update').removeAttribute("disabled")
     }
 
@@ -231,7 +250,8 @@ function checkDefaultValueUpdateProduct() {
         product.Psu === productPsu &&
         product.Amount === parseInt(productAmount) &&
         product.Discount === parseInt(productDiscount) &&
-        product.QuantitySold === parseInt(productQuantitySold)) {
+        product.QuantitySold === parseInt(productQuantitySold) &&
+        productPicture === '../frontend/' + product["Path"]) {
             document.getElementById('btn-submit-update').setAttribute("disabled", true)
     }
 }

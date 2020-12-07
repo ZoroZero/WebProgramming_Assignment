@@ -9,7 +9,12 @@
         </button>
       </div>
       <div class="modal-body">
+        <img id="add-product-img" alt="add-product-img" class="img-fluid" style="max-width: 300px; margin: auto; display: none" />
         <form>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input font-size-16 font-rubik" name="fileToUpload" id="fileToUpload" accept="image/*" onchange="addProductImg(event, 'add-product-img', 'imgs-label-add')">
+            <label class="custom-file-label imgs-label-add font-size-16 font-rubik" id="imgs-label-add" for="fileToUpload">Choose file</label>
+          </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="productAddName" class="col-form-label">Product Name:</label>
@@ -70,10 +75,22 @@
               <input type="text" class="form-control" id="productAddAmount">
             </div>
           </div>
-          <div class="form-group">
-            <label for="productAddDescription" class="col-form-label">Description:</label>
-            <input type="text" class="form-control" id="productAddDescription">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="productAddDescription" class="col-form-label">Description:</label>
+              <input type="text" class="form-control" id="productAddDescription">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputState" class="col-form-label">Category:</label>
+              <select id="inputState" class="form-control">
+                <option value='0' selected>Choose OS...</option>
+                <option value='1'>Windows</option>
+                <option value='2'>Mac</option>
+                <option value='2'>Linux</option>
+              </select>
+            </div>
           </div>
+
         </form>
       </div>
       <div class="modal-footer">
