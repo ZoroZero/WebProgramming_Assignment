@@ -180,7 +180,7 @@ function uploadAvatar(){
     // Attach file
     formData.append('fileToUpload', $('#fileToUpload')[0].files[0]);
     formData.append('id', userId); 
-    
+    console.log( $('#fileToUpload')[0]);
     $.ajax({
         url: '../backend/user/UploadAvatar.php',
         data: formData,

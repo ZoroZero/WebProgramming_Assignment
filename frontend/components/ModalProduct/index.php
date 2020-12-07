@@ -11,7 +11,7 @@
                 <img id="change-product-setting-img" alt="" class="img-fluid" style="max-width: 300px; margin: auto; display: block" />
                 <form id="form-update-product" name="form-update-product" method="" action="">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input font-size-16 font-rubik" name="fileToUpload" id="fileToUpload" accept="image/*" onchange="checkDefaultPicture(event, 'change-product-setting-img', 'imgs-label')">
+                        <input type="file" class="custom-file-input font-size-16 font-rubik" name="fileToUpload" id="fileToUpload" accept="image/*" onchange="loadFile(event, 'change-product-setting-img', 'imgs-label')">
                         <label class="custom-file-label imgs-label font-size-16 font-rubik" id="imgs-label" for="fileToUpload">Choose file</label>
                     </div>
                     <input type="hidden" class="form-control" id="productId" name='productId'>

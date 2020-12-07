@@ -86,12 +86,14 @@ class ProductService
         $productDiscount = (int)$params['productDiscount'];
         $productQuantitySold = 0;
 
-        $stmt = $this->con->prepare("CALL AddNewInformation(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $this->con->prepare("CALL AddNewProduct(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("iississssssssiisss", $userId, $category, $productName, $productDescription, $productPrice, $productOs,
         $productRam, $productMonitor, $productMouse, $productStorage, $productGpu, $productCpu, $productPsu, $productAmount, 
         $productDiscount, $imageFileName, $imageType, $imageFilePath);
-        $stmt->execute();
-        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        if ($stmt->execute()) {
+            return true;
+        } else
+            return false;
     }
 
     // Update product information

@@ -73,13 +73,13 @@ export function loadFile(event, imgId, id) {
     output.src = URL.createObjectURL(event.target.files[0]);
     document.getElementById(id).innerHTML = event.target.files[0].name;
     document.getElementById(id).setAttribute("title", event.target.files[0].name);
-    if(imgId === 'output') {
+    if(imgId === 'output' || imgId === 'change-product-setting-img') {
         output.style.display= 'inline';
     }
     output.onload = function() {
         URL.revokeObjectURL(output.src) // free memory
     }
-    console.log(event.target.files[0])
+    // console.log(event.target.files[0])
 };
 
 export function getCookie(cname) {

@@ -9,12 +9,12 @@
         </button>
       </div>
       <div class="modal-body">
-        <img id="add-product-img" alt="add-product-img" class="img-fluid" style="max-width: 300px; margin: auto; display: none" />
+        <img src ='' id="output" class="img-fluid" style="max-width: 300px; margin: auto; display: none" />
         <form id="add-new-product-form" name="add-new-product-form" action="../backend/product/AddNewProduct.php" method="post" enctype="multipart/form-data">
           <div class="input-group mt-3">
             <div class="custom-file">
-              <input type="file" class="custom-file-input font-size-16 font-rubik" name="fileToUpload" id="fileToUpload" accept="image/*" onchange="loadFile(event, 'add-product-img', 'imgs-label-add')">
-              <label class="custom-file-label imgs-label-add font-size-16 font-rubik" id="imgs-label-add" for="fileToUpload">Choose file</label>
+              <input type="file" class="custom-file-input font-size-16 font-rubik" name="fileToUploadAddProduct" id="fileToUploadAddProduct" accept="image/*" onchange="loadFile(event, 'output', 'imgs-label-add')">
+              <label class="custom-file-label imgs-label-add font-size-16 font-rubik" id="imgs-label-add" for="fileToUploadAddProduct">Choose file</label>
             </div>
           </div>
           <div class="form-row">
@@ -80,7 +80,7 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="productAddDescription" class="col-form-label">Description:</label>
-              <input type="text" class="form-control" id="productAddDescription" name="productDiscount">
+              <input type="text" class="form-control" id="productAddDescription" name="productDescription">
             </div>
             <div class="form-group col-md-6">
               <label for="inputState" class="col-form-label">Category:</label>
