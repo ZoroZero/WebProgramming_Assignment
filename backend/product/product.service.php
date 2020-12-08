@@ -129,7 +129,6 @@ class ProductService
     {
         $convert_userId = (int)$params["userId"];
         $convert_productId = (int)$params["productId"];
-        echo $convert_productId;
         $stmt = $this->con->prepare("CALL UpdateProductImage(?, ?, ?, ?, ?)");
         $stmt->bind_param("iisss", $convert_userId,$convert_productId ,$fileName, $newFileType, $newFilePath);
         if ($stmt->execute()) {

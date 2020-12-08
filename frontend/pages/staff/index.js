@@ -135,8 +135,7 @@ $(document).ready(function() {
     });
 
     $('#btn-submit-update-imgs').click(function(){
-        var imageVal = $('#imgs-label').val();
-        if(imageVal && imageVal.length > 0){
+        if($('#fileToUpload')[0].files[0]){
             var formData = new FormData();
             formData.append('section', 'general');
             formData.append('action', 'previewImg');
@@ -298,36 +297,39 @@ function getFormData($form){
 }
 
 function addProduct(){
-    var formData = new FormData();
-    formData.append('section', 'general');
-    formData.append('action', 'previewImg');
-    var form = $('#add-new-product-form').serializeArray();
-    var sent_data = getFormData($('#add-new-product-form'));
+    if($('#fileToUploadAddProduct')[0].files[0]){
+        var formData = new FormData();
+        formData.append('section', 'general');
+        formData.append('action', 'previewImg');
+        var form = $('#add-new-product-form').serializeArray();
+        var sent_data = getFormData($('#add-new-product-form'));
 
-    formData.append('fileToUpload', $('#fileToUploadAddProduct')[0].files[0]);
-    formData.append("userId", userId);
-    formData.append("category", sent_data.category);
-    formData.append("productName", sent_data.productName);
-    formData.append("productDescription", sent_data.productDescription);
-    formData.append("productPrice", sent_data.productPrice);
-    formData.append("productOs", sent_data.productOs);
-    formData.append("productRam", sent_data.productRam);
-    formData.append("productMonitor", sent_data.productMonitor);
-    formData.append("productMouse", sent_data.productMouse);
-    formData.append("productStorage", sent_data.productStorage);
-    formData.append("productGpu", sent_data.productGpu);
-    formData.append("productCpu", sent_data.productCpu);
-    formData.append("productPsu", sent_data.productPsu);
-    formData.append("productAmount", sent_data.productAmount);
-    formData.append("productDiscount", sent_data.productDiscount);
-    $.ajax({
-        url: '../backend/product/AddNewProduct.php',
-        data: formData,
-        type: 'POST',
-        contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
-        processData: false, // NEEDED, DON'T OMIT THIS
-        success: function(res){
-           console.log(res)
-        }
-    });
+        formData.append('fileToUpload', $('#fileToUploadAddProduct')[0].files[0]);
+        formData.append("userId", userId);
+        formData.append("category", sent_data.category);
+        formData.append("productName", sent_data.productName);
+        formData.append("productDescription", sent_data.productDescription);
+        formData.append("productPrice", sent_data.productPrice);
+        formData.append("productOs", sent_data.productOs);
+        formData.append("productRam", sent_data.productRam);
+        formData.append("productMonitor", sent_data.productMonitor);
+        formData.append("productMouse", sent_data.productMouse);
+        formData.append("productStorage", sent_data.productStorage);
+        formData.append("productGpu", sent_data.productGpu);
+        formData.append("productCpu", sent_data.productCpu);
+        formData.append("productPsu", sent_data.productPsu);
+        formData.append("productAmount", sent_data.productAmount);
+        formData.append("productDiscount", sent_data.productDiscount);
+        $.ajax({
+            url: '../backend/product/AddNewProduct.php',
+            data: formData,
+            type: 'POST',
+            contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+            processData: false, // NEEDED, DON'T OMIT THIS
+            success: function(res){
+                console.log("Add product", res);
+                getAllProduct();
+            }
+        });
+    }
 }
