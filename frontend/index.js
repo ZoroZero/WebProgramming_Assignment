@@ -156,3 +156,11 @@ function getQuantityValue() {
 export function formatPrice(price){
     return `${price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} vnđ`;
 }
+
+export function getProductCategory(categoryId){
+    switch(categoryId){
+        case 1: return 'Windows';
+        case 2: return 'Mac';
+        case 3: return 'Linux';
+    }
+}

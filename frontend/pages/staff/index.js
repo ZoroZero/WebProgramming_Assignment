@@ -1,4 +1,4 @@
-import {formatPrice, getCookie, loadFile } from '../../index.js';
+import {formatPrice, getCookie, loadFile, getProductCategory } from '../../index.js';
 window.initUpdateProductForm = initUpdateProductForm;
 window.checkDefaultValueUpdateProduct = checkDefaultValueUpdateProduct;
 window.checkDefaultPicture = checkDefaultPicture;
@@ -122,6 +122,7 @@ $(document).ready(function() {
                 data: sent_data      
             })
             .done(function (response) {
+                console.log(response)
                 if(response && !response.error){
                     $('#productModal').modal('hide');
                 }
@@ -131,7 +132,35 @@ $(document).ready(function() {
         } else {
             console.log('invalid form')
         }
-    })
+    });
+
+    $('#btn-submit-update-imgs').click(function(){
+        var imageVal = $('#imgs-label').val();
+        if(imageVal && imageVal.length > 0){
+            var formData = new FormData();
+            formData.append('section', 'general');
+            formData.append('action', 'previewImg');
+            // Attach file
+            formData.append('fileToUpload', $('#fileToUpload')[0].files[0]);
+            formData.append('productId', $('#productId').val());
+            formData.append('userId', userId);
+            console.log( $('#fileToUpload')[0]);
+            $.ajax({
+                url: '../backend/product/UpdateProductImage.php',
+                data: formData,
+                type: 'POST',
+                contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                processData: false, // NEEDED, DON'T OMIT THIS
+                success: function(res){
+                    console.log(res);
+                    getAllProduct();
+                }
+            });
+        }
+        else{
+            alert("No image chosen");
+        }
+    });
 })
 
 function checkDefaultPicture(event, imgId, id) {
@@ -154,7 +183,7 @@ function getAllProduct(){
                 var list_product = tableProductList.map(function(element){
                     return `<tr>
                                 <th scope="row">${element.Id}</th>
-                                <td>${element.CategoryId}</td>
+                                <td>${getProductCategory(element.CategoryId)}</td>
                                 <td>${element.Name}</td>
                                 <td>${formatPrice(element.Price)}</td>
                                 <td>${element.Amount}</td>
