@@ -327,8 +327,10 @@ function addProduct(){
             contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
             processData: false, // NEEDED, DON'T OMIT THIS
             success: function(res){
+               
                 console.log("Add product", res);
-                getAllProduct();
+                getAllProduct(); 
+                $('#add-new-product-form').modal('hide');
             }
         });
     }
