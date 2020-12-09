@@ -86,12 +86,14 @@ class ProductService
         $productDiscount = (int)$params['productDiscount'];
         $productQuantitySold = 0;
 
-        $stmt = $this->con->prepare("CALL AddNewInformation(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $this->con->prepare("CALL AddNewProduct(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("iississssssssiisss", $userId, $category, $productName, $productDescription, $productPrice, $productOs,
         $productRam, $productMonitor, $productMouse, $productStorage, $productGpu, $productCpu, $productPsu, $productAmount, 
         $productDiscount, $imageFileName, $imageType, $imageFilePath);
-        $stmt->execute();
-        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        if ($stmt->execute()) {
+            return true;
+        } else
+            return false;
     }
 
     // Update product information
@@ -112,13 +114,27 @@ class ProductService
         $productAmount = (int)$params['productAmount'];
         $productDiscount = (int)$params['productDiscount'];
         $productQuantitySold = (int)$params['productQuantitySold'];
+        $isDeleted = (int)$params['isDeleted'];
 
-        $stmt = $this->con->prepare("CALL UpdateProductInformation(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("iississssssssiii", $userId, $productId, $productName, $productDescription, $productPrice, $productOs,
+        $stmt = $this->con->prepare("CALL UpdateProductInformation(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("iississssssssiiii", $userId, $productId, $productName, $productDescription, $productPrice, $productOs,
         $productRam, $productMonitor, $productMouse, $productStorage, $productGpu, $productCpu, $productPsu, $productAmount, 
-        $productDiscount, $productQuantitySold);
+        $productDiscount, $productQuantitySold, $isDeleted);
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
+
+    // Update product image
+    function updateProductImage($params, $fileName, $newFileType, $newFilePath)
+    {
+        $convert_userId = (int)$params["userId"];
+        $convert_productId = (int)$params["productId"];
+        $stmt = $this->con->prepare("CALL UpdateProductImage(?, ?, ?, ?, ?)");
+        $stmt->bind_param("iisss", $convert_userId,$convert_productId ,$fileName, $newFileType, $newFilePath);
+        if ($stmt->execute()) {
+            return true;
+        } else
+            return false;
     }
 }
 

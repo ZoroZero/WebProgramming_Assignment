@@ -35,6 +35,13 @@
                         <label for="userAddress" class="col-form-label">Address:</label>
                         <input type="text" class="form-control" id="userAddress">
                     </div>
+                    <div class="form-group">
+                        <label for="inputState">Deactivate user:</label>
+                        <select id="inputState" class="form-control">
+                            <option value='1' selected>NO</option>
+                            <option value='2'>YES</option>
+                        </select>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">

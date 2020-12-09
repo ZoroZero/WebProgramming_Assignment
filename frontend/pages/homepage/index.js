@@ -1,4 +1,4 @@
-import {formatPrice} from '../../index.js';
+import {formatPrice, getProductCategory} from '../../index.js';
 
 $(document).ready(function() {
     getTopSaleProduct();
@@ -177,12 +177,4 @@ function getSpecialPriceProduct(){
         // Log the error to the console
         console.error("The following error occurred: ", textStatus, errorThrown);
     });
-}
-
-function getProductCategory(categoryId){
-    switch(categoryId){
-        case 1: return 'Windows';
-        case 2: return 'Mac';
-        case 3: return 'Linux';
-    }
 }
