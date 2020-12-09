@@ -1,8 +1,65 @@
 import {formatPrice, getCookie, loadFile, getProductCategory } from '../../index.js';
 
-
+window.initUpdateUserForm = initUpdateUserForm;
 var tableUserList = [];
+var validator;
+const userId = getCookie("userId");
+
 $(document).ready(function() {
+
+    validator = $("form[id='update-user-information-form']").validate({
+        rules:{
+            userFistname: {
+                required: true,
+            },
+            userLastname: {
+                required: true,
+            },
+            userEmail: {
+                required: true,
+            },
+            userAddress: {
+                required: true,
+            },
+        },
+        messages: {
+            userFistname: {
+                required: "This field is required...",
+            },
+            userLastname: {
+                required: "This field is required...",
+            },
+            userEmail: {
+                required: "This field is required...",
+            },
+            userAddress: {
+                required: "This field is required...",
+            }
+        },
+    });
+
+    $('#btn-submit-user-update').click(function() {
+        if($("#update-user-information-form").valid()){   // test for validity
+            var sent_data = $('#update-user-information-form').serializeArray();
+            sent_data.push({name: "updatedBy", value: userId});  
+            $.post({
+                url: '../backend/user/AdminUpdateUserInformation.php',
+                data: sent_data      
+            })
+            .done(function (response) {
+                console.log(response);
+                response = JSON.parse(response);
+                if(response && !response.error){
+                    $('#userModal').modal('hide');
+                    getAllCurrentUser();
+                }
+            });
+            return false;
+        } else {
+            console.log('invalid form')
+        }
+    });
+
     getAllCurrentUser();
 })
 
@@ -31,7 +88,7 @@ function getAllCurrentUser(){
                               <td>${element.Email}</td>
                               <td> 
                                   <button type="button" class="btn btn-primary" onclick=initUpdateUserForm(${element.Id})
-                                  data-toggle="modal" data-target="#userModal" data-whatever="@mdo">Update</button>
+                                  data-toggle="modal" data-target="#userModal" >Update</button>
                               </td>
                           </tr>`});
               $('#manage-user-table-body').html(list_product.join(' '));
@@ -41,6 +98,23 @@ function getAllCurrentUser(){
           }
       }
   });
+}
+
+function initUpdateUserForm(id){
+    var user = tableUserList.filter(element => element.Id === id)[0];
+    document.getElementById('btn-submit-update').setAttribute("disabled", true)
+    for (var i = 0; i < document.getElementsByTagName('input').length; i++) {
+        document.getElementsByTagName('input')[i].classList.remove("error");
+    }
+    validator.resetForm()
+    $('#userId').val(id);
+    $('#userFistname').val(user.FirstName);
+    $('#userLastname').val(user.LastName);
+    $('#userEmail').val(user.Email);
+    $('#userRole').val(getRole(user.RoleId));
+    $('#userAddress').val(user.Address);
+    $('#isActive').val(user.IsActive);
+
 }
 
 

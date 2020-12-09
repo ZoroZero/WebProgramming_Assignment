@@ -5,6 +5,8 @@ window.checkDefaultValue = checkDefaultValue;
 window.loadFile = loadFile;
 window.uploadAvatar = uploadAvatar;
 window.closeAlert = closeAlert;
+
+var information;
 $(document).ready(function(){
     getUserInformation();
 
@@ -17,7 +19,7 @@ $(document).ready(function(){
             submitHandler: function(form, e) {
                 e.preventDefault();
                 var sent_data = $(form).serializeArray();
-                sent_data.push({name: "id", value: userId});
+                sent_data.push({name: "userId", value: userId});
                 console.log(sent_data)   
                 $.ajax({
                     type: 'post',
@@ -25,6 +27,7 @@ $(document).ready(function(){
                     data: sent_data      
                 })
                 .done(function (response) {
+                    console.log(response);
                     checkDefaultValue()
                     if(document.getElementById("inputcheck").style.display !== "none") {
                         closeAlert("inputcheck")
@@ -124,7 +127,7 @@ function getUserInformation(){
     var request = $.get(`../backend/user/GetUserInformation.php?userId=${userId}`,
         function(response) {
             if(response) {
-                let information = JSON.parse(response)['data'];
+                information = JSON.parse(response)['data'];
                 // document.getElementById("profile_id").value = userId;
                 document.getElementById("profile_username").value = information['UserName'];
                 document.getElementById("profile_firstName").value = information['FirstName'];
