@@ -125,8 +125,7 @@ class ProductService
     }
 
     // Update product image
-    function updateProductImage($params, $fileName, $newFileType, $newFilePath)
-    {
+    function updateProductImage($params, $fileName, $newFileType, $newFilePath){
         $convert_userId = (int)$params["userId"];
         $convert_productId = (int)$params["productId"];
         $stmt = $this->con->prepare("CALL UpdateProductImage(?, ?, ?, ?, ?)");

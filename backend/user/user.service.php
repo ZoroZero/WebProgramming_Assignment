@@ -117,4 +117,12 @@ class UserService
         } else
             return false;
     }
+
+    
+    function getAllUser(){
+        $stmt = $this->con->prepare("CALL GetAllUser()");
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
+
 }

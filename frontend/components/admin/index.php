@@ -15,25 +15,18 @@
                             <th scope="col">ID</th>
                             <th scope="col">First Name</th>
                             <th scope="col">Last Name</th>
-                            <th scope="col">Role ID</th>
+                            <th scope="col">Role</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Updated Date</th>
-                            <th scope="col">Updated By</th>
-                            <th scope="col">IsActive</th>
                             <th scope="col">Update</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="manage-user-table-body">
                         <tr>
                             <th scope="row">1</th>
                             <td>Mark</td>
                             <td>Otto</td>
                             <td>@mdo</td>
                             <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td><?php include('./components/ModalUser/index.php') ?></td>
                         </tr>
                     </tbody>
                 </table>

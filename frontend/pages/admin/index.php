@@ -7,6 +7,7 @@ if (!isset($_SESSION[USER_ID]) || !isset($_SESSION[ROLE_ID])) {
     if(isset($_SESSION[ROLE_ID]) && $_SESSION[ROLE_ID] == 3){
         include_once('../frontend/components/header/header.php');
         include('../frontend/components/admin/index.php');
+        echo "<script type='module' src='../frontend/pages/admin/index.js'></script>";
         require_once('../frontend/components/footer/footer.php');
     }
     else{
