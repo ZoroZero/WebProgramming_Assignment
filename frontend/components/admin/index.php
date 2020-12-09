@@ -30,6 +30,8 @@
                         </tr>
                     </tbody>
                 </table>
+                <?php include('./components/ModalUser/index.php') ?> 
+                <?php include('./components/ModalAddUser/index.php') ?>
             </div>
             <div class="tab-pane fade py-4" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                 <table class="table table-hover mb-0">
@@ -66,7 +68,7 @@
                 </table>
             </div>
         </div>
-        <?php include('./components/ModalUser/index.php') ?>
-        <?php include('./components/ModalAddProduct/index.php') ?>
+        
+       
     </div>
 </section>

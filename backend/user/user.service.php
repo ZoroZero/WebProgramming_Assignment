@@ -141,4 +141,24 @@ class UserService
         } else
             return false;
     }
+
+
+    function addNewUser($params){
+        $fname = $params["userFistname"];
+        $lname = $params["userLastname"];
+        $email = $params["userEmail"];
+        $username = $params["username"];
+        $password = $params["password"];
+        $updatedBy = (int)$params['updatedBy'];
+        $roleId = (int)$params['userRole'];
+        $hashedPass = md5($password);
+
+        $stmt = $this->con->prepare("CALL AddNewUser(?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssii", $username, $hashedPass, $fname, $lname, $email, $roleId, $updatedBy);
+
+        if ($stmt->execute()) {
+            return $stmt->get_result()->fetch_assoc();
+        } else
+            return -1;
+    }
 }
