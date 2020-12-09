@@ -160,7 +160,9 @@ function getSpecialPriceProduct(){
                 itemSelector: '.grid-item',
                 layoutMode: 'fitRows',
             })
+            
             $grid.isotope({filter: '*'})
+
             //filter items on button press
             $(".button-group").on("click", "button", function(){
                 var filterValue = $(this).attr('data-filter');

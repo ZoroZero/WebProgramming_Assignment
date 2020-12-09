@@ -41,6 +41,10 @@ $router->get('/category', function(){
     include "./pages/category/index.php";
 });
 
+$router->get('/admin', function(){
+    include "./pages/admin/index.php";
+});
+
 
 $router->get('/admin', function(){
     include "./pages/admin/index.php";

@@ -1,4 +1,4 @@
-import { getCookie, closeAlert, openAlert } from "../../index.js";
+import { getCookie, closeAlert, openAlert, loadFile } from "../../index.js";
 
 const userId = getCookie("userId");
 window.checkDefaultValue = checkDefaultValue;
@@ -172,18 +172,6 @@ function checkDefaultValue() {
     );
     
 }
-
-function loadFile(event) {
-    var output = document.getElementById('output');
-    output.src = URL.createObjectURL(event.target.files[0]);
-    document.getElementById("imgs-label").innerHTML = event.target.files[0].name;
-    document.getElementById("imgs-label").setAttribute("title", event.target.files[0].name);
-    output.style.display= 'inline';
-    output.onload = function() {
-        URL.revokeObjectURL(output.src) // free memory
-    }
-    console.log(event.target.files[0])
-};
 
 function uploadAvatar(){
     var formData = new FormData();
