@@ -46,6 +46,10 @@ $router->get('/admin', function(){
 });
 
 
+$router->get('/admin', function(){
+    include "./pages/admin/index.php";
+});
+
 
 
 
