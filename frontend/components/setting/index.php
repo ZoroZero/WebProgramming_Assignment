@@ -40,24 +40,28 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="profile_firstName" class="font-raleway font-italic font-weight-bold">First name*</label>
-                                <input type="text" id="profile_firstName" name="firstName" search="false" image-upload="false" maxlength="50" class="form-control font-rubik" placeholder="" spellcheck="false" onchange="checkDefaultValue()" required>
+                                <input type="text" id="profile_firstName" name="userFistname" search="false" image-upload="false" maxlength="50" 
+                                class="form-control font-rubik" placeholder="" spellcheck="false" onchange="checkDefaultValue()" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="profile_lastName" class="font-raleway font-italic font-weight-bold">Last name*</label>
-                                <input type="text" id="profile_lastName" name="lastName" search="false" image-upload="false" maxlength="50" class="form-control font-rubik" placeholder="" spellcheck="false" onchange="checkDefaultValue()" required>
+                                <input type="text" id="profile_lastName" name="userLastname" search="false" image-upload="false" maxlength="50" 
+                                class="form-control font-rubik" placeholder="" spellcheck="false" onchange="checkDefaultValue()" required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="profile_email" class="font-raleway font-italic font-weight-bold">Email*</label>
-                            <input type="email" id="profile_email" name="email" search="false" image-upload="false" maxlength="50" class="form-control font-rubik" placeholder="" spellcheck="false" onchange="checkDefaultValue()" required>
+                            <input type="email" id="profile_email" name="userEmail" search="false" image-upload="false" maxlength="50" 
+                            class="form-control font-rubik" placeholder="" spellcheck="false" onchange="checkDefaultValue()" required>
                         </div>
 
                         <div class="form-group">
                             <label for="profile_address" class="font-raleway font-italic font-weight-bold">Address*</label>
-                            <input type="text" id="profile_address" name="address" search="false" image-upload="false" maxlength="200" class="form-control user_profile_input_form" placeholder="" spellcheck="false" onchange="checkDefaultValue()" required>
+                            <input type="text" id="profile_address" name="userAddress" search="false" image-upload="false" maxlength="200" 
+                            class="form-control user_profile_input_form" placeholder="" spellcheck="false" onchange="checkDefaultValue()" required>
                         </div>
-
+                        
                         <div>
                             <button type="submit" value="save" disabled class="btn btn-info d-block w-25 mx-auto" id="submit-info">Save</button>
                             <div class="loader" id="loader" style="display: none;"></div>
