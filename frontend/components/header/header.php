@@ -111,8 +111,9 @@
                     }
                     ?>
                 </ul>
-                <form class="form-inline my-lg-0 mx-lg-2 mx-sm-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="form-inline my-lg-0 mx-lg-2 mx-sm-0 dropdown">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onkeyup="showSearchResult(this.value)">
+                    <div id="livesearch" class="dropdown-content"></div>
                     <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
                 </form>
 
