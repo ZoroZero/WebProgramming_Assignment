@@ -9,7 +9,7 @@
         </nav>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active py-4" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                <table class="table table-hover">
+                <table class="table table-responsive-md table-hover">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
@@ -30,11 +30,11 @@
                         </tr>
                     </tbody>
                 </table>
-                <?php include('./components/ModalUser/index.php') ?> 
+                <?php include('./components/ModalUser/index.php') ?>
                 <?php include('./components/ModalAddUser/index.php') ?>
             </div>
             <div class="tab-pane fade py-4" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                <table class="table table-hover mb-0">
+                <table class="table table-responsive-md table-hover mb-0">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
@@ -68,7 +68,7 @@
                 </table>
             </div>
         </div>
-        
-       
+
+
     </div>
 </section>

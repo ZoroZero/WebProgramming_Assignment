@@ -30,7 +30,7 @@ function getProductInformation(){
                         document.getElementById('os-information').innerHTML = productInformation.Os;
                         document.getElementById('product-image').src = `../../frontend/${productInformation.Path}`;
                         $('#add-product-to-cart').click(function(){
-                            addtoCart(productInformation.Id);
+                            addtoCart(productInformation.Id, productInformation.Amount);
                         });
                     }
                 }

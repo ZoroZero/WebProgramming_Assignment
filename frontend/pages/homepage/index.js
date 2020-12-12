@@ -77,7 +77,7 @@ function getTopSaleProduct(){
                                     <div class="price py-2">
                                         <span>${formatPrice(element['Price'])}</span>
                                     </div>
-                                    <button type="submit" class="btn btn-warning font-size-12" onclick="addtoCart(${element['Id']})">Add to cart</button>
+                                    <button type="submit" class="btn btn-warning font-size-12" onclick="addtoCart(${element['Id']}, ${element['Amount']})">Add to cart</button>
                                 </div>
                             </div>
                         </div>`;
@@ -144,7 +144,7 @@ function getSpecialPriceProduct(){
                                             <div class="price py-2">
                                                 <span>${formatPrice(element['Price'])}</span>
                                             </div>
-                                            <button type="submit" class="btn btn-warning font-size-12">Add to cart</button>
+                                            <button type="submit" class="btn btn-warning font-size-12" onclick="addtoCart(${element['Id']}, ${element['Amount']})">Add to cart</button>
                                         </div>
                                     </div>
                                 </div>

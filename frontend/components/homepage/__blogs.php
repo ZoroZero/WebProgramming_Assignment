@@ -31,5 +31,6 @@
             </div>
         </div>
     </div>
+    <div id="snackbar">Successfully added to cart..</div>
 </section>
 <!-- !Blogs -->

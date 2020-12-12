@@ -3,7 +3,7 @@ require_once "user.service.php";
 include_once("../environments/Constants.php");
 $response = array();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	if ( isset($_POST["profile_Oldpassword"]) && isset($_POST["newPassword"]) && isset($_POST["id"])) {
+	if (isset($_POST["profile_Oldpassword"]) && isset($_POST["profile_password"]) && isset($_POST["id"])) {
 		$service = new UserService();
 		$service->__contruct();
 		$user = $service->getUserInformation($_POST["id"]);

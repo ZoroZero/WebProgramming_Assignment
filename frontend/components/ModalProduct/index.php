@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <img id="change-product-setting-img" alt="" class="img-fluid" style="max-width: 300px; margin: auto; display: block" />
+                <img id="change-product-setting-img" alt="" class="img-fluid mb-2" style="max-width: 300px; margin: auto; display: block" />
                 <form id="form-update-product-img" name="form-update-product-img" method="" action="">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input font-size-16 font-rubik" name="fileToUpload" id="fileToUpload" accept="image/*" onchange="loadFile(event, 'change-product-setting-img', 'imgs-label')">
@@ -18,7 +18,7 @@
                 </form>
 
                 <form id="form-update-product" name="form-update-product" method="" action="">
-                    
+
                     <input type="hidden" class="form-control" id="productId" name='productId'>
                     <div class="form-row">
                         <div class="form-group col-md-6">

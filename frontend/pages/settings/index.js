@@ -99,21 +99,78 @@ $(document).ready(function(){
                     data: sent_data      
                     })
                 .done(function (response) {
-                    // console.log("Update password", response);
-                    if(document.getElementById("inputcheck_password").style.display !== "none") {
-                        closeAlert("inputcheck_password")
+                    console.log(response)
+                    var res = JSON.parse(response)
+                    
+                    if(res.error===true) {
+                        if(document.getElementById("inputcheck_password").style.display !== "none" || 
+                            document.getElementById("inputcheck_password_error").style.display !== "none") {
+                            closeAlert("inputcheck_password");
+                            closeAlert("inputcheck_password_error");
+                        }
                         document.getElementById("loader2").style.display = "block"
                         setTimeout(function(){
                             document.getElementById("loader2").style.display = "none"
-                            openAlert("inputcheck_password")
-                            
+                            openAlert("inputcheck_password_error");
+                            if(document.getElementById("inputcheck_password_error").style.display !== "none") {
+                                document.getElementById("inputcheck_password_error").innerHTML= `${res.message}. Please try again!
+                                <button type="button" class="close" onclick="closeAlert('inputcheck_password_error')">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>`;
+                            }
                         },2000)
                     }
-                    document.getElementById("loader2").style.display = "block"
-                    setTimeout(function(){
-                        document.getElementById("loader2").style.display = "none"
-                        openAlert("inputcheck_password")
-                    },2000)
+                    else {
+                        if(document.getElementById("inputcheck_password").style.display !== "none" || 
+                        document.getElementById("inputcheck_password_error").style.display !== "none") {
+                        closeAlert("inputcheck_password");
+                        closeAlert("inputcheck_password_error");
+                        }
+                        document.getElementById("loader2").style.display = "block"
+                        setTimeout(function(){
+                            document.getElementById("loader2").style.display = "none"
+                            openAlert("inputcheck_password");
+                            if(document.getElementById("inputcheck_password").style.display !== "none") {
+                                document.getElementById("inputcheck_password").innerHTML= `${res.message}!
+                                <button type="button" class="close" onclick="closeAlert('inputcheck_password')">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>`;
+                            }
+                        },2000)
+                    }
+                    
+                    
+                    // if(res.error === true) {
+                    //     if(document.getElementById("inputcheck_password").style.display !== "none") {
+                    //         closeAlert("inputcheck_password")
+                    //         document.getElementById("loader2").style.display = "block"
+                    //         setTimeout(function(){
+                    //             document.getElementById("loader2").style.display = "none"
+                    //             openAlert("inputcheck_password")
+                                
+                    //         },2000)
+                    //     }
+                    //     document.getElementById("loader2").style.display = "block"
+                    //     setTimeout(function(){
+                    //         document.getElementById("loader2").style.display = "none"
+                    //         openAlert("inputcheck_password")
+                    //     },2000)
+                    // }
+                    // // console.log("Update password", response);
+                    // if(document.getElementById("inputcheck_password").style.display !== "none") {
+                    //     closeAlert("inputcheck_password")
+                    //     document.getElementById("loader2").style.display = "block"
+                    //     setTimeout(function(){
+                    //         document.getElementById("loader2").style.display = "none"
+                    //         openAlert("inputcheck_password")
+                            
+                    //     },2000)
+                    // }
+                    // document.getElementById("loader2").style.display = "block"
+                    // setTimeout(function(){
+                    //     document.getElementById("loader2").style.display = "none"
+                    //     openAlert("inputcheck_password")
+                    // },2000)
                 });		
                 return false;
             }
@@ -204,7 +261,6 @@ function uploadAvatar(){
                         <span aria-hidden="true">&times;</span>
                     </button>`;
                 }
-                
             }
             else {
                 if(document.getElementById("inputcheck_upload_imgs_danger")) {

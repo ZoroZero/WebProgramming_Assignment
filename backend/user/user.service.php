@@ -93,7 +93,7 @@ class UserService
     function updateUserPassword($params)
     {
         $convert_userId = (int)$params["id"];
-        $newPassword = $params['newPassword'];
+        $newPassword = $params['profile_password'];
         $newHashedPass = md5($newPassword);
         echo $newHashedPass;
         $stmt = $this->con->prepare("CALL UpdateUserPassword(?, ?)");
