@@ -76,24 +76,25 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav font-rubik mr-auto">
                     <?php
-                    // $pos = strpos($mystring, $findme);
-                    // echo strpos('product', $_SERVER['REQUEST_URI']);
-                    echo '<li class="nav-item active">
-                            <a class="nav-link" href="'.SERVER_PATH.'home">Homepage</a>
-                        </li>';
-                   
+                        if (!isset($_SESSION[ROLE_ID]) || $_SESSION[ROLE_ID] == 1) {
+                            echo '<li class="nav-item active">
+                                    <a class="nav-link" href="'.SERVER_PATH.'home">Homepage</a>
+                                </li>';
+                        
+                            
+                            echo '<li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Category
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Windows</a>
+                                    <a class="dropdown-item" href="#">Linux</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Mac</a>
+                                </div>
+                            </li>';
+                        }
                     ?>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Category
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Windows</a>
-                            <a class="dropdown-item" href="#">Linux</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Mac</a>
-                        </div>
-                    </li>
 
                     <?php
                     if (isset($_SESSION[USER_ID]) && isset($_SESSION[ROLE_ID])) {
