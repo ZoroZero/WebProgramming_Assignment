@@ -9,8 +9,8 @@
 
             <div id="filters" class="button-group text-left font-baloo font-size-20">
                 <p style="display:inline;font-weight:bold;">Brand</p>
-                <button class="btn" data-filter='*'>All brand</button>
-                <button class="btn" data-filter='.Windows'>Windows</button>
+                <button class="btn" id='filter-all' data-filter='*'>All brand</button>
+                <button class="btn" id='filter-windows' data-filter='.Windows'>Windows</button>
                 <button class="btn" data-filter='.Mac'>Mac</button>
                 <button class="btn" data-filter='.Linux'>Linux</button>
             </div>
