@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 
 function fetchProduct(){
-  $.get(`../backend/product/GetAllProduct.php`,
+  $.get(`../backend/product/GetActiveProducts.php`,
       function(response) {
         if(response){
           if(!JSON.parse(response)['error']){
@@ -56,7 +56,7 @@ function fetchProduct(){
             }
           })
         
-          $grid.isotope({filter: '.Windows'});
+          $grid.isotope({filter: '*'});
         
           //filter items on button press
           $(".button-group").on("click", "button", function(){

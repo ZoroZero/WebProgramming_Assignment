@@ -30,10 +30,10 @@
 
     <!-- Custom CSS file -->
     <?php
-    echo "<link rel='stylesheet' href=" . SERVER_PATH . "frontend/style.css>";
+    echo "<link rel='stylesheet' href=" . SERVER_PATH . "style.css>";
 
     // <!-- Custom Javascript-->
-    echo "<script type='module' src=" . SERVER_PATH . "frontend/index.js></script>";
+    echo "<script type='module' src=" . SERVER_PATH . "index.js></script>";
     ?>
     <!--  isotope plugin cdn  -->
     <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
@@ -55,34 +55,20 @@
             <p class="font-rale font-size-12 text-black-50 m-0">Phu Vinh Thang, 268 Lý Thường Kiệt, Phường 14, Quận 10, Thành phố Hồ Chí Minh (096) 709 1640</p>
             <div class="font-rale font-size-14 d-flex">
                 <?php
-                if (session_status() == PHP_SESSION_NONE) {
-                    session_start();
-                }
                 include_once("../backend/environments/Constants.php");
                 if (isset($_SESSION['userId'])) {
                     echo "<p class='px-3 text-dark m-auto'>" . $_COOKIE[USER_NAME] . "</p>";
-                    if (strpos($_SERVER['REQUEST_URI'], 'product') === false) {
-                        echo "<a href='./settings' class='px-3 border-right m-auto border-left text-dark'>Setting</a>";
-                    } else {
-                        echo "<a href='../settings' class='px-3 border-right m-auto border-left text-dark'>Setting</a>";
-                    };
-
+                    echo "<a href='".SERVER_PATH."settings' class='px-3 border-right m-auto border-left text-dark'>Setting</a>";
                     echo "<a href='../backend/user/LogoutUser.php' class='px-3 m-auto border-right border-left text-dark' id='login-btn'>Logout</a>";
                 } else
-                    echo "<a href='../frontend/login' class='px-3 border-right m-auto border-left text-dark' id='logout-btn'>Login</a>"; ?>
+                    echo "<a href='".SERVER_PATH."login' class='px-3 border-right m-auto border-left text-dark' id='logout-btn'>Login</a>"; ?>
             </div>
         </div>
 
         <!-- Primary Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark color-secondary-bg">
             <?php
-            // $pos = strpos($mystring, $findme);
-            // echo strpos('product', $_SERVER['REQUEST_URI']);
-            if (strpos($_SERVER['REQUEST_URI'], 'product') === false) {
-                echo '<a class="navbar-brand" href="./home">Phu Vinh</a>';
-            } else {
-                echo '<a class="navbar-brand" href="../home">Phu Vinh</a>';
-            };
+                echo '<a class="navbar-brand" href="'.SERVER_PATH.'home">Phu Vinh</a>';
             ?>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -92,15 +78,10 @@
                     <?php
                     // $pos = strpos($mystring, $findme);
                     // echo strpos('product', $_SERVER['REQUEST_URI']);
-                    if (strpos($_SERVER['REQUEST_URI'], 'product') === false) {
-                        echo '<li class="nav-item active">
-                                <a class="nav-link" href="./home">Homepage</a>
-                            </li>';
-                    } else {
-                        echo '<li class="nav-item active">
-                                <a class="nav-link" href="../home">Homepage</a>
-                            </li>';
-                    };
+                    echo '<li class="nav-item active">
+                            <a class="nav-link" href="'.SERVER_PATH.'home">Homepage</a>
+                        </li>';
+                   
                     ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -113,33 +94,18 @@
                             <a class="dropdown-item" href="#">Mac</a>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Blog</a>
-                    </li>
+
                     <?php
-                    include_once("../backend/environments/Constants.php");
                     if (isset($_SESSION[USER_ID]) && isset($_SESSION[ROLE_ID])) {
                         if ($_SESSION[ROLE_ID] == 2 || $_SESSION[ROLE_ID] == 3) {
-                            if (strpos($_SERVER['REQUEST_URI'], 'product') === false) {
-                                echo '<li class="nav-item">
-                                        <a class="nav-link" href="./staff">Staff only</a>
-                                    </li>';
-                            } else {
-                                echo '<li class="nav-item">
-                                        <a class="nav-link" href="../staff">Staff only</a>
-                                    </li>';
-                            };
+                            echo '<li class="nav-item">
+                                    <a class="nav-link" href="'.SERVER_PATH.'staff">Manage product</a>
+                                </li>';
                         }
                         if ($_SESSION[ROLE_ID] == 3) {
-                            if (strpos($_SERVER['REQUEST_URI'], 'product') === false) {
-                                echo '<li class="nav-item">
-                                        <a class="nav-link" href="./admin">Admin only</a>
-                                    </li>';
-                            } else {
-                                echo '<li class="nav-item">
-                                        <a class="nav-link" href="../admin">Admin only</a>
-                                    </li>';
-                            };
+                            echo '<li class="nav-item">
+                                    <a class="nav-link" href="'.SERVER_PATH.'admin">Manage user</a>
+                                </li>';
                         }
                     }
                     ?>
@@ -153,17 +119,10 @@
                     <?php
                     // $pos = strpos($mystring, $findme);
                     // echo strpos('product', $_SERVER['REQUEST_URI']);
-                    if (strpos($_SERVER['REQUEST_URI'], 'product') === false) {
-                        echo '<a href="./cart" class="py-2 rounded-pill color-primary-bg">
+                        echo '<a href="'.SERVER_PATH.'cart" class="py-2 rounded-pill color-primary-bg">
                                     <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
                                     <span class="px-3 py-2 rounded-pill text-dark bg-light" id="cart-count">0</span>
-                                </a>';
-                    } else {
-                        echo '<a href="../cart" class="py-2 rounded-pill color-primary-bg">
-                                    <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
-                                    <span class="px-3 py-2 rounded-pill text-dark bg-light" id="cart-count">0</span>
-                                </a>';
-                    };
+                        </a>';
                     ?>
                 </form>
             </div>
