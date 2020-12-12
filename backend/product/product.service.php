@@ -135,6 +135,12 @@ class ProductService
         } else
             return false;
     }
+
+    function getActiveProduct(){
+        $stmt = $this->con->prepare("CALL GetActiveProduct()");
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
 }
 
 ?>

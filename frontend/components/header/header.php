@@ -30,10 +30,10 @@
 
     <!-- Custom CSS file -->
     <?php
-    echo "<link rel='stylesheet' href=".SERVER_PATH."frontend/style.css>";
+    echo "<link rel='stylesheet' href=" . SERVER_PATH . "style.css>";
 
     // <!-- Custom Javascript-->
-    echo "<script type='module' src=".SERVER_PATH."frontend/index.js></script>";
+    echo "<script type='module' src=" . SERVER_PATH . "index.js></script>";
     ?>
     <!--  isotope plugin cdn  -->
     <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
@@ -44,39 +44,45 @@
     <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByz03P6b4K2TUDMD8DCWG_KNHe7MNdtSs&callback=initMap"></script>
 
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
 <body class="d-flex flex-column" style="min-height: 100vh;">
     <!-- start #header -->
     <header id="header">
         <div class="strip d-flex justify-content-between px-4 py-1 bg-light">
-            <p class="font-rale font-size-12 text-black-50 m-0">Jordan Calderon 430-985 Eleifend St. Duluth Washington 92611 (427) 930-5255</p>
+            <p class="font-rale font-size-12 text-black-50 m-0">Phu Vinh Thang, 268 Lý Thường Kiệt, Phường 14, Quận 10, Thành phố Hồ Chí Minh (096) 709 1640</p>
             <div class="font-rale font-size-14 d-flex">
                 <?php
-                if (session_status() == PHP_SESSION_NONE) {
-                    session_start();
-                }
                 include_once("../backend/environments/Constants.php");
                 if (isset($_SESSION['userId'])) {
-                    echo "<p class='px-3 text-dark m-0'>" . $_COOKIE[USER_NAME] . "</p>";
-                    echo "<a href='../frontend/settings' class='px-3 border-right border-left text-dark'>Setting</a>";
-                    echo "<a href='../backend/user/LogoutUser.php' class='px-3 border-right border-left text-dark' id='login-btn'>Logout</a>";
+                    echo "<p class='px-3 text-dark m-auto'>" . $_COOKIE[USER_NAME] . "</p>";
+                    echo "<a href='".SERVER_PATH."settings' class='px-3 border-right m-auto border-left text-dark'>Setting</a>";
+                    echo "<a href='../backend/user/LogoutUser.php' class='px-3 m-auto border-right border-left text-dark' id='login-btn'>Logout</a>";
                 } else
-                    echo "<a href='../frontend/login' class='px-3 border-right border-left text-dark' id='logout-btn'>Login</a>"; ?>
+                    echo "<a href='".SERVER_PATH."login' class='px-3 border-right m-auto border-left text-dark' id='logout-btn'>Login</a>"; ?>
             </div>
         </div>
 
         <!-- Primary Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark color-secondary-bg">
-            <a class="navbar-brand" href="../frontend/home">Phu Vinh</a>
+            <?php
+                echo '<a class="navbar-brand" href="'.SERVER_PATH.'home">Phu Vinh</a>';
+            ?>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav font-rubik mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../frontend/home">Homepage</a>
-                    </li>
+                    <?php
+                    // $pos = strpos($mystring, $findme);
+                    // echo strpos('product', $_SERVER['REQUEST_URI']);
+                    echo '<li class="nav-item active">
+                            <a class="nav-link" href="'.SERVER_PATH.'home">Homepage</a>
+                        </li>';
+                   
+                    ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Category
@@ -88,20 +94,36 @@
                             <a class="dropdown-item" href="#">Mac</a>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Blog</a>
-                    </li>
+
+                    <?php
+                    if (isset($_SESSION[USER_ID]) && isset($_SESSION[ROLE_ID])) {
+                        if ($_SESSION[ROLE_ID] == 2 || $_SESSION[ROLE_ID] == 3) {
+                            echo '<li class="nav-item">
+                                    <a class="nav-link" href="'.SERVER_PATH.'staff">Manage product</a>
+                                </li>';
+                        }
+                        if ($_SESSION[ROLE_ID] == 3) {
+                            echo '<li class="nav-item">
+                                    <a class="nav-link" href="'.SERVER_PATH.'admin">Manage user</a>
+                                </li>';
+                        }
+                    }
+                    ?>
                 </ul>
                 <form class="form-inline my-lg-0 mx-lg-2 mx-sm-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
                 </form>
 
-                <form action="#" class="font-size-14 font-rale">
-                    <a href="../frontend/cart" class="py-2 rounded-pill color-primary-bg">
-                        <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
-                        <span class="px-3 py-2 rounded-pill text-dark bg-light" id="cart-count">0</span>
-                    </a>
+                <form action="#" class="font-size-14 font-rale cartIcon">
+                    <?php
+                    // $pos = strpos($mystring, $findme);
+                    // echo strpos('product', $_SERVER['REQUEST_URI']);
+                        echo '<a href="'.SERVER_PATH.'cart" class="py-2 rounded-pill color-primary-bg">
+                                    <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
+                                    <span class="px-3 py-2 rounded-pill text-dark bg-light" id="cart-count">0</span>
+                        </a>';
+                    ?>
                 </form>
             </div>
         </nav>

@@ -40,28 +40,24 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="profile_firstName" class="font-raleway font-italic font-weight-bold">First name*</label>
-                                <input type="text" id="profile_firstName" name="userFistname" search="false" image-upload="false" maxlength="50" 
-                                class="form-control font-rubik" placeholder="" spellcheck="false" onchange="checkDefaultValue()" required>
+                                <input type="text" id="profile_firstName" name="userFistname" search="false" image-upload="false" maxlength="50" class="form-control font-rubik" placeholder="" spellcheck="false" onchange="checkDefaultValue()" minlength="2" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="profile_lastName" class="font-raleway font-italic font-weight-bold">Last name*</label>
-                                <input type="text" id="profile_lastName" name="userLastname" search="false" image-upload="false" maxlength="50" 
-                                class="form-control font-rubik" placeholder="" spellcheck="false" onchange="checkDefaultValue()" required>
+                                <input type="text" id="profile_lastName" name="userLastname" search="false" image-upload="false" maxlength="50" class="form-control font-rubik" placeholder="" spellcheck="false" onchange="checkDefaultValue()" minlength="2" required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="profile_email" class="font-raleway font-italic font-weight-bold">Email*</label>
-                            <input type="email" id="profile_email" name="userEmail" search="false" image-upload="false" maxlength="50" 
-                            class="form-control font-rubik" placeholder="" spellcheck="false" onchange="checkDefaultValue()" required>
+                            <input type="email" id="profile_email" name="userEmail" search="false" image-upload="false" maxlength="50" class="form-control font-rubik" placeholder="" spellcheck="false" onchange="checkDefaultValue()" required>
                         </div>
 
                         <div class="form-group">
                             <label for="profile_address" class="font-raleway font-italic font-weight-bold">Address*</label>
-                            <input type="text" id="profile_address" name="userAddress" search="false" image-upload="false" maxlength="200" 
-                            class="form-control user_profile_input_form" placeholder="" spellcheck="false" onchange="checkDefaultValue()" required>
+                            <input type="text" id="profile_address" name="userAddress" search="false" image-upload="false" maxlength="200" class="form-control user_profile_input_form" placeholder="" spellcheck="false" onchange="checkDefaultValue()" required>
                         </div>
-                        
+
                         <div>
                             <button type="submit" value="save" disabled class="btn btn-info d-block w-25 mx-auto" id="submit-info">Save</button>
                             <div class="loader" id="loader" style="display: none;"></div>
@@ -87,7 +83,7 @@
                     </div>
                     <div class="row">
                         <div class="alert alert-danger alert-dismissible fade show mt-2 w-100" style="display: none;" id="inputcheck_upload_imgs_danger" role="alert">
-                            Success!
+                            Error!
                             <button type="button" class="close" onclick="closeAlert('inputcheck_upload_imgs_danger')">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -99,6 +95,7 @@
                             </button>
                         </div>
                     </div>
+
                     <div id="modal_avatar" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                             <!-- Modal content-->
@@ -109,17 +106,6 @@
                                 <div class="modal-body">
                                     <img src="" id='output' class='avt-modal mx-auto d-block'>
                                     <form id="form_user_profile_avatar" name="form_user_profile_avatar" class="user_profile_form" action="../backend/user/UploadAvatar.php" method="post" enctype="multipart/form-data">
-                                        <!-- <input type="file" name="fileToUpload" class="input_imgs font-size-16 color-primary-bg text-white font-rubik" accept="image/*" id="fileToUpload" onchange="loadFile(event)"> -->
-                                        <!-- <input type="submit" value="Upload Image" name="submit"> -->
-                                        <!-- <div class="row">
-                                                    <div class="column">
-                                                        <label class="user_profile_avatar_label">
-                                                        <input class="user_profile_avatar_radio" type="radio" name="profile_avatar">
-                                                        <img class="user_profile_avatar_img" 
-                                                        style="width:100px;height:100px;margin-bottom:5px;margin-left:10px;"/>
-                                                        </label>
-                                                    </div>
-                                                </div> -->
                                         <div class="input-group mt-3">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input font-size-16 font-rubik" name="fileToUpload" id="fileToUpload" accept="image/*" onchange="loadFile(event, 'output', 'imgs-label')">
@@ -149,15 +135,21 @@
 
                         <div class="form-group">
                             <label for="profile_password" class="font-raleway font-italic font-weight-bold">New</label>
-                            <input type="password" id="profile_password" name="newPassword" onPaste="return false" onCopy="return false" search="false" maxlength="32" class="form-control font-rubik" spellcheck="false">
+                            <input type="password" id="profile_password" name="profile_password" onPaste="return false" onCopy="return false" search="false" maxlength="32" class="form-control font-rubik" spellcheck="false">
                         </div>
 
                         <div class="form-group">
                             <label for="profile_password_re" class="font-raleway font-italic font-weight-bold">Confirm</label>
-                            <input type="password" id="profile_password_re" name="newPassword_re" onPaste="return false" onCopy="return false" search="false" maxlength="32" class="form-control font-rubik" spellcheck="false">
+                            <input type="password" id="profile_password_re" name="profile_password_re" onPaste="return false" onCopy="return false" search="false" maxlength="32" class="form-control font-rubik" spellcheck="false">
                         </div>
                         <button value="confirm" class="btn btn-info d-block w-25 mx-auto">Confirm</button>
                         <div class="loader" id="loader2" style="display: none;"></div>
+                        <div class="alert alert-danger alert-dismissible fade show mt-2" style="display: none;" id="inputcheck_password_error" role="alert">
+                            Error!
+                            <button type="button" class="close" onclick="closeAlert('inputcheck_password_error')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                         <div class="alert alert-success alert-dismissible fade show mt-2" style="display: none;" id="inputcheck_password" role="alert">
                             Success!
                             <button type="button" class="close" onclick="closeAlert('inputcheck_password')">

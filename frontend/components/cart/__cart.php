@@ -16,5 +16,24 @@
         </div>
         <!-- !subtotal section-->
     </div>
+    <!-- Modal -->
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog modal-dialog-centered modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <div class="icon-box">
+                        <i class="material-icons">&#xE876;</i>
+                    </div>
+                    <button onclick="reloadPage()" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body text-center">
+                    <h4>Great!</h4>
+                    <p>The transaction is successfully completed.</p>
+                    <p id="paymentShipment"></p>
+                    <a href="./homepage" class="btn d-flex justify-content-center align-items-center m-auto w-50"><span>Back to homepage</span> <i class="material-icons">&#xE5C8;</i></a>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <!--end #cart-->

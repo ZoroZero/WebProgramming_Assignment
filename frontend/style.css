@@ -6,6 +6,13 @@ button:focus {
   box-shadow: none !important;
 }
 
+@media only screen and (max-width: 991px) {
+  .cartIcon {
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+}
+
 /*typography classes*/
 .font-baloo {
   font-family: 'Baloo Thambi 2', cursive;
@@ -319,6 +326,108 @@ button:focus {
     width: 50%;
     margin: auto;
   }
+
+  .modal-confirm {
+    color: #434e65;
+    width: 525px;
+  }
+
+  .modal-confirm .modal-content {
+    padding: 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+  }
+
+  .modal-confirm .modal-header {
+    background: #47c9a2;
+    border-bottom: none;
+    position: relative;
+    text-align: center;
+    margin: -20px -20px 0;
+    border-radius: 5px 5px 0 0;
+    padding: 35px;
+  }
+
+  .modal-confirm h4 {
+    text-align: center;
+    font-size: 36px;
+    margin: 10px 0;
+  }
+
+  .modal-confirm .form-control,
+  .modal-confirm .btn {
+    min-height: 40px;
+    border-radius: 3px;
+  }
+
+  .modal-confirm .close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #fff;
+    text-shadow: none;
+    opacity: 0.5;
+  }
+
+  .modal-confirm .close:hover {
+    opacity: 0.8;
+  }
+
+  .modal-confirm .icon-box {
+    color: #fff;
+    width: 95px;
+    height: 95px;
+    display: inline-block;
+    border-radius: 50%;
+    z-index: 9;
+    border: 5px solid #fff;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .modal-confirm .icon-box i {
+    font-size: 64px;
+    margin: -4px 0 0 -4px;
+  }
+
+  .modal-confirm .btn,
+  .modal-confirm .btn:active {
+    color: #fff;
+    border-radius: 4px;
+    background: #eeb711 !important;
+    text-decoration: none;
+    transition: all 0.4s;
+    line-height: normal;
+    border-radius: 30px;
+    margin-top: 10px;
+    padding: 6px 20px;
+    border: none;
+  }
+
+  .modal-confirm .btn:hover,
+  .modal-confirm .btn:focus {
+    background: #eda645 !important;
+    outline: none;
+    color: white;
+    cursor: pointer;
+  }
+
+  .modal-confirm .btn span {
+    margin: 1px 3px 0;
+    float: left;
+  }
+
+  .modal-confirm .btn i {
+    margin-left: 1px;
+    font-size: 20px;
+    float: right;
+  }
+
+  .trigger-btn {
+    display: inline-block;
+    margin: 100px auto;
+  }
 }
 table.dataTable thead .sorting:after,
 table.dataTable thead .sorting:before,
@@ -409,6 +518,82 @@ div.form-group label.error {
 #category .grid .grid-item {
   margin-top: 1rem;
   margin-right: 1.2rem;
+}
+
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  background-color: #c3e6cb;
+  color: #155724;
+}
+
+#snackbar.show.error {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

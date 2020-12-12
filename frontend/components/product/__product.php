@@ -141,6 +141,7 @@
             <!-- product description section -->
 
         </div>
+        <div id="snackbar">Successfully added to cart..</div>
     </div>
 </section>
 <!--product-->

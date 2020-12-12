@@ -1,7 +1,7 @@
 <!-- start staff section -->
 <section id="staff">
     <div class="container-fluid w-75 my-4 d-flex flex-column justify-content-between align-items-center">
-        <table class="table table-hover mb-0">
+        <table class="table table-responsive-md table-hover mb-0">
             <thead>
                 <tr>
                     <th scope="col">ID</th>

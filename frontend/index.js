@@ -53,18 +53,37 @@ $(document).ready(function() {
 })
 
 
-function addtoCart(element){
+function addtoCart(element, amount){
+    console.log(amount)
     var cartProductList = getCookie(cartCookie);
     cartItemList = cartProductList && cartProductList!=""? cartProductList.split(','):[];
     console.log(cartItemList)
-    if(cartItemList.filter(x => x === element.toString()).length === 0){
-        cartItemList.push(element);
-        $('#cart-count').html(cartItemList.length);
-        var productIdList = cartItemList.join(',').toString();        
-        if(getCookie(cartCookie) !== ""){
-            deleteCookie(cartCookie);
+    if(amount <= 0) {
+        var x = document.getElementById("snackbar");
+        x.innerHTML = '<span class="material-icons mr-1">error</span> This item is out of stock. Please select other items'
+        x.className = "show error";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    }
+    else {
+        if(cartItemList.filter(x => x === element.toString()).length === 0){
+            var x = document.getElementById("snackbar");
+            x.className = "show";
+            x.innerHTML = '<span class="material-icons mr-1"> done </span> Successfully added to cart.'
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+            cartItemList.push(element);
+            $('#cart-count').html(cartItemList.length);
+            var productIdList = cartItemList.join(',').toString();        
+            if(getCookie(cartCookie) !== ""){
+                deleteCookie(cartCookie);
+            }
+            setCookie(cartCookie, productIdList, 1);
         }
-        setCookie(cartCookie, productIdList, 1);
+        else {
+            var x = document.getElementById("snackbar");
+            x.innerHTML = '<span class="material-icons mr-1">error</span> This item is already in cart.'
+            x.className = "show error";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        }
     }
 }
 
@@ -74,7 +93,7 @@ export function loadFile(event, imgId, id) {
     document.getElementById(id).innerHTML = event.target.files[0].name;
     document.getElementById(id).setAttribute("title", event.target.files[0].name);
     if(imgId === 'output' || imgId === 'change-product-setting-img') {
-        output.style.display= 'inline';
+        output.style.display= 'block';
     }
     output.onload = function() {
         URL.revokeObjectURL(output.src) // free memory

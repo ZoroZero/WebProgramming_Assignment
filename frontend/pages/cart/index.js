@@ -8,6 +8,7 @@ window.increment = increment;
 window.decrement = decrement;
 window.removeFromCart = removeFromCart;
 window.buyProduct = buyProduct;
+window.reloadPage = reloadPage;
 $(document).ready(function() {
     getCartProductInformation();
 })
@@ -44,19 +45,19 @@ function getCartProductInformation(){
                                     <div class="font-size-12 my-2 color-secondary">
                                         <span class="fas fa-retweet border p-2 rounded-pill"></span>
                                     </div>
-                                    <a href="#" class="font-rale font-size-12">10 Days <br> Replacement</a>
+                                    <p class="font-rale text-info font-size-12">10 Days <br> Replacement</p>
                                 </div>
                                 <div class="return mr-3 mr-lg-4 mr-xl-5">
                                     <div class="font-size-12 my-2 color-secondary">
                                         <span class="fas fa-truck  border p-2 rounded-pill"></span>
                                     </div>
-                                    <a href="#" class="font-rale font-size-12">Free <br> Shipping</a>
+                                    <p class="font-rale text-info font-size-12">Free <br> Shipping</p>
                                 </div>
                                 <div class="return mr-3 mr-lg-4 mr-xl-5">
                                     <div class="font-size-12 my-2 color-secondary">
                                         <span class="fas fa-check-double border p-2 rounded-pill"></span>
                                     </div>
-                                    <a href="#" class="font-rale font-size-12">1 Year <br> Warranty</a>
+                                    <p class="font-rale text-info font-size-12">1 Year <br> Warranty</p>
                                 </div>
                             </div>
                         </div>
@@ -68,15 +69,20 @@ function getCartProductInformation(){
                         <div class="qty">
                             <div class="d-flex font-rale">
                                 <button class="border bg-light" onclick="decrement(${element.Id})"><i class="fas fa-angle-down"></i></button>
-                                <input type="number" id="amount-${element.Id}" class="border px-2 w-100 bg-light" min="1" max="5" value="${element.Amount >= 1 ? 1: 0}">
+                                <input disabled type="number" id="amount-${element.Id}" class="border px-2 w-100 bg-light" min="1" max="${element.Amount}" value="${element.Amount >= 1 ? 1: 0}">
                                 <button class="border bg-light" onclick="increment(${element.Id})"><i class="fas fa-angle-up"></i></button>
                             </div>
                         </div>
                         <!-- !product qty -->
+                        <!-- product qty left -->
+                        <div class="qtyleft text-center mt-3">
+                            <p class="font-baloo text-muted"> There are only <span style="font-weight: bold">${element.Amount>= 1 ? element.Amount : 0}</span> items left</p>
+                        </div>
+                        <!-- !product qty left -->
                     </div>
                     <div class="col-6 col-sm-6 col-md-2 col-lg-2 col-xl -2 text-right">
                         <div class="font-size-20 text-danger font-baloo">
-                            <span class="product_price">${formatPrice(element.Price)}</span>
+                            <span class="product_price" id="product-price-${element.Id}">${formatPrice(element.Price)}</span>
                         </div>
                     </div>
                 </div>`});
@@ -108,9 +114,15 @@ function removeFromCart(productId){
     }
 }
 
+Date.prototype.addDays = function(days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+}
 
 function buyProduct(){
     var userId = getCookie('userId');
+    var date = new Date().addDays(7);
     var buyList = productList.map(function(element){
         return {id: element.Id, buyAmount: element.BuyAmount}
     }); 
@@ -123,6 +135,14 @@ function buyProduct(){
             success: function (response) {          
                 console.log(response);
                 deleteCookie(cartCookie);
+                $('#myModal').modal('show')
+                document.getElementById('paymentShipment').innerHTML = `The shipment is estimated to be delivered in <span style="font-weight: bold"> ${date.getDay() === 0 ? 'Sunday' : 
+                                                                                                                        date.getDay() === 1 ? 'Monday' :
+                                                                                                                        date.getDay() === 2 ? 'Tuesday' :
+                                                                                                                        date.getDay() === 3 ? 'Wendnesday' :
+                                                                                                                        date.getDay() === 4 ? 'Thurday' :
+                                                                                                                        date.getDay() === 5 ? 'Friday' : 'Saturday'}, ${date.getDate()}/${date.getUTCMonth()+1}/${date.getFullYear()} </span>`;
+                console.log(date.getDate())
             },
             failure: function (response) {          
                 console.log("Error ", response);
@@ -134,12 +154,17 @@ function buyProduct(){
     }
 }
 
+function reloadPage() {
+    location.reload()
+}
+
 
 function increment(id) {
-    
     var product = productList.find(o => o.Id === id);
     if(product.Amount > parseInt(document.getElementById(`amount-${id}`).value)){
         document.getElementById(`amount-${id}`).stepUp();
+        console.log(parseInt(document.getElementById(`amount-${id}`).value))
+        document.getElementById(`product-price-${id}`).innerHTML = formatPrice(parseInt(document.getElementById(`amount-${id}`).value) * product.Price)
         product.BuyAmount = parseInt(document.getElementById(`amount-${id}`).value);
         total_price = productList.map(o => o.Price*o.BuyAmount).reduce((acc, cur) => cur + acc, 0);
         total_buy_amount = productList.map(o => o.BuyAmount).reduce((acc, cur) => cur + acc, 0);
@@ -149,7 +174,9 @@ function increment(id) {
 }
 
 function decrement(id) {
+    var product = productList.find(o => o.Id === id);
     document.getElementById(`amount-${id}`).stepDown();
+    document.getElementById(`product-price-${id}`).innerHTML = formatPrice(parseInt(document.getElementById(`amount-${id}`).value) * product.Price)
     productList.find(o => o.Id === id).BuyAmount = parseInt(document.getElementById(`amount-${id}`).value);
     total_price = productList.map(o => o.Price*o.BuyAmount).reduce((acc, cur) => cur + acc, 0);
     total_buy_amount = productList.map(o => o.BuyAmount).reduce((acc, cur) => cur + acc, 0);
