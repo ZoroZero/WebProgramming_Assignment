@@ -2,7 +2,6 @@ import {formatPrice, getProductCategory, getCookie} from '../../index.js';
 
 $(document).ready(function() {
   fetchProduct();
-  //isotope filter
 });
 
 
@@ -55,9 +54,8 @@ function fetchProduct(){
                 productprice: '.product-price'
             }
           })
-          var filterBranch = getCookie('filterBranch');
-          console.log(filterBranch);
-          $grid.isotope({filter: filterBranch});
+
+          $grid.isotope({filter: '*'});
         
           //filter items on button press
           $(".button-group").on("click", "button", function(){

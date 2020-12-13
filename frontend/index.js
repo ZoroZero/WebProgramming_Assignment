@@ -33,12 +33,7 @@ $(document).ready(function() {
     var cartProductList = getCookie(cartCookie);
     cartItemList = cartProductList && cartProductList!=""? cartProductList.split(','):[];
     $('#cart-count').html(cartItemList.length);
-    $('#filter-windows').click(function() {
-        var href = this.href;
-        event.preventDefault();
-        setCookie('filterBranch', 'Windows', 1);
-        window.location = href;
-    });
+
     $(function () {
         jQuery.validator.addMethod("notEqual", function(value, element, param) {
             return this.optional(element) || value != $(param).val(); 
