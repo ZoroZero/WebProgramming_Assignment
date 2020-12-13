@@ -14,7 +14,11 @@ export var total_buy_amount;
 window.addtoCart = addtoCart;
 window.initMap = initMap;
 window.showSearchResult = showSearchResult;
+var globalVar = '*';
 
+export function getFilter(){
+    return globalVar;
+}
 window.onclick = function(event){
     if(!event.target.matches('.dropdown-content')){
         var myDropdown = document.getElementById("livesearch");
@@ -29,7 +33,12 @@ $(document).ready(function() {
     var cartProductList = getCookie(cartCookie);
     cartItemList = cartProductList && cartProductList!=""? cartProductList.split(','):[];
     $('#cart-count').html(cartItemList.length);
-
+    $('#filter-windows').click(function() {
+        var href = this.href;
+        event.preventDefault();
+        setCookie('filterBranch', 'Windows', 1);
+        window.location = href;
+    });
     $(function () {
         jQuery.validator.addMethod("notEqual", function(value, element, param) {
             return this.optional(element) || value != $(param).val(); 

@@ -87,10 +87,10 @@
                                     Category
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Windows</a>
-                                    <a class="dropdown-item" href="#">Linux</a>
+                                    <a class="dropdown-item" href="'.SERVER_PATH.'category" id="filter-windows">Windows</a>
+                                    <a class="dropdown-item" href="'.SERVER_PATH.'category">Linux</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Mac</a>
+                                    <a class="dropdown-item" href="'.SERVER_PATH.'category">Mac</a>
                                 </div>
                             </li>';
                         }
