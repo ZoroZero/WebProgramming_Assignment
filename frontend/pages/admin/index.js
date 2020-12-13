@@ -157,6 +157,7 @@ function getAllCurrentUser(){
                               <td>${element.LastName}</td>
                               <td>${getRole(element.RoleId)}</td>
                               <td>${element.Email}</td>
+                              <td>${element.IsActive? 'Active' : 'Inactive'}
                               <td> 
                                   <button type="button" class="btn btn-primary" onclick=initUpdateUserForm(${element.Id})
                                   data-toggle="modal" data-target="#userModal" >Update</button>
@@ -173,7 +174,7 @@ function getAllCurrentUser(){
 
 function initUpdateUserForm(id){
     var user = tableUserList.filter(element => element.Id === id)[0];
-    document.getElementById('btn-submit-update').setAttribute("disabled", true)
+    // document.getElementById('btn-submit-update').setAttribute("disabled", true)
     for (var i = 0; i < document.getElementsByTagName('input').length; i++) {
         document.getElementsByTagName('input')[i].classList.remove("error");
     }

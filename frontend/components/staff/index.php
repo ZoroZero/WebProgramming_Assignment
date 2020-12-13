@@ -11,6 +11,7 @@
                     <th scope="col">Amount</th>
                     <th scope="col">Discount (%)</th>
                     <th scope="col">Quanlity Sold</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Update</th>
                 </tr>
             </thead>
