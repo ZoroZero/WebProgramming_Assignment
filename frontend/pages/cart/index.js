@@ -82,7 +82,7 @@ function getCartProductInformation(){
                     </div>
                     <div class="col-6 col-sm-6 col-md-2 col-lg-2 col-xl -2 text-right">
                         <div class="font-size-20 text-danger font-baloo">
-                            <span class="product_price" id="product-price-${element.Id}">${formatPrice(element.Price)}</span>
+                            <span class="product_price" id="product-price-${element.Id}">${formatPrice(element.Price*(100-element.Discount)/100)}</span>
                         </div>
                     </div>
                 </div>`});
@@ -166,7 +166,7 @@ function increment(id) {
         console.log(parseInt(document.getElementById(`amount-${id}`).value))
         document.getElementById(`product-price-${id}`).innerHTML = formatPrice(parseInt(document.getElementById(`amount-${id}`).value) * product.Price)
         product.BuyAmount = parseInt(document.getElementById(`amount-${id}`).value);
-        total_price = productList.map(o => o.Price*o.BuyAmount).reduce((acc, cur) => cur + acc, 0);
+        total_price = productList.map(o => (o.Price*(100-o.Discount)/100)*o.BuyAmount).reduce((acc, cur) => cur + acc, 0);
         total_buy_amount = productList.map(o => o.BuyAmount).reduce((acc, cur) => cur + acc, 0);
         $('#deal-price').html(formatPrice(total_price));
         $('#deal-amount').html(`Subtotal (${total_buy_amount} items):`);
@@ -178,7 +178,7 @@ function decrement(id) {
     document.getElementById(`amount-${id}`).stepDown();
     document.getElementById(`product-price-${id}`).innerHTML = formatPrice(parseInt(document.getElementById(`amount-${id}`).value) * product.Price)
     productList.find(o => o.Id === id).BuyAmount = parseInt(document.getElementById(`amount-${id}`).value);
-    total_price = productList.map(o => o.Price*o.BuyAmount).reduce((acc, cur) => cur + acc, 0);
+    total_price = productList.map(o => (o.Price*(100-o.Discount)/100)*o.BuyAmount).reduce((acc, cur) => cur + acc, 0);
     total_buy_amount = productList.map(o => o.BuyAmount).reduce((acc, cur) => cur + acc, 0);
     $('#deal-price').html(formatPrice(total_price))
     $('#deal-amount').html(`Subtotal (${total_buy_amount} items):`)
