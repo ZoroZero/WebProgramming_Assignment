@@ -13,6 +13,21 @@ export var total_price;
 export var total_buy_amount;
 window.addtoCart = addtoCart;
 window.initMap = initMap;
+window.showSearchResult = showSearchResult;
+var globalVar = '*';
+
+export function getFilter(){
+    return globalVar;
+}
+window.onclick = function(event){
+    if(!event.target.matches('.dropdown-content')){
+        var myDropdown = document.getElementById("livesearch");
+        if (myDropdown.classList.contains('show')) {
+          myDropdown.classList.remove('show');
+          myDropdown.innerHTML = "";
+        }
+    }
+}
 
 $(document).ready(function() {
     var cartProductList = getCookie(cartCookie);
@@ -182,4 +197,34 @@ export function getProductCategory(categoryId){
         case 2: return 'Mac';
         case 3: return 'Linux';
     }
+}
+
+function showSearchResult(str) {
+    if (str.length==0) {
+      $("#livesearch").innerHTML="";
+      document.getElementById("livesearch").style.border="0px";
+      return;
+    }
+    $.get(`../backend/product/SearchProduct.php?keyword=${str}`,
+      function(response) {
+        if(response){
+            if(!JSON.parse(response)['error']){
+                let information = JSON.parse(response)['data'];
+                console.log("Search", information);
+                var list_product = information.map(function(element){
+                    return `<a href='./product/${element.Id}'>
+                                ${element.Name}
+                            </a>`
+                })
+                let liveSearch = document.getElementById('livesearch'); 
+                liveSearch.innerHTML = list_product.join(' ');
+                if (!liveSearch.classList.contains('show')) {
+                    liveSearch.classList.add('show');
+                }
+            }
+            else{
+                console.log("Error ", JSON.parse(response)['message']);
+            }
+    }
+    })
 }
