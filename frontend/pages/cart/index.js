@@ -30,7 +30,8 @@ function getCartProductInformation(){
                 total_price = productList.map(o => o.Price).reduce((acc, cur) => cur + acc, 0)
                 total_buy_amount = productList.map(o => o.BuyAmount).reduce((acc, cur) => cur + acc, 0)
                 var list_product = productList.map(function(element){
-                    return `<div class="row border-top py-3">
+                    return `
+                    <div class="row border-top py-3">
                         <div class="col-12 col-sm-6 col-md-3 col-lg-3 col-xl-2 cart-img">
                             <a href="../frontend/product/${element.Id}">
                                 <img  src="../frontend/${element.Path}" alt="cart1" class="img-fluid">
@@ -80,10 +81,10 @@ function getCartProductInformation(){
                             </div>
                             <!-- !product qty left -->
                         </div>
-                        <div class="col-6 col-sm-6 col-md-2 col-lg-2 col-xl -2 text-right">
-                            <div class="font-size-20 text-danger font-baloo">
-                                <span class="product_price" id="product-price-${element.Id}">${formatPrice(element.Price)}</span>
-                            </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-2 col-lg-2 col-xl -2 text-right">
+                        <div class="font-size-20 text-danger font-baloo">
+                            <span class="product_price" id="product-price-${element.Id}">${formatPrice(element.Price*(100-element.Discount)/100)}</span>
                         </div>
                     </div>`
                 });
@@ -162,12 +163,13 @@ function reloadPage() {
 
 function increment(id) {
     var product = productList.find(o => o.Id === id);
+    var price = (product.Price*(100-product.Discount)/100);
     if(product.Amount > parseInt(document.getElementById(`amount-${id}`).value)){
         document.getElementById(`amount-${id}`).stepUp();
         console.log(parseInt(document.getElementById(`amount-${id}`).value))
-        document.getElementById(`product-price-${id}`).innerHTML = formatPrice(parseInt(document.getElementById(`amount-${id}`).value) * product.Price)
+        document.getElementById(`product-price-${id}`).innerHTML = formatPrice(parseInt(document.getElementById(`amount-${id}`).value) * price)
         product.BuyAmount = parseInt(document.getElementById(`amount-${id}`).value);
-        total_price = productList.map(o => o.Price*o.BuyAmount).reduce((acc, cur) => cur + acc, 0);
+        total_price = productList.map(o => (o.Price*(100-o.Discount)/100)*o.BuyAmount).reduce((acc, cur) => cur + acc, 0);
         total_buy_amount = productList.map(o => o.BuyAmount).reduce((acc, cur) => cur + acc, 0);
         $('#deal-price').html(formatPrice(total_price));
         $('#deal-amount').html(`Subtotal (${total_buy_amount} items):`);
@@ -176,10 +178,11 @@ function increment(id) {
 
 function decrement(id) {
     var product = productList.find(o => o.Id === id);
+    var price = (product.Price*(100-product.Discount)/100);
     document.getElementById(`amount-${id}`).stepDown();
-    document.getElementById(`product-price-${id}`).innerHTML = formatPrice(parseInt(document.getElementById(`amount-${id}`).value) * product.Price)
+    document.getElementById(`product-price-${id}`).innerHTML = formatPrice(parseInt(document.getElementById(`amount-${id}`).value) * price)
     productList.find(o => o.Id === id).BuyAmount = parseInt(document.getElementById(`amount-${id}`).value);
-    total_price = productList.map(o => o.Price*o.BuyAmount).reduce((acc, cur) => cur + acc, 0);
+    total_price = productList.map(o => (o.Price*(100-o.Discount)/100)*o.BuyAmount).reduce((acc, cur) => cur + acc, 0);
     total_buy_amount = productList.map(o => o.BuyAmount).reduce((acc, cur) => cur + acc, 0);
     $('#deal-price').html(formatPrice(total_price))
     $('#deal-amount').html(`Subtotal (${total_buy_amount} items):`)

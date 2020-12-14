@@ -288,6 +288,7 @@ function getAllProduct(){
                                 <td>${element.Amount}</td>
                                 <td>${element.Discount}</td>
                                 <td>${element.QuantitySold}</td>
+                                <td>${element.IsDeleted? 'Deleted': 'Active'}</td>
                                 <td> 
                                     <button type="button" class="btn btn-primary" onclick=initUpdateProductForm(${element.Id})
                                     data-toggle="modal" data-target="#productModal" data-whatever="@mdo">Update</button>
