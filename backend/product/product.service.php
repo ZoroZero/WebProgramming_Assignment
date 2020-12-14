@@ -141,6 +141,13 @@ class ProductService
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
+
+    function searchProduct($keyword){
+        $stmt = $this->con->prepare("CALL SearchProduct(?)");
+        $stmt->bind_param("s", $keyword);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
 }
 
 ?>

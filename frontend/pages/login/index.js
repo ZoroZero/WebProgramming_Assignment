@@ -64,7 +64,12 @@ $(document).ready(function() {
                             var downloadTimer = setInterval(function() {
                                 if (timeleft <= 0) {
                                     clearInterval(downloadTimer);
-                                    window.location.replace("../frontend/home");
+                                    if(response.role == 1){
+                                        window.location.replace("../frontend/home");
+                                    }
+                                    else{
+                                        window.location.replace("../frontend/staff");
+                                    }
                                 } else {
                                     document.getElementById("inputcheck_success").innerHTML = `${response.message}! Please wait for ${timeleft} seconds to redirect to homepage.`;
                                 }
