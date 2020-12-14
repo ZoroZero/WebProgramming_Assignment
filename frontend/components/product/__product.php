@@ -102,10 +102,6 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">Mainboard</th>
-                                <td id='mainboard-information'>Asus EX H410M-V3</td>
-                            </tr>
-                            <tr>
                                 <th scope="row">CPU </th>
                                 <td id='cpu-information'>Intel Pentium G6400 / 4MB / 4.0GHz / 2 Nhân 4 Luồng / LGA 1200</td>
                             </tr>
@@ -124,10 +120,6 @@
                             <tr>
                                 <th scope="row">PSU </th>
                                 <td id='psu-information'>Deepcool DN450 80 Plus</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Case </th>
-                                <td id='case-information'>Xigmatek NYX 3F RGB ( Mini Tower )</td>
                             </tr>
                             <tr>
                                 <th scope="row">OS </th>

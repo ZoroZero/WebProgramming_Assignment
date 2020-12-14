@@ -24,6 +24,7 @@
                             <div class="form-group">
                                 <label for="username">Username</label>
                                 <input type="text" class="form-control font-raleway" name="username" id="username" placeholder="Enter your username here...">
+                                <small>Note: Username can not be changed after registering.</small>
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>

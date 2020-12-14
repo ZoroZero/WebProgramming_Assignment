@@ -4,8 +4,6 @@ $(document).ready(function() {
   fetchProduct();
 });
 
-
-
 function fetchProduct(){
   $.get(`../backend/product/GetActiveProducts.php`,
       function(response) {
@@ -17,8 +15,8 @@ function fetchProduct(){
               return `<div class="grid-item ${getProductCategory(product.CategoryId)} border">
                         <div class="item py-2 px-2" style="width: 200px;">
                             <div class="product font-rale">
-                                <a href="#">
-                                    <img src="${'../frontend/' + product.Path}" alt="product10" class="img-fluid">
+                                <a href="../frontend/product/${product.Id}">
+                                    <img src="${'../frontend/' + product.Path}" id="product-img" alt="product10" class="img-fluid">
                                 </a>
                                 <div class="text-center">
                                     <h6 class="product-name">
@@ -34,13 +32,15 @@ function fetchProduct(){
                                         </span>
                                     </div>
                                     <div class="price py-2">
-                                        <span class="product-price">${formatPrice(product.Price)}</span>
+                                        <p style="display: none" class="product-price">${product.Price}</p>
+                                        <span>${formatPrice(product.Price)}</span>
                                     </div>
-                                    <button type="submit" class="btn btn-warning font-size-12">Add to cart</button>
+                                    <button type="submit" class="btn btn-warning font-size-12" onclick="addtoCart(${product.Id}, ${product.Amount})">Add to cart</button>
                                 </div>
                             </div>
                         </div>
-                    </div>`});
+                    </div>`
+            });
             $('#products-grid').html(list_product.join(' '));
           }
           else{
@@ -51,29 +51,29 @@ function fetchProduct(){
             layoutMode: 'fitRows',
             getSortData: {
                 productname: '.product-name',
-                productprice: '.product-price'
-            }
+                productprice: '.product-price parseInt'
+            },
           })
+          $(window).on('load', function(){
+            $grid.isotope({filter: '*'})
+              //filter items on button press
+            $(".button-group").on("click", "button", function(){
+              var filterValue = $(this).attr('data-filter');
+              $grid.isotope({filter: filterValue});
+            })
 
-          $grid.isotope({filter: '*'});
-        
-          //filter items on button press
-          $(".button-group").on("click", "button", function(){
-            var filterValue = $(this).attr('data-filter');
-            $grid.isotope({filter: filterValue});
-          })
-        
-          $(".button-group-sort").on("click", "button", function(){
-            var filterValue = $(this).attr('data-filter');
-            console.log(filterValue)
-        
-            var direction = $(this).attr('direction');
-        
-            /* convert it to a boolean */
-            var isAscending = (direction === 'asc');
-            /* pass it to isotope */
-            $grid.isotope({ sortBy: filterValue, sortAscending: isAscending });
-          })
+            $(".button-group-sort").on("click", "button", function(){
+              var filterValue = $(this).attr('data-filter');
+              console.log(filterValue)
+
+              var direction = $(this).attr('direction');
+
+              /* convert it to a boolean */
+              var isAscending = (direction === 'asc');
+              /* pass it to isotope */
+              $grid.isotope({ sortBy: filterValue, sortAscending: isAscending });
+            })
+          });
         }
     });
 }

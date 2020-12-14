@@ -95,7 +95,6 @@ class UserService
         $convert_userId = (int)$params["id"];
         $newPassword = $params['profile_password'];
         $newHashedPass = md5($newPassword);
-        echo $newHashedPass;
         $stmt = $this->con->prepare("CALL UpdateUserPassword(?, ?)");
         $stmt->bind_param("is", $convert_userId, $newHashedPass);
         if ($stmt->execute()) {
@@ -117,15 +116,17 @@ class UserService
             return false;
     }
 
-    
-    function getAllUser(){
+
+    function getAllUser()
+    {
         $stmt = $this->con->prepare("CALL GetAllUser()");
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
 
 
-    function adminUpdateUserInformation($params){
+    function adminUpdateUserInformation($params)
+    {
         $convert_userId = (int)$params["userId"];
         $fname = $params["userFistname"];
         $lname = $params["userLastname"];
@@ -143,7 +144,8 @@ class UserService
     }
 
 
-    function addNewUser($params){
+    function addNewUser($params)
+    {
         $fname = $params["userFistname"];
         $lname = $params["userLastname"];
         $email = $params["userEmail"];

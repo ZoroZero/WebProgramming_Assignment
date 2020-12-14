@@ -1,10 +1,10 @@
 <!-- start category -->
 <section id="category">
     <div class="container my-4">
-        <h4 class="font-rubik font-size-20">Browsing category/search result product-name here</h4>
+        <h4 class="font-rubik font-size-20">Filter products here</h4>
 
         <!--filter box-->
-        <div class="p-3 mb-2 bg-light text-secondary shadow w-50">
+        <div class="p-3 mb-2 bg-light text-secondary shadow w-50 w-xs-100">
             <h4 class="font-rubik font-size-20">FILTER</h4>
 
             <div id="filters" class="button-group text-left font-baloo font-size-20">
@@ -38,8 +38,9 @@
         <!--end filter box-->
 
         <div class="grid" id='products-grid'>
-            
+
         </div>
+        <div id="snackbar">Successfully added to cart..</div>
     </div>
 </section>
 <!-- end category -->

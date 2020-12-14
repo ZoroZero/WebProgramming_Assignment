@@ -68,28 +68,47 @@ class ProductService
     }
 
     // Add new product
-    function addNewProduct($params, $imageFileName, $imageType, $imageFilePath){
+    function addNewProduct($params, $imageFileName, $imageType, $imageFilePath)
+    {
         $userId = (int)$params['userId'];
         $category = (int)$params['category'];
-        $productName = $params['productName'];
-        $productDescription = $params['productDescription'];
-        $productPrice = (int)$params['productPrice'];
-        $productOs = $params['productOs'];
-        $productRam = $params['productRam'];
-        $productMonitor = $params['productMonitor'];
-        $productMouse = $params['productMouse'];
-        $productStorage = $params['productStorage'];
-        $productGpu = $params['productGpu'];
-        $productCpu = $params['productCpu'];
-        $productPsu = $params['productPsu'];
-        $productAmount = (int)$params['productAmount'];
-        $productDiscount = (int)$params['productDiscount'];
+        $productName = $params['productAddName'];
+        $productDescription = $params['productAddDescription'];
+        $productPrice = (int)$params['productAddPrice'];
+        $productOs = $params['productAddOs'];
+        $productRam = $params['productAddRam'];
+        $productMonitor = $params['productAddMonitor'];
+        $productMouse = $params['productAddMouse'];
+        $productStorage = $params['productAddStorage'];
+        $productGpu = $params['productAddGpu'];
+        $productCpu = $params['productAddCpu'];
+        $productPsu = $params['productAddPsu'];
+        $productAmount = (int)$params['productAddAmount'];
+        $productDiscount = (int)$params['productAddDiscount'];
         $productQuantitySold = 0;
 
         $stmt = $this->con->prepare("CALL AddNewProduct(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("iississssssssiisss", $userId, $category, $productName, $productDescription, $productPrice, $productOs,
-        $productRam, $productMonitor, $productMouse, $productStorage, $productGpu, $productCpu, $productPsu, $productAmount, 
-        $productDiscount, $imageFileName, $imageType, $imageFilePath);
+        $stmt->bind_param(
+            "iississssssssiisss",
+            $userId,
+            $category,
+            $productName,
+            $productDescription,
+            $productPrice,
+            $productOs,
+            $productRam,
+            $productMonitor,
+            $productMouse,
+            $productStorage,
+            $productGpu,
+            $productCpu,
+            $productPsu,
+            $productAmount,
+            $productDiscount,
+            $imageFileName,
+            $imageType,
+            $imageFilePath
+        );
         if ($stmt->execute()) {
             return true;
         } else
@@ -97,7 +116,8 @@ class ProductService
     }
 
     // Update product information
-    function updateProductInformation($params){
+    function updateProductInformation($params)
+    {
         $userId = (int)$params['userId'];
         $productId = (int)$params['productId'];
         $productName = $params['productName'];
@@ -114,35 +134,55 @@ class ProductService
         $productAmount = (int)$params['productAmount'];
         $productDiscount = (int)$params['productDiscount'];
         $productQuantitySold = (int)$params['productQuantitySold'];
-        $isDeleted = (int)$params['isDeleted'];
+        $isDeleted = (int)$params['inputState'];
 
         $stmt = $this->con->prepare("CALL UpdateProductInformation(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("iississssssssiiii", $userId, $productId, $productName, $productDescription, $productPrice, $productOs,
-        $productRam, $productMonitor, $productMouse, $productStorage, $productGpu, $productCpu, $productPsu, $productAmount, 
-        $productDiscount, $productQuantitySold, $isDeleted);
+        $stmt->bind_param(
+            "iississssssssiiii",
+            $userId,
+            $productId,
+            $productName,
+            $productDescription,
+            $productPrice,
+            $productOs,
+            $productRam,
+            $productMonitor,
+            $productMouse,
+            $productStorage,
+            $productGpu,
+            $productCpu,
+            $productPsu,
+            $productAmount,
+            $productDiscount,
+            $productQuantitySold,
+            $isDeleted
+        );
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
 
     // Update product image
-    function updateProductImage($params, $fileName, $newFileType, $newFilePath){
+    function updateProductImage($params, $fileName, $newFileType, $newFilePath)
+    {
         $convert_userId = (int)$params["userId"];
         $convert_productId = (int)$params["productId"];
         $stmt = $this->con->prepare("CALL UpdateProductImage(?, ?, ?, ?, ?)");
-        $stmt->bind_param("iisss", $convert_userId,$convert_productId ,$fileName, $newFileType, $newFilePath);
+        $stmt->bind_param("iisss", $convert_userId, $convert_productId, $fileName, $newFileType, $newFilePath);
         if ($stmt->execute()) {
             return true;
         } else
             return false;
     }
 
-    function getActiveProduct(){
+    function getActiveProduct()
+    {
         $stmt = $this->con->prepare("CALL GetActiveProduct()");
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
 
-    function searchProduct($keyword){
+    function searchProduct($keyword)
+    {
         $stmt = $this->con->prepare("CALL SearchProduct(?)");
         $stmt->bind_param("s", $keyword);
         $stmt->execute();
