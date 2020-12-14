@@ -1,5 +1,5 @@
 <?php
-if(isset($_SESSION[ROLE_ID]) && $_SESSION[ROLE_ID] == 1){
+if(!isset($_SESSION[ROLE_ID]) || $_SESSION[ROLE_ID] == 1){
     include_once("../backend/environments/Constants.php");
     require_once('../frontend/components/header/header.php');
     include('../frontend/components/cart/__cart.php');
