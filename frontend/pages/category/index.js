@@ -32,7 +32,7 @@ function fetchProduct(){
                                         </span>
                                     </div>
                                     <div class="price py-2">
-                                        <input class="product-price" style="display: none" type="number" disabled value="${product.Price}" placeholder="${formatPrice(product.Price)}"/>
+                                        <p class="product-price">${product.Price}</p>
                                         <span>${formatPrice(product.Price)}</span>
                                     </div>
                                     <button type="submit" class="btn btn-warning font-size-12" onclick="addtoCart(${product.Id}, ${product.Amount})">Add to cart</button>
@@ -51,7 +51,7 @@ function fetchProduct(){
             layoutMode: 'fitRows',
             getSortData: {
                 productname: '.product-name',
-                productprice: '.product-price'
+                productprice: '.product-price parseInt'
             },
           })
           $(window).on('load', function(){
