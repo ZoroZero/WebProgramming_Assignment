@@ -57,30 +57,30 @@ function getTopSaleProduct(){
                 console.log("Top sale", information);
                 var list_product = information.map(function(element){
                     return `<div class="item py-2 px-2">
-                            <div class="product font-rale">
-                                <a href="../frontend/product/${element['Id']}">
-                                    <img src="../frontend/${element['Path']}" alt="product1" class="img-fluid">
-                                </a>
-                                <div class="text-center">
-                                    <h6>
-                                        ${element['Name']}
-                                    </h6>
-                                    <div class="rating text-warning font-size-12">
-                                        <span>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </span>
+                                <div class="product font-rale">
+                                    <a href="../frontend/product/${element['Id']}">
+                                        <img src="../frontend/${element['Path']}" alt="product1" class="img-fluid">
+                                    </a>
+                                    <div class="text-center">
+                                        <h6>
+                                            ${element['Name']}
+                                        </h6>
+                                        <div class="rating text-warning font-size-12">
+                                            <span>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </span>
+                                        </div>
+                                        <div class="price py-2">
+                                            <span>${formatPrice(element['Price'])}</span>
+                                        </div>
+                                        <button type="submit" class="btn btn-warning font-size-12" onclick="addtoCart(${element['Id']}, ${element['Amount']})">Add to cart</button>
                                     </div>
-                                    <div class="price py-2">
-                                        <span>${formatPrice(element['Price'])}</span>
-                                    </div>
-                                    <button type="submit" class="btn btn-warning font-size-12" onclick="addtoCart(${element['Id']}, ${element['Amount']})">Add to cart</button>
                                 </div>
-                            </div>
-                        </div>`;
+                            </div>`;
                 });
                 document.getElementById('top-sale-carousel').innerHTML = list_product.join(' ');
             }
@@ -152,23 +152,25 @@ function getSpecialPriceProduct(){
                 });
                 document.getElementById('special-price-grid').innerHTML = list_product.join(' ');
             }
-            else{
+            else {
                 console.log("Error ", response['message']);
             }
+
             //isotope filter
             var $grid = $(".grid").isotope({
                 itemSelector: '.grid-item',
                 layoutMode: 'fitRows',
             })
-            
-            $grid.isotope({filter: '*'})
 
-            //filter items on button press
-            $(".button-group").on("click", "button", function(){
-                var filterValue = $(this).attr('data-filter');
-                $grid.isotope({filter: filterValue});
+            $(window).on('load', function(){
+                $grid.isotope({filter: '*'})
+
+                //filter items on button press
+                $(".button-group").on("click", "button", function(){
+                    var filterValue = $(this).attr('data-filter');
+                    $grid.isotope({filter: filterValue});
+                })
             })
-        
         }
     });
 

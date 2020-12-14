@@ -10,7 +10,7 @@ namespace Core\Http;
 class Route
 {
 
-    
+
     private $__routes;
 
     public function __construct()
@@ -18,21 +18,21 @@ class Route
         $this->__routes = [];
     }
 
-    
+
     public function get(string $url, $action)
     {
         // Xử lý phương thức GET
         $this->__request($url, 'GET', $action);
     }
 
-  
+
     public function post(string $url, $action)
     {
         // Xử lý phương thức POST
         $this->__request($url, 'POST', $action);
     }
-    
-    
+
+
     private function __request(string $url, string $method, $action)
     {
         // kiem tra xem URL co chua param khong. VD: post/{id}
@@ -52,17 +52,17 @@ class Route
         ];
         array_push($this->__routes, $route);
     }
-    
-    
+
+
     public function map(string $url, string $method)
-    {        
+    {
         // Lặp qua các route trong ứng dụng, kiểm tra có chứa url được gọi không
         foreach ($this->__routes as $route) {
-            
+
             // nếu route có $method
             if ($route['method'] == $method) {
                 $reg = '/^' . $route['url'] . '/';
-                
+
                 if (preg_match($reg, $url, $params)) {
                     $this->__call_action_route($route['action'], $params);
                     return;

@@ -9,7 +9,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <img src ='' id="output" class="img-fluid" style="max-width: 300px; margin: auto; display: none" />
+        <img src='' id="output" class="img-fluid" style="max-width: 300px; margin: auto; display: none" />
         <form id="add-new-product-form" name="add-new-product-form" action="../backend/product/AddNewProduct.php" method="post" enctype="multipart/form-data">
           <div class="input-group mt-3">
             <div class="custom-file">
@@ -20,67 +20,67 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="productAddName" class="col-form-label">Product Name:</label>
-              <input type="text" class="form-control" id="productAddName" name="productName">
+              <input type="text" class="form-control" id="productAddName" name="productAddName">
             </div>
             <div class="form-group col-md-6">
               <label for="productAddDiscount" class="col-form-label">Discount:</label>
-              <input type="text" class="form-control" id="productAddDiscount" name="productDiscount">
+              <input type="number" class="form-control" id="productAddDiscount" name="productAddDiscount">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="productAddPrice" class="col-form-label">Price:</label>
-              <input type="number" class="form-control" id="productAddPrice" name="productPrice">
+              <input type="number" class="form-control" id="productAddPrice" name="productAddPrice">
             </div>
             <div class="form-group col-md-6">
               <label for="productAddOs" class="col-form-label">Operating System:</label>
-              <input type="text" class="form-control" id="productAddOs" name="productOs">
+              <input type="text" class="form-control" id="productAddOs" name="productAddOs">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="productAddRam" class="col-form-label">Ram:</label>
-              <input type="text" class="form-control" id="productAddRam" name="productRam">
+              <input type="text" class="form-control" id="productAddRam" name="productAddRam">
             </div>
             <div class="form-group col-md-6">
               <label for="productAddMonitor" class="col-form-label">Monitor:</label>
-              <input type="text" class="form-control" id="productAddMonitor" name="productMonitor">
+              <input type="text" class="form-control" id="productAddMonitor" name="productAddMonitor">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="productAddMouse" class="col-form-label">Mouse:</label>
-              <input type="text" class="form-control" id="productAddMouse" name="productMouse">
+              <input type="text" class="form-control" id="productAddMouse" name="productAddMouse">
             </div>
             <div class="form-group col-md-6">
               <label for="productAddStorage" class="col-form-label">Storage:</label>
-              <input type="text" class="form-control" id="productAddStorage" name="productStorage">
+              <input type="text" class="form-control" id="productAddStorage" name="productAddStorage">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="productAddCpu" class="col-form-label">Cpu:</label>
-              <input type="text" class="form-control" id="productAddCpu" name="productCpu">
+              <input type="text" class="form-control" id="productAddCpu" name="productAddCpu">
             </div>
             <div class="form-group col-md-6">
               <label for="productAddGpu" class="col-form-label">Gpu:</label>
-              <input type="text" class="form-control" id="productAddGpu" name="productGpu">
+              <input type="text" class="form-control" id="productAddGpu" name="productAddGpu">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="productAddPsu" class="col-form-label">Psu:</label>
-              <input type="text" class="form-control" id="productAddPsu" name="productPsu">
+              <input type="text" class="form-control" id="productAddPsu" name="productAddPsu">
             </div>
             <div class="form-group col-md-6">
               <label for="productAddAmount" class="col-form-label">Amount:</label>
-              <input type="text" class="form-control" id="productAddAmount" name="productAmount">
+              <input type="text" class="form-control" id="productAddAmount" name="productAddAmount">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="productAddDescription" class="col-form-label">Description:</label>
-              <input type="text" class="form-control" id="productAddDescription" name="productDescription">
+              <input type="text" class="form-control" id="productAddDescription" name="productAddDescription">
             </div>
             <div class="form-group col-md-6">
               <label for="inputState" class="col-form-label">Category:</label>
@@ -88,7 +88,6 @@
                 <option value=1 selected>Windows</option>
                 <option value=2>Mac</option>
                 <option value=3>Linux</option>
-
               </select>
             </div>
           </div>

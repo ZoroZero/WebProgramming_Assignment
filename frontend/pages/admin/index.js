@@ -1,12 +1,12 @@
 import {formatPrice, getCookie, loadFile, getProductCategory } from '../../index.js';
 
 window.initUpdateUserForm = initUpdateUserForm;
+
 var tableUserList = [];
 var updateValidator, addValidator;
 const userId = getCookie("userId");
 
 $(document).ready(function() {
-
     updateValidator = $("form[id='update-user-information-form']").validate({
         rules:{
             userFistname: {
@@ -173,7 +173,6 @@ function getAllCurrentUser(){
 
 function initUpdateUserForm(id){
     var user = tableUserList.filter(element => element.Id === id)[0];
-    document.getElementById('btn-submit-update').setAttribute("disabled", true)
     for (var i = 0; i < document.getElementsByTagName('input').length; i++) {
         document.getElementsByTagName('input')[i].classList.remove("error");
     }

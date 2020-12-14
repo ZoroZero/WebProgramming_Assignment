@@ -606,8 +606,8 @@ div.form-group label.error {
   position: absolute;
   background-color: #fdfcfc;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 33;
 }
 
 .dropdown-content a {
@@ -617,13 +617,23 @@ div.form-group label.error {
   display: block;
 }
 
+.dropdown-content p {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #00a5c4;
+}
+
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
 .show {
-  display:block;
+  display: block;
 }
-
 
 /*# sourceMappingURL=style.css.map */

@@ -32,6 +32,18 @@ window.onclick = function(event){
 $(document).ready(function() {
     var cartProductList = getCookie(cartCookie);
     cartItemList = cartProductList && cartProductList!=""? cartProductList.split(','):[];
+    if($(location).attr('href').includes("home")) {
+        $("#homepage").addClass("active");
+    }
+    if($(location).attr('href').includes("category")) {
+        $("#category").addClass("active");
+    }
+    if($(location).attr('href').includes("staff")) {
+        $("#staff").addClass("active");
+    }
+    if($(location).attr('href').includes("admin")) {
+        $("#admin").addClass("active");
+    }
     $('#cart-count').html(cartItemList.length);
 
     $(function () {
@@ -208,22 +220,30 @@ function showSearchResult(str) {
     $.get(`../backend/product/SearchProduct.php?keyword=${str}`,
       function(response) {
         if(response){
-            if(!JSON.parse(response)['error']){
-                let information = JSON.parse(response)['data'];
-                console.log("Search", information);
-                var list_product = information.map(function(element){
-                    return `<a href='./product/${element.Id}'>
-                                ${element.Name}
-                            </a>`
-                })
-                let liveSearch = document.getElementById('livesearch'); 
-                liveSearch.innerHTML = list_product.join(' ');
-                if (!liveSearch.classList.contains('show')) {
-                    liveSearch.classList.add('show');
-                }
+            if(response === '404 - Not Found') {
+                console.log('object')
+                return `<p>
+                            Not found
+                        </p>`
             }
-            else{
-                console.log("Error ", JSON.parse(response)['message']);
+            else {
+                if(!JSON.parse(response)['error']){
+                    let information = JSON.parse(response)['data'];
+                    console.log("Search", information);
+                    var list_product = information.map(function(element){
+                        return `<a href='./product/${element.Id}'>
+                                    ${element.Name}
+                                </a>`
+                    })
+                    let liveSearch = document.getElementById('livesearch'); 
+                    liveSearch.innerHTML = list_product.join(' ');
+                    if (!liveSearch.classList.contains('show')) {
+                        liveSearch.classList.add('show');
+                    }
+                }
+                else{
+                    console.log("Error ", JSON.parse(response)['message']);
+                }
             }
     }
     })

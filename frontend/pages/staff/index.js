@@ -4,12 +4,14 @@ window.checkDefaultValueUpdateProduct = checkDefaultValueUpdateProduct;
 window.checkDefaultPicture = checkDefaultPicture;
 window.addProductImg = addProductImg;
 window.loadFile = loadFile;
+window.addProduct = addProduct;
+window.loadFileModalUpdateProduct = loadFileModalUpdateProduct;
 
 var tableProductList = [];
 var product = {};
 const userId = getCookie("userId");
 var validator;
-window.addProduct = addProduct;
+
 $(document).ready(function() {
     getAllProduct();
 
@@ -112,6 +114,98 @@ $(document).ready(function() {
         },
     });
 
+    validator = $("form[id='add-new-product-form']").validate({
+        rules:{
+            productAddName: {
+                required: true,
+            },
+            productAddDescription: {
+                required: true,
+            },
+            productAddPrice: {
+                required: true,
+            },
+            productAddOs: {
+                required: true,
+            },
+            productAddRam: {
+                required: true,
+            },
+            productAddMonitor: {
+                required: true,
+            },
+            productAddMouse: {
+                required: true,
+            },
+            productAddStorage: {
+                required: true,
+            },
+            productAddGpu: {
+                required: true,
+            },
+            productAddCpu: {
+                required: true,
+            },
+            productAddPsu: {
+                required: true,
+            },
+            productAddAmount: {
+                required: true,
+                intValue: /^[0-9]*$/,
+            },
+            productAddDiscount: {
+                required: true,
+                greaterThan100: 100,
+            },
+            fileToUploadAddProduct: {
+                required: true
+            }
+        },
+        messages: {
+            productAddName: {
+                required: "This field is required...",
+            },
+            productAddDescription: {
+                required: "This field is required...",
+            },
+            productAddPrice: {
+                required: "This field is required...",
+            },
+            productAddOs: {
+                required: "This field is required...",
+            },
+            productAddRam: {
+                required: "This field is required...",
+            },
+            productAddMonitor: {
+                required: "This field is required...",
+            },
+            productAddMouse: {
+                required: "This field is required...",
+            },
+            productAddStorage: {
+                required: "This field is required...",
+            },
+            productAddGpu: {
+                required: "This field is required...",
+            },
+            productAddCpu: {
+                required: "This field is required...",
+            },
+            productAddPsu: {
+                required: "This field is required...",
+            },
+            productAddAmount: {
+                required: "This field is required...",
+                intValue: "Please type an integer value",
+            },
+            productAddDiscount: {
+                required: "This field is required...",
+                greaterThan100: "This value can not be greater than 100",
+            },
+        },
+    });
+
     $('#btn-submit-update').click(function() {
         if($("#form-update-product").valid()){   // test for validity
             var sent_data = $('#form-update-product').serializeArray();
@@ -153,6 +247,12 @@ $(document).ready(function() {
                 success: function(res){
                     console.log(res);
                     getAllProduct();
+                },
+            })
+            .done(function(response) {
+                var res = JSON.parse(response)
+                if(res.error === true) {
+                    alert(res.message);
                 }
             });
         }
@@ -227,6 +327,7 @@ function initUpdateProductForm(id){
     $('#productAmount').val(product.Amount);
     $('#productDiscount').val(product.Discount);
     $('#productQuantitySold').val(product.QuantitySold);
+    $('#inputState').val(product.IsDeleted);
 
     document.getElementById('change-product-setting-img').src = '../frontend/' + product["Path"];
 }
@@ -247,6 +348,7 @@ function checkDefaultValueUpdateProduct() {
     var productAmount = document.getElementById("productAmount").value;
     var productDiscount = document.getElementById("productDiscount").value;
     var productQuantitySold = document.getElementById("productQuantitySold").value;
+    var productState = document.getElementById("inputState").value;
 
     if(product.Name !== productName ||
         product.Description !== productDescription ||
@@ -262,9 +364,10 @@ function checkDefaultValueUpdateProduct() {
         product.Amount !== productAmount ||
         product.Discount !== productDiscount ||
         product.QuantitySold !== productQuantitySold ||
-        productPicture !== '../frontend/' + product["Path"]) {
+        product.IsDeleted !== parseInt(productState)) {
             document.getElementById('btn-submit-update').removeAttribute("disabled")
     }
+    
 
     if(product.Name === productName &&
         product.Description === productDescription &&
@@ -280,9 +383,14 @@ function checkDefaultValueUpdateProduct() {
         product.Amount === parseInt(productAmount) &&
         product.Discount === parseInt(productDiscount) &&
         product.QuantitySold === parseInt(productQuantitySold) &&
-        productPicture === '../frontend/' + product["Path"]) {
+        product.IsDeleted === parseInt(productState)) {
             document.getElementById('btn-submit-update').setAttribute("disabled", true)
     }
+}
+
+function loadFileModalUpdateProduct(event, imgsId, id) {
+    loadFile(event, imgsId, id)
+    checkDefaultValueUpdateProduct()
 }
 
 function getFormData($form){
@@ -297,7 +405,7 @@ function getFormData($form){
 }
 
 function addProduct(){
-    if($('#fileToUploadAddProduct')[0].files[0]){
+    if($("#add-new-product-form").valid()){   // test for validity
         var formData = new FormData();
         formData.append('section', 'general');
         formData.append('action', 'previewImg');
@@ -307,19 +415,19 @@ function addProduct(){
         formData.append('fileToUpload', $('#fileToUploadAddProduct')[0].files[0]);
         formData.append("userId", userId);
         formData.append("category", sent_data.category);
-        formData.append("productName", sent_data.productName);
-        formData.append("productDescription", sent_data.productDescription);
-        formData.append("productPrice", sent_data.productPrice);
-        formData.append("productOs", sent_data.productOs);
-        formData.append("productRam", sent_data.productRam);
-        formData.append("productMonitor", sent_data.productMonitor);
-        formData.append("productMouse", sent_data.productMouse);
-        formData.append("productStorage", sent_data.productStorage);
-        formData.append("productGpu", sent_data.productGpu);
-        formData.append("productCpu", sent_data.productCpu);
-        formData.append("productPsu", sent_data.productPsu);
-        formData.append("productAmount", sent_data.productAmount);
-        formData.append("productDiscount", sent_data.productDiscount);
+        formData.append("productAddName", sent_data.productAddName);
+        formData.append("productAddDescription", sent_data.productAddDescription);
+        formData.append("productAddPrice", sent_data.productAddPrice);
+        formData.append("productAddOs", sent_data.productAddOs);
+        formData.append("productAddRam", sent_data.productAddRam);
+        formData.append("productAddMonitor", sent_data.productAddMonitor);
+        formData.append("productAddMouse", sent_data.productAddMouse);
+        formData.append("productAddStorage", sent_data.productAddStorage);
+        formData.append("productAddGpu", sent_data.productAddGpu);
+        formData.append("productAddCpu", sent_data.productAddCpu);
+        formData.append("productAddPsu", sent_data.productAddPsu);
+        formData.append("productAddAmount", parseInt(sent_data.productAddAmount));
+        formData.append("productAddDiscount", parseInt(sent_data.productAddDiscount));
         $.ajax({
             url: '../backend/product/AddNewProduct.php',
             data: formData,
@@ -332,6 +440,17 @@ function addProduct(){
                 getAllProduct(); 
                 $('#add-new-product-form').modal('hide');
             }
+        })
+        .done(function(response) {
+            var res = JSON.parse(response)
+            if(res.error === true) {
+                alert(res.message);
+            }
+            
         });
+        getAllProduct()
+        return false;
+    } else {
+        console.log('invalid form')
     }
 }

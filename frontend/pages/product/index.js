@@ -20,13 +20,11 @@ function getProductInformation(){
                         document.getElementById('original-price').innerHTML = `${formatPrice(productInformation.Price)}`;
                         document.getElementById('discount').innerHTML = `${productInformation.Discount}%`;
                         document.getElementById('current-price').innerHTML = `${formatPrice(productInformation.Price*(100-productInformation.Discount)/100)}`;
-                        document.getElementById('mainboard-information').innerHTML = productInformation.Mainboard;
                         document.getElementById('cpu-information').innerHTML = productInformation.Cpu;
                         document.getElementById('ram-information').innerHTML = productInformation.Ram;
                         document.getElementById('storage-information').innerHTML = productInformation.Storage;
                         document.getElementById('gpu-information').innerHTML = productInformation.Gpu;
                         document.getElementById('psu-information').innerHTML = productInformation.Psu !== "" ? productInformation.Psu : "(500W) SilverStone ST50F-ES230 80 Plus";
-                        document.getElementById('case-information').innerHTML = productInformation.Case;
                         document.getElementById('os-information').innerHTML = productInformation.Os;
                         document.getElementById('product-image').src = `../../frontend/${productInformation.Path}`;
                         $('#add-product-to-cart').click(function(){

@@ -58,17 +58,17 @@
                 include_once("../backend/environments/Constants.php");
                 if (isset($_SESSION['userId'])) {
                     echo "<p class='px-3 text-dark m-auto'>" . $_COOKIE[USER_NAME] . "</p>";
-                    echo "<a href='".SERVER_PATH."settings' class='px-3 border-right m-auto border-left text-dark'>Setting</a>";
+                    echo "<a href='" . SERVER_PATH . "settings' class='px-3 border-right m-auto border-left text-dark'>Setting</a>";
                     echo "<a href='../backend/user/LogoutUser.php' class='px-3 m-auto border-right border-left text-dark' id='login-btn'>Logout</a>";
                 } else
-                    echo "<a href='".SERVER_PATH."login' class='px-3 border-right m-auto border-left text-dark' id='logout-btn'>Login</a>"; ?>
+                    echo "<a href='" . SERVER_PATH . "login' class='px-3 border-right m-auto border-left text-dark' id='logout-btn'>Login</a>"; ?>
             </div>
         </div>
 
         <!-- Primary Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark color-secondary-bg">
             <?php
-                echo '<a class="navbar-brand" href="'.SERVER_PATH.'home">Phu Vinh</a>';
+            echo '<a class="navbar-brand" href="' . SERVER_PATH . 'home">Phu Vinh</a>';
             ?>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -76,36 +76,33 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav font-rubik mr-auto">
                     <?php
-                        if (!isset($_SESSION[ROLE_ID]) || $_SESSION[ROLE_ID] == 1) {
-                            echo '<li class="nav-item active">
-                                    <a class="nav-link" href="'.SERVER_PATH.'home">Homepage</a>
+                    if (!isset($_SESSION[ROLE_ID]) || $_SESSION[ROLE_ID] == 1) {
+                        echo '<li class="nav-item" id="homepage">
+                                    <a class="nav-link" href="' . SERVER_PATH . 'home">Homepage</a>
                                 </li>';
-                        
-                            
-                            echo '<li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Category
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="'.SERVER_PATH.'category" id="filter-windows">Windows</a>
-                                    <a class="dropdown-item" href="'.SERVER_PATH.'category">Linux</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="'.SERVER_PATH.'category">Mac</a>
-                                </div>
-                            </li>';
-                        }
+                        echo '<li class="nav-item dropdown" id="category">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Category
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="' . SERVER_PATH . 'category" id="filter-windows">Windows</a>
+                                        <a class="dropdown-item" href="' . SERVER_PATH . 'category">Linux</a>
+                                        <a class="dropdown-item" href="' . SERVER_PATH . 'category">Mac</a>
+                                    </div>
+                                </li>';
+                    }
                     ?>
 
                     <?php
                     if (isset($_SESSION[USER_ID]) && isset($_SESSION[ROLE_ID])) {
                         if ($_SESSION[ROLE_ID] == 2 || $_SESSION[ROLE_ID] == 3) {
-                            echo '<li class="nav-item">
-                                    <a class="nav-link" href="'.SERVER_PATH.'staff">Manage product</a>
+                            echo '<li class="nav-item" id="staff">
+                                    <a class="nav-link" href="' . SERVER_PATH . 'staff">Manage product</a>
                                 </li>';
                         }
                         if ($_SESSION[ROLE_ID] == 3) {
-                            echo '<li class="nav-item">
-                                    <a class="nav-link" href="'.SERVER_PATH.'admin">Manage user</a>
+                            echo '<li class="nav-item" id="admin">
+                                    <a class="nav-link" href="' . SERVER_PATH . 'admin">Manage user</a>
                                 </li>';
                         }
                     }
@@ -121,7 +118,7 @@
                     <?php
                     // $pos = strpos($mystring, $findme);
                     // echo strpos('product', $_SERVER['REQUEST_URI']);
-                        echo '<a href="'.SERVER_PATH.'cart" class="py-2 rounded-pill color-primary-bg">
+                    echo '<a href="' . SERVER_PATH . 'cart" class="py-2 rounded-pill color-primary-bg">
                                     <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
                                     <span class="px-3 py-2 rounded-pill text-dark bg-light" id="cart-count">0</span>
                         </a>';

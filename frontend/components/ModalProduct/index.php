@@ -11,7 +11,7 @@
                 <img id="change-product-setting-img" alt="" class="img-fluid mb-2" style="max-width: 300px; margin: auto; display: block" />
                 <form id="form-update-product-img" name="form-update-product-img" method="" action="">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input font-size-16 font-rubik" name="fileToUpload" id="fileToUpload" accept="image/*" onchange="loadFile(event, 'change-product-setting-img', 'imgs-label')">
+                        <input type="file" class="custom-file-input font-size-16 font-rubik" name="fileToUpload" id="fileToUpload" accept="image/*" onchange="loadFileModalUpdateProduct(event, 'change-product-setting-img', 'imgs-label')">
                         <label class="custom-file-label imgs-label font-size-16 font-rubik" id="imgs-label" for="fileToUpload">Choose file</label>
                     </div>
                     <button type="button" class="btn btn-primary mt-2" id="btn-submit-update-imgs">Update</button>
@@ -92,7 +92,7 @@
                     </div>
                     <div class="form-group">
                         <label for="inputState">Deactivate product:</label>
-                        <select id="inputState" class="form-control" name="isDeleted">
+                        <select id="inputState" name="inputState" class="form-control" name="isDeleted" onchange="checkDefaultValueUpdateProduct()">
                             <option value=0 selected>NO</option>
                             <option value=1>YES</option>
                         </select>

@@ -26,66 +26,67 @@ function getCartProductInformation(){
                 if(productList.length === 0) {
                     document.getElementById('buy-button').setAttribute("disabled", true)
                 }
-                console.log("Cart products: ",productIdList);
+                console.log("Cart products: ",productList);
                 total_price = productList.map(o => o.Price).reduce((acc, cur) => cur + acc, 0)
                 total_buy_amount = productList.map(o => o.BuyAmount).reduce((acc, cur) => cur + acc, 0)
                 var list_product = productList.map(function(element){
                     return `<div class="row border-top py-3">
-                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 col-xl-2 cart-img">
-                        <a href="../frontend/product/${element.Id}">
-                            <img  src="../frontend/${element.Path}" alt="cart1" class="img-fluid">
-                        </a>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-5">
-                        <h5 class="font-baloo font-size-20 m-0">${element.Name}</h5>
-                        <!--    #policy -->
-                        <div id="policy">
-                            <div class="d-flex">
-                                <div class="return mr-3 mr-lg-4 mr-xl-5">
-                                    <div class="font-size-12 my-2 color-secondary">
-                                        <span class="fas fa-retweet border p-2 rounded-pill"></span>
+                        <div class="col-12 col-sm-6 col-md-3 col-lg-3 col-xl-2 cart-img">
+                            <a href="../frontend/product/${element.Id}">
+                                <img  src="../frontend/${element.Path}" alt="cart1" class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-5">
+                            <h5 class="font-baloo font-size-20 m-0">${element.Name}</h5>
+                            <!--    #policy -->
+                            <div id="policy">
+                                <div class="d-flex">
+                                    <div class="return mr-3 mr-lg-4 mr-xl-5">
+                                        <div class="font-size-12 my-2 color-secondary">
+                                            <span class="fas fa-retweet border p-2 rounded-pill"></span>
+                                        </div>
+                                        <p class="font-rale text-info font-size-12">10 Days <br> Replacement</p>
                                     </div>
-                                    <p class="font-rale text-info font-size-12">10 Days <br> Replacement</p>
-                                </div>
-                                <div class="return mr-3 mr-lg-4 mr-xl-5">
-                                    <div class="font-size-12 my-2 color-secondary">
-                                        <span class="fas fa-truck  border p-2 rounded-pill"></span>
+                                    <div class="return mr-3 mr-lg-4 mr-xl-5">
+                                        <div class="font-size-12 my-2 color-secondary">
+                                            <span class="fas fa-truck  border p-2 rounded-pill"></span>
+                                        </div>
+                                        <p class="font-rale text-info font-size-12">Free <br> Shipping</p>
                                     </div>
-                                    <p class="font-rale text-info font-size-12">Free <br> Shipping</p>
-                                </div>
-                                <div class="return mr-3 mr-lg-4 mr-xl-5">
-                                    <div class="font-size-12 my-2 color-secondary">
-                                        <span class="fas fa-check-double border p-2 rounded-pill"></span>
+                                    <div class="return mr-3 mr-lg-4 mr-xl-5">
+                                        <div class="font-size-12 my-2 color-secondary">
+                                            <span class="fas fa-check-double border p-2 rounded-pill"></span>
+                                        </div>
+                                        <p class="font-rale text-info font-size-12">1 Year <br> Warranty</p>
                                     </div>
-                                    <p class="font-rale text-info font-size-12">1 Year <br> Warranty</p>
                                 </div>
                             </div>
+                            <!--    !policy -->
+                            <button onclick="removeFromCart(${element.Id})" type="submit" class="btn font-baloo text-danger px-0 text-left">Delete item</button>
                         </div>
-                        <!--    !policy -->
-                        <button onclick="removeFromCart(${element.Id})" type="submit" class="btn font-baloo text-danger px-0 text-left">Delete item</button>
-                    </div>
-                    <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                        <!-- product qty -->
-                        <div class="qty">
-                            <div class="d-flex font-rale">
-                                <button class="border bg-light" onclick="decrement(${element.Id})"><i class="fas fa-angle-down"></i></button>
-                                <input disabled type="number" id="amount-${element.Id}" class="border px-2 w-100 bg-light" min="1" max="${element.Amount}" value="${element.Amount >= 1 ? 1: 0}">
-                                <button class="border bg-light" onclick="increment(${element.Id})"><i class="fas fa-angle-up"></i></button>
+                        <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                            <!-- product qty -->
+                            <div class="qty">
+                                <div class="d-flex font-rale">
+                                    <button class="border bg-light" onclick="decrement(${element.Id})"><i class="fas fa-angle-down"></i></button>
+                                    <input disabled type="number" id="amount-${element.Id}" class="border px-2 w-100 bg-light" min="1" max="${element.Amount}" value="${element.Amount >= 1 ? 1: 0}">
+                                    <button class="border bg-light" onclick="increment(${element.Id})"><i class="fas fa-angle-up"></i></button>
+                                </div>
+                            </div>
+                            <!-- !product qty -->
+                            <!-- product qty left -->
+                            <div class="qtyleft text-center mt-3">
+                                <p class="font-baloo text-muted"> There are only <span style="font-weight: bold">${element.Amount>= 1 ? element.Amount : 0}</span> items left</p>
+                            </div>
+                            <!-- !product qty left -->
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-2 col-lg-2 col-xl -2 text-right">
+                            <div class="font-size-20 text-danger font-baloo">
+                                <span class="product_price" id="product-price-${element.Id}">${formatPrice(element.Price)}</span>
                             </div>
                         </div>
-                        <!-- !product qty -->
-                        <!-- product qty left -->
-                        <div class="qtyleft text-center mt-3">
-                            <p class="font-baloo text-muted"> There are only <span style="font-weight: bold">${element.Amount>= 1 ? element.Amount : 0}</span> items left</p>
-                        </div>
-                        <!-- !product qty left -->
-                    </div>
-                    <div class="col-6 col-sm-6 col-md-2 col-lg-2 col-xl -2 text-right">
-                        <div class="font-size-20 text-danger font-baloo">
-                            <span class="product_price" id="product-price-${element.Id}">${formatPrice(element.Price)}</span>
-                        </div>
-                    </div>
-                </div>`});
+                    </div>`
+                });
                 $('#product-list-container').html(list_product.join(' '));
                 $('#deal-price').html(formatPrice(total_price))
                 $('#deal-amount').html(`Subtotal (${total_buy_amount} items):`)
