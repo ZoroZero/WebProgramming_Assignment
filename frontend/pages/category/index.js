@@ -32,7 +32,7 @@ function fetchProduct(){
                                         </span>
                                     </div>
                                     <div class="price py-2">
-                                        <p class="product-price">${product.Price}</p>
+                                        <p style="display: none" class="product-price">${product.Price}</p>
                                         <span>${formatPrice(product.Price)}</span>
                                     </div>
                                     <button type="submit" class="btn btn-warning font-size-12" onclick="addtoCart(${product.Id}, ${product.Amount})">Add to cart</button>
