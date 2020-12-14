@@ -76,24 +76,25 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav font-rubik mr-auto">
                     <?php
-                    // $pos = strpos($mystring, $findme);
-                    // echo strpos('product', $_SERVER['REQUEST_URI']);
-                    echo '<li class="nav-item active">
-                            <a class="nav-link" href="'.SERVER_PATH.'home">Homepage</a>
-                        </li>';
-                   
+                        if (!isset($_SESSION[ROLE_ID]) || $_SESSION[ROLE_ID] == 1) {
+                            echo '<li class="nav-item active">
+                                    <a class="nav-link" href="'.SERVER_PATH.'home">Homepage</a>
+                                </li>';
+                        
+                            
+                            echo '<li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Category
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="'.SERVER_PATH.'category" id="filter-windows">Windows</a>
+                                    <a class="dropdown-item" href="'.SERVER_PATH.'category">Linux</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="'.SERVER_PATH.'category">Mac</a>
+                                </div>
+                            </li>';
+                        }
                     ?>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Category
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Windows</a>
-                            <a class="dropdown-item" href="#">Linux</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Mac</a>
-                        </div>
-                    </li>
 
                     <?php
                     if (isset($_SESSION[USER_ID]) && isset($_SESSION[ROLE_ID])) {
@@ -110,8 +111,9 @@
                     }
                     ?>
                 </ul>
-                <form class="form-inline my-lg-0 mx-lg-2 mx-sm-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="form-inline my-lg-0 mx-lg-2 mx-sm-0 dropdown">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onkeyup="showSearchResult(this.value)">
+                    <div id="livesearch" class="dropdown-content"></div>
                     <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
                 </form>
 

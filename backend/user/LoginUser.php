@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $response['error'] = false;
             $response['message'] = 'Success';
+            $response['role'] = $result["roleId"];
         }
     } else {
         $response['error'] = true;
