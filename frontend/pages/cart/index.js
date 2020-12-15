@@ -25,6 +25,9 @@ function getCartProductInformation(){
                 productList = JSON.parse(response)['data'];
                 if(productList.length === 0) {
                     document.getElementById('buy-button').setAttribute("disabled", true)
+                    document.getElementById('cart-status').classList.remove("text-success")
+                    document.getElementById('cart-status').classList.add("text-info")
+                    document.getElementById('cart-status').innerHTML = `<i class="fas fa-times"></i> No items in cart.</h6>`
                 }
                 console.log("Cart products: ",productList);
                 total_price = productList.map(o => (o.Price*(100-o.Discount)/100)).reduce((acc, cur) => cur + acc, 0)
@@ -81,12 +84,14 @@ function getCartProductInformation(){
                             </div>
                             <!-- !product qty left -->
                         </div>
-                    </div>
-                    <div class="col-6 col-sm-6 col-md-2 col-lg-2 col-xl -2 text-right">
-                        <div class="font-size-20 text-danger font-baloo">
-                            <span class="product_price" id="product-price-${element.Id}">${formatPrice(element.Price*(100-element.Discount)/100)}</span>
+                        <div class="col-6 col-sm-6 col-md-2 col-lg-2 col-xl -2 text-right">
+                            <div class="font-size-20 text-danger font-baloo d-flex flex-column">
+                                <span class="product_price" id="product-price-${element.Id}">${formatPrice(element.Price*(100-element.Discount)/100)}</span>
+                                <p style="font-size: 13px"> Discount ${element.Discount} % </p>
+                            </div>
                         </div>
-                    </div>`
+                    </div>
+                    `
                 });
                 $('#product-list-container').html(list_product.join(' '));
                 $('#deal-price').html(formatPrice(total_price))

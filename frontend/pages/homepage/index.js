@@ -74,8 +74,12 @@ function getTopSaleProduct(){
                                                 <i class="far fa-star"></i>
                                             </span>
                                         </div>
-                                        <div class="price py-2">
-                                            <span>${formatPrice(element['Price'])}</span>
+                                        <div class="price py-2 d-flex flex-column">
+                                            ${element['Discount'] > 0 ? `
+                                                <small><strike>${formatPrice(element['Price'])}</strike></small>
+                                                <span>${formatPrice(element['Price'] - element['Price']*element['Discount']/100)}</span>` : `
+                                                <span>${formatPrice(element['Price'])}
+                                            `}    
                                         </div>
                                         <button type="submit" class="btn btn-warning font-size-12" onclick="addtoCart(${element['Id']}, ${element['Amount']})">Add to cart</button>
                                     </div>
@@ -141,8 +145,12 @@ function getSpecialPriceProduct(){
                                                     <i class="fas fa-star-half-alt"></i>
                                                 </span>
                                             </div>
-                                            <div class="price py-2">
-                                                <span>${formatPrice(element['Price'])}</span>
+                                            <div class="price py-2 d-flex flex-column">
+                                                ${element['Discount'] > 0 ? `
+                                                    <small><strike>${formatPrice(element['Price'])}</strike></small>
+                                                    <span>${formatPrice(element['Price'] - element['Price']*element['Discount']/100)}</span>` : `
+                                                    <span>${formatPrice(element['Price'])}
+                                                `}    
                                             </div>
                                             <button type="submit" class="btn btn-warning font-size-12" onclick="addtoCart(${element['Id']}, ${element['Amount']})">Add to cart</button>
                                         </div>

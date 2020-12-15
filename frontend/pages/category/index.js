@@ -31,9 +31,13 @@ function fetchProduct(){
                                             <i class="fas fa-star-half-alt"></i>
                                         </span>
                                     </div>
-                                    <div class="price py-2">
-                                        <p style="display: none" class="product-price">${product.Price}</p>
-                                        <span>${formatPrice(product.Price)}</span>
+                                    <div class="price py-2 d-flex flex-column">
+                                        <p style="display: none" class="product-price">${product.Price- product.Price*product.Discount/100}</p>
+                                        ${product.Discount > 0 ? `
+                                            <small><strike>${formatPrice(product.Price)}</strike></small>
+                                            <span>${formatPrice(product.Price- product.Price*product.Discount/100)}</span>` : `
+                                            <span>${formatPrice(product.Price)}
+                                        `}    
                                     </div>
                                     <button type="submit" class="btn btn-warning font-size-12" onclick="addtoCart(${product.Id}, ${product.Amount})">Add to cart</button>
                                 </div>

@@ -18,9 +18,6 @@ $(document).ready(function() {
             userEmail: {
                 required: true,
             },
-            userAddress: {
-                required: true,
-            },
         },
         messages: {
             userFistname: {
@@ -32,9 +29,6 @@ $(document).ready(function() {
             userEmail: {
                 required: "This field is required...",
             },
-            userAddress: {
-                required: "This field is required...",
-            }
         },
     });
 
@@ -157,7 +151,7 @@ function getAllCurrentUser(){
                               <td>${element.LastName}</td>
                               <td>${getRole(element.RoleId)}</td>
                               <td>${element.Email}</td>
-                              <td>${element.IsActive? 'Active' : 'Inactive'}
+                              <td>${element.IsActive? '<span class="badge badge-success">Active</span>': '<span class="badge badge-danger">Deleted</span>'}
                               <td> 
                                   <button type="button" class="btn btn-primary" onclick=initUpdateUserForm(${element.Id})
                                   data-toggle="modal" data-target="#userModal" >Update</button>
@@ -174,6 +168,8 @@ function getAllCurrentUser(){
 
 function initUpdateUserForm(id){
     var user = tableUserList.filter(element => element.Id === id)[0];
+
+    console.log(user.IsActive)
     // document.getElementById('btn-submit-update').setAttribute("disabled", true)
     for (var i = 0; i < document.getElementsByTagName('input').length; i++) {
         document.getElementsByTagName('input')[i].classList.remove("error");
@@ -183,7 +179,7 @@ function initUpdateUserForm(id){
     $('#userFistname').val(user.FirstName);
     $('#userLastname').val(user.LastName);
     $('#userEmail').val(user.Email);
-    $('#userRole').val(getRole(user.RoleId));
+    $('#userRole').val(user.RoleId);
     $('#userAddress').val(user.Address);
     $('#isActive').val(user.IsActive);
 }

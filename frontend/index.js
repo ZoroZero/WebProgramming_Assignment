@@ -1,5 +1,5 @@
 const Http = new XMLHttpRequest();
-const userId = getCookie("userId");
+const userName = getCookie("userName");
 export const cartCookie = 'cart-products';
 // Googlemap js
 const address1 = { lat: 10.772713935537316, lng: 106.65967597467676 };
@@ -34,15 +34,28 @@ $(document).ready(function() {
     cartItemList = cartProductList && cartProductList!=""? cartProductList.split(','):[];
     if($(location).attr('href').includes("home")) {
         $("#homepage").addClass("active");
+        document.title= 'PhuVinh'
     }
     if($(location).attr('href').includes("category")) {
         $("#category").addClass("active");
+        document.title= 'PhuVinh | Category'
     }
     if($(location).attr('href').includes("staff")) {
         $("#staff").addClass("active");
+        document.title= 'PhuVinh | Manage product'
     }
     if($(location).attr('href').includes("admin")) {
         $("#admin").addClass("active");
+        document.title= 'PhuVinh | Manage users'
+    }
+    if($(location).attr('href').includes("cart")) {
+        document.title= 'PhuVinh | Cart'
+    }
+    if($(location).attr('href').includes("product")) {
+        document.title= 'PhuVinh | Product'
+    }
+    if($(location).attr('href').includes("setting")) {
+        document.title= `PhuVinh | ${userName}`
     }
     $('#cart-count').html(cartItemList.length);
 
@@ -213,15 +226,14 @@ export function getProductCategory(categoryId){
 
 function showSearchResult(str) {
     if (str.length==0) {
-      $("#livesearch").innerHTML="";
-      document.getElementById("livesearch").style.border="0px";
-      return;
+        document.getElementById("livesearch").classList.remove("show");
+        document.getElementById("livesearch").style.border="0px";
+        return;
     }
-    $.get(`../backend/product/SearchProduct.php?keyword=${str}`,
+    $.get(`http://localhost/WebProgramming_Assignment/backend/product/SearchProduct.php?keyword=${str}`,
       function(response) {
         if(response){
             if(response === '404 - Not Found') {
-                console.log('object')
                 return `<p>
                             Not found
                         </p>`
@@ -229,14 +241,25 @@ function showSearchResult(str) {
             else {
                 if(!JSON.parse(response)['error']){
                     let information = JSON.parse(response)['data'];
-                    console.log("Search", information);
-                    var list_product = information.map(function(element){
-                        return `<a href='./product/${element.Id}'>
-                                    ${element.Name}
-                                </a>`
-                    })
                     let liveSearch = document.getElementById('livesearch'); 
-                    liveSearch.innerHTML = list_product.join(' ');
+                    console.log("Search", information);
+                    if(information.length === 0) {
+                        console.log('object')
+                        var res = `<p class="m-0">
+                                    Not found
+                                </p>`
+                        liveSearch.innerHTML = res
+                    }
+                    else {
+                        var list_product = information.map(function(element){
+                            return `<a href='./product/${element.Id}'>
+                                        ${element.Name}
+                                    </a>
+                                    <div class="dropdown-divider m-0"></div>`
+                        })
+                        liveSearch.innerHTML = list_product.join(' ');
+                    }
+                    
                     if (!liveSearch.classList.contains('show')) {
                         liveSearch.classList.add('show');
                     }
