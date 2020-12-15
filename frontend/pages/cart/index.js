@@ -27,7 +27,7 @@ function getCartProductInformation(){
                     document.getElementById('buy-button').setAttribute("disabled", true)
                 }
                 console.log("Cart products: ",productList);
-                total_price = productList.map(o => o.Price).reduce((acc, cur) => cur + acc, 0)
+                total_price = productList.map(o => (o.Price*(100-o.Discount)/100)).reduce((acc, cur) => cur + acc, 0)
                 total_buy_amount = productList.map(o => o.BuyAmount).reduce((acc, cur) => cur + acc, 0)
                 var list_product = productList.map(function(element){
                     return `
