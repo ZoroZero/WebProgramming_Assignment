@@ -28,11 +28,11 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="userRole" class="col-form-label">Role:</label>
-                            <select id="inputState" class="form-control" id="userRole" name="userRole">
-                            <option value=1>User</option>
-                            <option value=2>Staff</option>
-                            <option value=3>Admin</option>
-                        </select>
+                            <select class="form-control" id="userRole" name="userRole">
+                                <option value=1>User</option>
+                                <option value=2>Staff</option>
+                                <option value=3>Admin</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -40,9 +40,9 @@
                         <input type="text" class="form-control" id="userAddress" name="userAddress">
                     </div>
                     <div class="form-group">
-                        <label for="inputState">Status:</label>
-                        <select id="inputState" class="form-control" name="isActive">
-                            <option value=1>Active</option>
+                        <label for="isActive">Status:</label>
+                        <select id="isActive" class="form-control" name="isActive">
+                            <option value=1 selected>Active</option>
                             <option value=0>Unactive</option>
                         </select>
                     </div>

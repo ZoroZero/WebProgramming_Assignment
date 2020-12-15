@@ -288,7 +288,7 @@ function getAllProduct(){
                                 <td>${element.Amount}</td>
                                 <td>${element.Discount}</td>
                                 <td>${element.QuantitySold}</td>
-                                <td>${element.IsDeleted? 'Deleted': 'Active'}</td>
+                                <td>${element.IsDeleted? '<span class="badge badge-danger">Deleted</span>': '<span class="badge badge-success">Active</span>'}</td>
                                 <td> 
                                     <button type="button" class="btn btn-primary" onclick=initUpdateProductForm(${element.Id})
                                     data-toggle="modal" data-target="#productModal" data-whatever="@mdo">Update</button>
@@ -412,10 +412,10 @@ function addProduct(){
         formData.append('action', 'previewImg');
         var form = $('#add-new-product-form').serializeArray();
         var sent_data = getFormData($('#add-new-product-form'));
-
+        console.log(sent_data.category)
         formData.append('fileToUpload', $('#fileToUploadAddProduct')[0].files[0]);
         formData.append("userId", userId);
-        formData.append("category", sent_data.category);
+        formData.append("category", parseInt(sent_data.category));
         formData.append("productAddName", sent_data.productAddName);
         formData.append("productAddDescription", sent_data.productAddDescription);
         formData.append("productAddPrice", sent_data.productAddPrice);

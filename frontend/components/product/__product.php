@@ -85,7 +85,9 @@
                         <button type="submit" class="btn btn-danger w-100" id='add-product-to-cart'>Add to cart</button>
                     </div>
                 </div>
+                <div id="amount-display" class="text-center">
 
+                </div>
             </div>
 
             <!-- product description section -->

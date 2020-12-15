@@ -620,7 +620,6 @@ div.form-group label.error {
 .dropdown-content p {
   color: black;
   padding: 12px 16px;
-  text-decoration: none;
   display: block;
 }
 
@@ -628,7 +627,7 @@ div.form-group label.error {
   background-color: #00a5c4;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown.show:hover .dropdown-content {
   display: block;
 }
 

@@ -67,9 +67,7 @@
 
         <!-- Primary Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark color-secondary-bg">
-            <?php
-            echo '<a class="navbar-brand" href="' . SERVER_PATH . 'home">Phu Vinh</a>';
-            ?>
+            <p class="navbar-brand mb-0 mr-2">Phu Vinh</p>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -109,19 +107,43 @@
                     ?>
                 </ul>
                 <form class="form-inline my-lg-0 mx-lg-2 mx-sm-0 dropdown">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onkeyup="showSearchResult(this.value)">
-                    <div id="livesearch" class="dropdown-content"></div>
-                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+                    <?php
+                    if (isset($_SESSION[USER_ID]) && isset($_SESSION[ROLE_ID])) {
+                        if ($_SESSION[ROLE_ID] == 2 || $_SESSION[ROLE_ID] == 3) {
+                            echo '';
+                        } else {
+                            echo '<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onkeyup="showSearchResult(this.value)">
+                            <div id="livesearch" class="dropdown-content"></div>';
+                        }
+                    } else {
+                        echo '<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onkeyup="showSearchResult(this.value)">
+                        <div id="livesearch" class="dropdown-content"></div>';
+                    }
+                    ?>
+
+                    <!-- <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button> -->
                 </form>
 
                 <form action="#" class="font-size-14 font-rale cartIcon">
                     <?php
                     // $pos = strpos($mystring, $findme);
                     // echo strpos('product', $_SERVER['REQUEST_URI']);
-                    echo '<a href="' . SERVER_PATH . 'cart" class="py-2 rounded-pill color-primary-bg">
+                    if (isset($_SESSION[USER_ID]) && isset($_SESSION[ROLE_ID])) {
+                        if ($_SESSION[ROLE_ID] == 2 || $_SESSION[ROLE_ID] == 3) {
+                            echo '';
+                        } else {
+                            echo '<a href="' . SERVER_PATH . 'cart" class="py-2 rounded-pill color-primary-bg">
+                                        <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
+                                        <span class="px-3 py-2 rounded-pill text-dark bg-light" id="cart-count">0</span>
+                            </a>';
+                        }
+                    } else {
+                        echo '<a href="' . SERVER_PATH . 'cart" class="py-2 rounded-pill color-primary-bg">
                                     <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
                                     <span class="px-3 py-2 rounded-pill text-dark bg-light" id="cart-count">0</span>
                         </a>';
+                    }
+
                     ?>
                 </form>
             </div>

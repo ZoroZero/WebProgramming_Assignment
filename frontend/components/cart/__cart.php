@@ -7,9 +7,9 @@
         <!-- subtotal section-->
         <div class="row">
             <div class="sub-total border text-center mt-2 container-fluid col-sm-7 col-md-5 col-lg-4 col-12">
-                <h6 class="font-size-12 font-rale text-success py-3"><i class="fas fa-check"></i> Your order is eligible for FREE Delivery.</h6>
+                <h6 class="font-size-14 font-rale text-danger py-3 m-0" id="cart-status"><i class="fas fa-check"></i> Your order is eligible for FREE Delivery.</h6>
                 <div class="border-top py-4">
-                    <h5 class="font-baloo font-size-20"><span id="deal-amount">No item in cart:</span>&nbsp; <span class="text-danger"><span class="text-danger" id="deal-price">0.00</span> </span> </h5>
+                    <h5 class="font-baloo font-size-20"><span id="deal-amount">No item in cart</span>&nbsp; <span class="text-danger"><span class="text-danger" id="deal-price">0.00</span> </span> </h5>
                     <button type="submit" id="buy-button" class="btn btn-warning mt-3" onclick="buyProduct()">Proceed to Buy</button>
                 </div>
             </div>
