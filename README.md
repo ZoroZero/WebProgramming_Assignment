@@ -18,3 +18,19 @@ Create a website in which:
  - Apply SEO (Search Engine Optimisation) to the code.
  - Use appropriate color for the website.
 
+Functional requirement:
+These functionality will be in the final product
+ - Login/logout: user can login into/logout off the system 
+ - Multiple role for user: user can be a normal user, a staff or an admin. Each type of user have different functionality.
+ - View product information: user can view product information when click on product card
+ - Add product to cart: user can add a product to their cart when click on add to cart button on product card.
+ - View/Edit and checkout cart: User can view/edit their cart and checkout.
+ - Change profile, password and avatar: User can change their own profile, password and avatar
+ - Add/edit product: A staff or an admin can change information of a product or add new one using product management page.
+ - Add/edit user: An admin can change information of an user or add new one using user management page.
+ - Search/filter/sort product: user can search, sort and filter list of products.
+ 
+Non-functional requirement:
+  - The website should responsive on multiple resolution.
+  - The color of the website should be able to make user want to shop.
+  - The respond’s time for any function should be less then 5 secs.
