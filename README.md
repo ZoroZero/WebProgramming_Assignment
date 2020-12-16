@@ -36,5 +36,15 @@ Non-functional requirement:
   - The respond’s time for any function should be less then 5 secs.
   
 # Diagram
-Use-case Diagram
+- Use-case Diagram
 ![image](https://user-images.githubusercontent.com/40843946/102303183-3e1da180-3f8d-11eb-942f-ae5493d42e67.png)
+
+- Sequence Diagram
+![image](https://user-images.githubusercontent.com/40843946/102303285-6efdd680-3f8d-11eb-8aec-085fcfab6218.png)
+
+- Architecture Diagram
+![image](https://user-images.githubusercontent.com/40843946/102303362-93f24980-3f8d-11eb-8e26-ef2ff998cb30.png)
+
+- Relational Diagram
+![image](https://user-images.githubusercontent.com/40843946/102303544-f6e3e080-3f8d-11eb-978d-5b1c64d776a1.png)
+
