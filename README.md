@@ -34,3 +34,7 @@ Non-functional requirement:
   - The website should responsive on multiple resolution.
   - The color of the website should be able to make user want to shop.
   - The respond’s time for any function should be less then 5 secs.
+  
+# Diagram
+Use-case Diagram
+![image](https://user-images.githubusercontent.com/40843946/102303183-3e1da180-3f8d-11eb-942f-ae5493d42e67.png)
