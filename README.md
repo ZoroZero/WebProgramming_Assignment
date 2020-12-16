@@ -48,3 +48,14 @@ Non-functional requirement:
 - Relational Diagram
 ![image](https://user-images.githubusercontent.com/40843946/102303544-f6e3e080-3f8d-11eb-978d-5b1c64d776a1.png)
 
+# Future development
+In the future, we will implement other feature for the website, such as:
+  - Rating product system.
+  - Captcha system to verify customer.
+  - Filter product on other feature.
+  - Forget password system and send mail system.
+
+
+# Conclusion
+ So in this project, we have learned how to use HTML, CSS. JavaScript in conjunction with PHP for routing, handling data and MySQL for storing data. We also learned some technique to improve our website SEO along with combining colors to make our website beautiful.
+ This project has help us to apply our knowledge about software engineering into making a real product. We also get to review our database knowledge and how applications make use of a database server, the interaction between them.  Despite the bugs, we find our final result satisfactory of course's requirements and everything works as intended. We believe with extra time and more criticism, the website can improve even further and we may even deploy our work to the public in the future. 
